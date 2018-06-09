@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/davidfudacz/teesheet/issues"
   },
-  "homepage": "https://github.com/davidfudacz/teesheet#readme"
+  "homepage": "https://github.com/davidfudacz/teesheet#readme",
+  "dependencies": {
+    "sequelize": "^4.37.10"
+  }
 }
