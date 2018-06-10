@@ -1,4 +1,4 @@
-const router = require('express').Router
+const router = require('express').Router()
 const { Club } = require('../../db/models')
 
 router.param('id', async (req, res, next, id) => {
@@ -19,6 +19,10 @@ router.get('/', async (req, res, next) => {
   catch (err) {
     next(err)
   }
+})
+
+router.get('/:id', (req, res, next) => {
+  res.json(req.club)
 })
 
 module.exports = router

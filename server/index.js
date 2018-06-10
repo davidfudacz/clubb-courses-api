@@ -94,7 +94,7 @@ const startListening = () => {
 
 const syncDb = () => db.sync()
 
-// if we are running from the command line, do all the things, 
+// if we are running from the command line, do all the things,
 // if not, just create App
 if (require.main === module) {
   sessionStore.sync()

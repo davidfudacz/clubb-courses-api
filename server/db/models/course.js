@@ -17,12 +17,6 @@ const Course = db.define('course', {
     validate: {
       notEmpty: true,
     }
-  },
-  rating: {
-    type: Sequelize.INTEGER,
-  },
-  slope: {
-    type: Sequelize.INTEGER,
   }
 })
 
