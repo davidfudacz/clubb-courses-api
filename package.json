@@ -4,7 +4,9 @@
   "description": "a web app for golfers and golf courses",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-server": "nodemon server -e html,js,css --ignore public --ignore client",
+    "start-dev": "NODE_ENV='development' npm run start-server"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,15 @@
   },
   "homepage": "https://github.com/davidfudacz/teesheet#readme",
   "dependencies": {
-    "sequelize": "^4.37.10"
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.2",
+    "connect-session-sequelize": "^5.2.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "pg": "^7.4.3",
+    "sequelize": "^4.37.10",
+    "socket.io": "^2.1.1"
   }
 }
