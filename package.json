@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "nodemon server -e html,js,css --ignore public --ignore client",
-    "start-dev": "NODE_ENV='development' npm run start-server"
+    "start-dev": "NODE_ENV='development' npm run start-server",
+    "seed": "node script/seed.js"
   },
   "repository": {
     "type": "git",
