@@ -1,20 +1,14 @@
 const Sequelize = require('sequelize')
 const db = require('../../../db')
 
-const Address = db.define('address', {
-  street: {
+const Tee = db.define('tee', {
+  name: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
     }
   },
-  street2: {
-    type: Sequelize.STRING,
-  },
-  zip: {
-    type: Sequelize.STRING,
-  },
 })
 
-module.exports = Address
+module.exports = Tee

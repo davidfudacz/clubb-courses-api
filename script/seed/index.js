@@ -1,5 +1,6 @@
-const db = require('../server/db')
-const { User, Club } = require('../server/db/models')
+const db = require('../../server/db')
+const { State, User, Club } = require('../../server/db/models')
+const states = require('./states')
 
 const users = [
   {
@@ -42,6 +43,9 @@ const seed = async () => {
 
     await Club.bulkCreate(clubs)
     console.log(`Seeded ${clubs.length} clubs`)
+
+    await State.bulkCreate(states)
+    console.log(`Seeded ${states.length} states`)
 
     console.log('closing db connection')
     db.close()
