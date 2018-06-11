@@ -19,17 +19,17 @@ const clubs = [
   {
     name: 'Beverly Country Club',
     shortName: 'Beverly',
-    established: 1908,
+    established: '1908',
   },
   {
     name: 'Butler Golf Club',
     shortName: 'Butler',
-    established: 1974,
+    established: '1974',
   },
   {
     name: 'Old Elm Club',
     shortName: 'Old Elm',
-    established: 1912,
+    established: '1912',
   }
 ]
 
@@ -38,11 +38,18 @@ const seed = async () => {
     await db.sync({force: true})
     console.log('database synced')
 
-    await User.bulkCreate(users)
-    console.log(`Seeded ${users.length} users`)
+    const clubsProms = clubs.map(club => {
+      Club.create(club)
+    })
+    const usersProms = users.map(user => {
+      User.create(user)
+    })
 
-    await Club.bulkCreate(clubs)
+    Promise.all(clubsProms)
     console.log(`Seeded ${clubs.length} clubs`)
+
+    Promise.all(usersProms)
+    console.log(`Seeded ${users.length} users`)
 
     await State.bulkCreate(states)
     console.log(`Seeded ${states.length} states`)

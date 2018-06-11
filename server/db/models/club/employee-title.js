@@ -1,20 +1,15 @@
 const Sequelize = require('sequelize')
 const db = require('../../db')
 
-const Club = db.define('club', {
-  name: {
+const EmployeeTitle = db.define('employeeTitle', {
+  title: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
     validate: {
       notEmpty: true,
     }
   },
-  shortName: {
-    type: Sequelize.STRING,
-  },
-  established: {
-    type: Sequelize.STRING,
-  },
 })
 
-module.exports = Club
+module.exports = EmployeeTitle
