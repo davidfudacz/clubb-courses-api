@@ -1,8 +1,8 @@
 const { Architect } = require('../../server/db/models')
 
 async function seedArchitects () {
-  const architectProms = architects.map(title => {
-    return Architect.create(title)
+  const architectProms = architects.map(architect => {
+    return Architect.create(architect)
   })
   await Promise.all(architectProms)
   console.log(`Seeded ${architects.length} architect names`)

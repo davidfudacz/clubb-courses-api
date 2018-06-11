@@ -1,6 +1,6 @@
 
 const User = require('./user')
-const { Club, Employee, EmployeeTitle } = require('./club')
+const { Club, Employee, EmployeeTitle, Membership } = require('./club')
 const { Course, Tee, Yardage } = require('./course')
 const { Address, City, State, Country } = require('./address')
 const Architect = require('./architect')
@@ -31,12 +31,14 @@ Address.belongsTo(Country)
 State.belongsTo(Country)
 
 Club.belongsTo(Address)
+Club.belongsTo(Membership)
 
 module.exports = {
   User,
   Club,
   Employee,
   EmployeeTitle,
+  Membership,
   Course,
   Tee,
   Yardage,
