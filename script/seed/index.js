@@ -3,6 +3,8 @@ const seedStates = require('./states')
 const seedUsers = require('./users')
 const seedClubs = require('./clubs')
 const seedEmployeeTitles = require('./employee-title')
+const seedTees = require('./tees')
+const seedArchitects = require('./architects')
 
 async function seed () {
   try {
@@ -13,6 +15,8 @@ async function seed () {
     await seedClubs()
     await seedStates()
     await seedEmployeeTitles()
+    await seedTees()
+    await seedArchitects()
 
     console.log('closing db connection')
     db.close()
