@@ -2,54 +2,61 @@
 
 const { expect } = require('chai')
 const request = require('supertest')
-const db = require('../../db')
-const app = require('../../../server')
-const { Course } = require('../../db/models')
+const db = require('../db')
+const app = require('../../server')
+const { Player } = require('../db/models')
 
-describe('Course routes', () => {
+describe('Player routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
-  describe('/api/courses/', () => {
+  describe('/api/players/', () => {
 
     beforeEach(async() => {
-      const courses = [
-        {
-          name: 'North Course',
-          informal: 'North',
-          built: 1908,
-          numOfHoles: 18,
-        },
-        {
-          name: 'South Course',
-          informal: 'South',
-          built: 1974,
-          numOfHoles: 18,
-        }
-      ]
-      await Course.bulkCreate(courses)
+      try {
+        const players = [
+          {
+            givenName: 'Tiger',
+            surname: 'Woods',
+            birthYear: 1975,
+          },
+          {
+            givenName: 'Ben',
+            surname: 'Hogan',
+            birthYear: 1912,
+            deathYear: 1997,
+          },
+        ]
+        const playerProms = players.map(player => {
+          return Player.create(player)
+        })
+        await Promise.all(playerProms)
+      }
+      catch (err) {
+        console.log(err)
+      }
     })
 
-    it('GETs all courses', () => {
+    it('GETs all players', () => {
       return request(app)
-        .get('/api/courses')
+        .get('/api/players')
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an('array')
           expect(res.body.length).to.be.equal(2)
-          expect(res.body[0].informal).to.be.a('string')
+          expect(res.body[1].givenName).to.be.a('string')
         })
     })
 
-    it('GETs a single course by id', () => {
+    it('GETs a single player by id', () => {
       return request(app)
-        .get('/api/courses/1')
+        .get('/api/players/1')
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an('object')
           expect(res.body.id).to.be.equal(1)
-          expect(res.body.informal).to.be.a('string')
+          expect(res.body.givenName).to.be.a('string')
         })
     })
     // it('PUT /api/categories', () => {
@@ -75,5 +82,5 @@ describe('Course routes', () => {
     //       expect(res.body.id).to.be.equal(2)
     //     })
     // })
-  }) // end describe('/api/clubs')
-}) // end describe('Club routes')
+  }) // end describe('/api/players')
+}) // end describe('Player routes')

@@ -36,7 +36,7 @@ describe('User routes', () => {
         .then(res => {
           expect(res.body).to.be.an('array')
           expect(res.body.length).to.be.equal(2)
-          expect(res.body[0].givenName).to.be.equal('Dave')
+          expect(res.body[1].givenName).to.be.a('string')
         })
     })
 
@@ -46,7 +46,8 @@ describe('User routes', () => {
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an('object')
-          expect(res.body.givenName).to.be.equal('Dave')
+          expect(res.body.id).to.be.equal(1)
+          expect(res.body.givenName).to.be.a('string')
         })
     })
     // it('PUT /api/categories', () => {
