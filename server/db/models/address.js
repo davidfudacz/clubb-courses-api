@@ -1,20 +1,20 @@
 const Sequelize = require('sequelize')
 const db = require('../../db')
 
-const Club = db.define('club', {
-  name: {
+const Address = db.define('address', {
+  street: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
     }
   },
-  shortName: {
+  street2: {
     type: Sequelize.STRING,
   },
-  established: {
+  zip: {
     type: Sequelize.STRING,
   },
 })
 
-module.exports = Club
+module.exports = Address
