@@ -25,4 +25,6 @@ router.get('/:id', (req, res, next) => {
   res.json(req.course)
 })
 
+router.use('/:id/architects', require('./architects'))
+
 module.exports = router
