@@ -1,58 +1,42 @@
 const db = require('../../server/db')
 const { State, User, Club } = require('../../server/db/models')
 const states = require('./states')
+const users = require('./users')
+const clubs = require('./clubs')
 
-const users = [
-  {
-    givenName: 'Dave',
-    surname: 'Fudacz',
-    email: 'davidfudacz@gmail.com',
-  },
-  {
-    givenName: 'Jason',
-    surname: 'Moss',
-    email: 'jmoss4688@gmail.com',
-  }
-]
+async function seedUsers () {
+  const usersProms = users.map(user => {
+    return User.create(user)
+  })
+  await Promise.all(usersProms)
+  console.log(`Seeded ${users.length} users`)
+}
 
-const clubs = [
-  {
-    name: 'Beverly Country Club',
-    shortName: 'Beverly',
-    established: '1908',
-  },
-  {
-    name: 'Butler Golf Club',
-    shortName: 'Butler',
-    established: '1974',
-  },
-  {
-    name: 'Old Elm Club',
-    shortName: 'Old Elm',
-    established: '1912',
-  }
-]
+async function seedClubs () {
+  const clubsProms = clubs.map(club => {
+    return Club.create(club)
+  })
+  await Promise.all(clubsProms)
+  console.log(`Seeded ${clubs.length} clubs`)
+}
 
-const seed = async () => {
+async function seedStates () {
+  const statesProms = states.map(state => {
+    return State.create(state)
+  })
+  await Promise.all(statesProms)
+  console.log(`Seeded ${states.length} users`)
+}
+
+
+async function seed () {
   try {
     await db.sync({force: true})
     console.log('database synced')
 
-    const clubsProms = clubs.map(club => {
-      Club.create(club)
-    })
-    const usersProms = users.map(user => {
-      User.create(user)
-    })
-
-    Promise.all(clubsProms)
-    console.log(`Seeded ${clubs.length} clubs`)
-
-    Promise.all(usersProms)
-    console.log(`Seeded ${users.length} users`)
-
-    await State.bulkCreate(states)
-    console.log(`Seeded ${states.length} states`)
+    await seedUsers()
+    await seedClubs()
+    await seedStates()
 
     console.log('closing db connection')
     db.close()
@@ -63,4 +47,5 @@ const seed = async () => {
   }
 }
 
+// let's do it
 seed()
