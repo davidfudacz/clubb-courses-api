@@ -11,17 +11,17 @@ async function seedClubs () {
 const clubs = [
   {
     name: 'Beverly Country Club',
-    shortName: 'Beverly',
+    informal: 'Beverly',
     established: '1908',
   },
   {
     name: 'Butler Golf Club',
-    shortName: 'Butler',
+    informal: 'Butler',
     established: '1974',
   },
   {
     name: 'Old Elm Club',
-    shortName: 'Old Elm',
+    informal: 'Old Elm',
     established: '1912',
   },
 ]

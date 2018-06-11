@@ -35,6 +35,12 @@ const Employee = db.define('employee', {
       isNumeric: true
     }
   },
+  imgUrl: {
+    type: Sequelize.STRING,
+    validate: {
+      isUrl: true,
+    }
+  }
 })
 
 module.exports = Employee

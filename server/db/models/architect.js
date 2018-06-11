@@ -1,30 +1,34 @@
 const Sequelize = require('sequelize')
-const db = require('../../db')
+const db = require('../db')
 
-const Club = db.define('club', {
-  name: {
+const Architect = db.define('architect', {
+  givenName: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
     }
   },
-  informal: {
+  surname: {
     type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    }
   },
-  established: {
+  birthYear: {
     type: Sequelize.STRING,
     validate: {
       isNumeric: true
     }
   },
-  logoUrl: {
+  deathYear: {
     type: Sequelize.STRING,
     validate: {
-      isUrl: true,
+      isNumeric: true
     }
   },
-  websiteUrl: {
+  imgUrl: {
     type: Sequelize.STRING,
     validate: {
       isUrl: true,
@@ -32,4 +36,4 @@ const Club = db.define('club', {
   }
 })
 
-module.exports = Club
+module.exports = Architect

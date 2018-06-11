@@ -5,7 +5,7 @@ const Course = db.define('course', {
   name: {
     type: Sequelize.STRING,
   },
-  shortName: {
+  informal: {
     type: Sequelize.STRING,
   },
   built: {
