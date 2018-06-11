@@ -10,6 +10,9 @@ const EmployeeTitle = db.define('employeeTitle', {
       notEmpty: true,
     }
   },
+  informal: {
+    type: Sequelize.STRING,
+  },
 })
 
 module.exports = EmployeeTitle

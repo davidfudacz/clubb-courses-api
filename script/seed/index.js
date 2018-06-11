@@ -1,33 +1,8 @@
 const db = require('../../server/db')
-const { State, User, Club } = require('../../server/db/models')
-const states = require('./states')
-const users = require('./users')
-const clubs = require('./clubs')
-
-async function seedUsers () {
-  const usersProms = users.map(user => {
-    return User.create(user)
-  })
-  await Promise.all(usersProms)
-  console.log(`Seeded ${users.length} users`)
-}
-
-async function seedClubs () {
-  const clubsProms = clubs.map(club => {
-    return Club.create(club)
-  })
-  await Promise.all(clubsProms)
-  console.log(`Seeded ${clubs.length} clubs`)
-}
-
-async function seedStates () {
-  const statesProms = states.map(state => {
-    return State.create(state)
-  })
-  await Promise.all(statesProms)
-  console.log(`Seeded ${states.length} users`)
-}
-
+const seedStates = require('./states')
+const seedUsers = require('./users')
+const seedClubs = require('./clubs')
+const seedEmployeeTitles = require('./employee-title')
 
 async function seed () {
   try {
@@ -37,6 +12,7 @@ async function seed () {
     await seedUsers()
     await seedClubs()
     await seedStates()
+    await seedEmployeeTitles()
 
     console.log('closing db connection')
     db.close()
