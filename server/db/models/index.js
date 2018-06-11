@@ -7,8 +7,6 @@ const Course = require('./course')
 Course.belongsTo(Club)
 Club.hasMany(Course)
 
-
-
 module.exports = {
   User,
   Club,

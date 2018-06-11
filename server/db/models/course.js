@@ -9,7 +9,7 @@ const Course = db.define('course', {
     type: Sequelize.STRING,
   },
   built: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
   },
   numOfHoles: {
     type: Sequelize.INTEGER,
@@ -17,12 +17,6 @@ const Course = db.define('course', {
     validate: {
       notEmpty: true,
     }
-  },
-  rating: {
-    type: Sequelize.INTEGER,
-  },
-  slope: {
-    type: Sequelize.INTEGER,
   }
 })
 
