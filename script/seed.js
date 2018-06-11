@@ -1,6 +1,5 @@
 const db = require('../server/db')
-const { User, Club, Course } = require('../server/db/models')
-
+const { User, Club } = require('../server/db/models')
 
 const users = [
   {
@@ -40,6 +39,7 @@ const seed = async () => {
 
     await User.bulkCreate(users)
     console.log(`Seeded ${users.length} users`)
+
     await Club.bulkCreate(clubs)
     console.log(`Seeded ${clubs.length} clubs`)
 

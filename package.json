@@ -4,7 +4,7 @@
   "description": "a web app for golfers and golf courses",
   "main": "index.js",
   "scripts": {
-    "start-server": "nodemon server -e html,js,css --ignore public --ignore client",
+    "start-server": "nodemon server -e html,js,css --ignore public",
     "start-dev": "NODE_ENV='development' npm run start-server",
     "seed": "node script/seed.js",
     "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js"
