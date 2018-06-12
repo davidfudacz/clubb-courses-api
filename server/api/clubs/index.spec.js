@@ -133,7 +133,6 @@ describe('Club routes', () => {
           expect(res.body.length).to.be.equal(2)
           res.body.forEach(course => expect(course.clubId).to.be.equal(1))
           res.body.forEach(course => expect(course.name).to.be.a('string'))
-          
         })
     })
 
@@ -209,7 +208,6 @@ describe('Club routes', () => {
           expect(res.body.length).to.be.equal(2)
           res.body.forEach(employee => expect(employee.clubs[0].id).to.be.equal(1))
           res.body.forEach(employee => expect(employee.givenName).to.be.a('string'))
-          
         })
     })
 
