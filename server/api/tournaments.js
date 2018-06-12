@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const { Club } = require('../../db/models')
+const { Tournament } = require('../db/models')
 
 router.param('id', async (req, res, next, id) => {
   try {
-    req.club = await Club.findById(id)
+    req.tournament = await Tournament.findById(id)
     next()
   }
   catch (err) {
@@ -13,8 +13,8 @@ router.param('id', async (req, res, next, id) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const clubs = await Club.findAll()
-    res.json(clubs)
+    const tournaments = await Tournament.findAll()
+    res.json(tournaments)
   }
   catch (err) {
     next(err)
@@ -22,10 +22,7 @@ router.get('/', async (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  res.json(req.club)
+  res.json(req.tournament)
 })
-
-router.use('/:id/courses', require('./courses'))
-router.use('/:id/employees', require('./employees'))
 
 module.exports = router

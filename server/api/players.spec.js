@@ -2,36 +2,45 @@
 
 const { expect } = require('chai')
 const request = require('supertest')
-const db = require('../../db')
-const app = require('../../../server')
-const { User } = require('../../db/models')
+const db = require('../db')
+const app = require('../../server')
+const { Player } = require('../db/models')
 
-describe('User routes', () => {
+describe('Player routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
-  describe('/api/users/', () => {
+  describe('/api/players/', () => {
 
     beforeEach(async() => {
-      const users = [
-        {
-          givenName: 'Dave',
-          surname: 'Fudacz',
-          email: 'davidfudacz@gmail.com',
-        },
-        {
-          givenName: 'Cheryl',
-          surname: 'Catrini',
-          email: 'cheryl.catrini@gmail.com',
-        }
-      ]
-      await User.bulkCreate(users)
+      try {
+        const players = [
+          {
+            givenName: 'Tiger',
+            surname: 'Woods',
+            birthYear: 1975,
+          },
+          {
+            givenName: 'Ben',
+            surname: 'Hogan',
+            birthYear: 1912,
+            deathYear: 1997,
+          },
+        ]
+        const playerProms = players.map(player => {
+          return Player.create(player)
+        })
+        await Promise.all(playerProms)
+      }
+      catch (err) {
+        console.log(err)
+      }
     })
 
-    it('GETs all users', () => {
+    it('GETs all players', () => {
       return request(app)
-        .get('/api/users')
+        .get('/api/players')
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an('array')
@@ -40,9 +49,9 @@ describe('User routes', () => {
         })
     })
 
-    it('GETs a single user by id', () => {
+    it('GETs a single player by id', () => {
       return request(app)
-        .get('/api/users/1')
+        .get('/api/players/1')
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an('object')
@@ -73,5 +82,5 @@ describe('User routes', () => {
     //       expect(res.body.id).to.be.equal(2)
     //     })
     // })
-  }) // end describe('/api/clubs')
-}) // end describe('Club routes')
+  }) // end describe('/api/players')
+}) // end describe('Player routes')

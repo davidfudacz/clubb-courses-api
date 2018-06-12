@@ -7,7 +7,7 @@
     "start-server": "nodemon server -e html,js,css --ignore public",
     "start-dev": "NODE_ENV='development' npm run start-server",
     "seed": "node script/seed/index.js",
-    "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js"
+    "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js --exit"
   },
   "repository": {
     "type": "git",
@@ -25,11 +25,9 @@
     "connect-session-sequelize": "^5.2.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
-    "lodash": "^4.17.10",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "pg": "^7.4.3",
-    "pg-hstore": "^2.3.2",
     "sequelize": "^4.37.10",
     "socket.io": "^2.1.1"
   },

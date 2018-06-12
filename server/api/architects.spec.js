@@ -2,36 +2,45 @@
 
 const { expect } = require('chai')
 const request = require('supertest')
-const db = require('../../db')
-const app = require('../../../server')
-const { User } = require('../../db/models')
+const db = require('../db')
+const app = require('../../server')
+const { Architect } = require('../db/models')
 
-describe('User routes', () => {
+describe('Architect routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
-  describe('/api/users/', () => {
+  describe('/api/architects/', () => {
 
     beforeEach(async() => {
-      const users = [
-        {
-          givenName: 'Dave',
-          surname: 'Fudacz',
-          email: 'davidfudacz@gmail.com',
-        },
-        {
-          givenName: 'Cheryl',
-          surname: 'Catrini',
-          email: 'cheryl.catrini@gmail.com',
-        }
-      ]
-      await User.bulkCreate(users)
+      try {
+        const architects = [
+          {
+            givenName: 'Donald',
+            surname: 'Ross',
+            birthYear: 1872,
+            deathYear: 1948,
+          },
+          {
+            givenName: 'Tom',
+            surname: 'Fazio',
+            birthYear: 1945,
+          },
+        ]
+        const architectProms = architects.map(architect => {
+          return Architect.create(architect)
+        })
+        await Promise.all(architectProms)
+      }
+      catch (err) {
+        console.log(err)
+      }
     })
 
-    it('GETs all users', () => {
+    it('GETs all architects', () => {
       return request(app)
-        .get('/api/users')
+        .get('/api/architects')
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an('array')
@@ -40,9 +49,9 @@ describe('User routes', () => {
         })
     })
 
-    it('GETs a single user by id', () => {
+    it('GETs a single architect by id', () => {
       return request(app)
-        .get('/api/users/1')
+        .get('/api/architects/1')
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an('object')
@@ -73,5 +82,5 @@ describe('User routes', () => {
     //       expect(res.body.id).to.be.equal(2)
     //     })
     // })
-  }) // end describe('/api/clubs')
-}) // end describe('Club routes')
+  }) // end describe('/api/architects')
+}) // end describe('Architect routes')
