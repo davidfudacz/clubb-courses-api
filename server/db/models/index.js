@@ -12,14 +12,11 @@ const Player = require('./player')
 Course.belongsTo(Club)
 Club.hasMany(Course)
 
-Architect.hasMany(Build)
-Build.belongsTo(Architect)
-
 Course.hasMany(Build)
 Build.belongsTo(Course)
 
-Course.belongsToMany(Architect, { through: Build })
-Architect.belongsToMany(Course, { through: Build })
+Build.belongsToMany(Architect, { through: 'architectBuilds' })
+Architect.belongsToMany(Build, { through: 'architectBuilds' })
 
 Club.belongsToMany(Employee, { through: 'clubEmployees' })
 Employee.belongsToMany(Club, { through: 'clubEmployees' })

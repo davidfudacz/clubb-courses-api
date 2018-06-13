@@ -4,7 +4,7 @@ const db = require('../../../db')
 const Build = db.define('build', {
   buildType: {
     type: Sequelize.ENUM,
-    values: ['original', 'redesign']
+    values: ['original', 'redesign', 'restoration']
   },
   year: {
     type: Sequelize.STRING,
