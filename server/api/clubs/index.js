@@ -21,6 +21,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    const club = req.body
+    const createdClub = await Club.create(club)
+    res.json(createdClub)
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
 router.get('/:id', (req, res, next) => {
   res.json(req.club)
 })

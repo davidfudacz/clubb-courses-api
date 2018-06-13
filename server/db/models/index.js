@@ -1,7 +1,7 @@
 
 const User = require('./user')
 const { Club, Employee, EmployeeTitle, Membership } = require('./club')
-const { Course, Tee, Yardage } = require('./course')
+const { Course, Tee, Yardage, Build } = require('./course')
 const { Address, City, State, Country } = require('./address')
 const Architect = require('./architect')
 const Tournament = require('./tournament')
@@ -12,8 +12,14 @@ const Player = require('./player')
 Course.belongsTo(Club)
 Club.hasMany(Course)
 
-Course.belongsToMany(Architect, { through: 'courseArchitects' })
-Architect.belongsToMany(Course, { through: 'courseArchitects' })
+Architect.hasMany(Build)
+Build.belongsTo(Architect)
+
+Course.hasMany(Build)
+Build.belongsTo(Course)
+
+Course.belongsToMany(Architect, { through: Build })
+Architect.belongsToMany(Course, { through: Build })
 
 Club.belongsToMany(Employee, { through: 'clubEmployees' })
 Employee.belongsToMany(Club, { through: 'clubEmployees' })
@@ -46,6 +52,7 @@ module.exports = {
   Course,
   Tee,
   Yardage,
+  Build,
   Address,
   City,
   State,

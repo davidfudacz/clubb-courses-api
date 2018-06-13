@@ -4,7 +4,7 @@ const { expect } = require('chai')
 const request = require('supertest')
 const db = require('../../db')
 const app = require('../../../server')
-const { Course, Architect } = require('../../db/models')
+const { Course, Architect, Build } = require('../../db/models')
 
 describe('Course routes', () => {
   beforeEach(() => {
@@ -112,7 +112,19 @@ describe('Course routes', () => {
 
         const course = await Course.findById(1)
 
-        await course.addArchitects([1, 2])
+        await Build.create({
+          buildType: 'original',
+          year: 1924,
+          courseId: course.id,
+          architectId: 1,
+        })
+
+        await Build.create({
+          buildType: 'original',
+          year: 1924,
+          courseId: course.id,
+          architectId: 2,
+        })
 
       }
       catch (err) {
@@ -120,15 +132,15 @@ describe('Course routes', () => {
       }
     })
 
-    it('GETs all architects of a course and only the architects of that course', () => {
+    it('GETs all builds of a course and only the architects of that course', () => {
       return request(app)
-        .get('/api/courses/1/architects')
+        .get('/api/courses/1/builds')
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an('array')
           expect(res.body.length).to.be.equal(2)
-          res.body.forEach(architect => expect(architect.courses[0].id).to.be.equal(1))
-          res.body.forEach(architect => expect(architect.givenName).to.be.a('string'))
+          res.body.forEach(build => expect(build.courseId).to.be.equal(1))
+          res.body.forEach(build => expect(build.architect.givenName).to.be.a('string'))
           
         })
     })
