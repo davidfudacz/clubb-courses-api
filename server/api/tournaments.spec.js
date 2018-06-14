@@ -69,17 +69,21 @@ describe('Tournament routes', () => {
     //       expect(res.body.name).to.be.equal('top hats')
     //     })
     // })
-    // it('POST /api/categories/new-category', () => {
-    //   var newCategory = {name: 'baseball caps'}
-    //   return request(app)
-    //     .post('/api/categories/new-category')
-    //     .send(newCategory)
-    //     .expect(200)
-    //     .then(res => {
-    //       expect(res.body).to.be.an('object')
-    //       expect(res.body.name).to.be.equal('baseball caps')
-    //       expect(res.body.id).to.be.equal(2)
-    //     })
-    // })
+    it('POST /api/tournaments', () => {
+      var tournament = {
+        name: 'The US Open Championship',
+        informal: 'US Open',
+        established: 1890,
+      }
+      return request(app)
+        .post('/api/tournaments')
+        .send(tournament)
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('object')
+          expect(res.body.informal).to.be.equal('US Open')
+          expect(res.body.id).to.be.equal(3)
+        })
+    })
   }) // end describe('/api/tournaments')
 }) // end describe('Tournament routes')

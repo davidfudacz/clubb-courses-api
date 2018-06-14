@@ -25,19 +25,16 @@ describe('Club/courses routes', () => {
           {
             name: 'North Course',
             informal: 'North',
-            built: 1908,
             numOfHoles: 18,
           },
           {
             name: 'South Course',
             informal: 'South',
-            built: 1974,
             numOfHoles: 18,
           },
           {
             name: 'Dummy Course',
             informal: 'Dummy',
-            built: 1974,
             numOfHoles: 18,
           }
         ]
@@ -47,7 +44,7 @@ describe('Club/courses routes', () => {
 
         const club = await Club.findById(1)
 
-        await club.addCourses([1,2])
+        await club.addCourses([1, 2])
 
       }
       catch (err) {

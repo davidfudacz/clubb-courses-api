@@ -70,17 +70,21 @@ describe('Player routes', () => {
     //       expect(res.body.name).to.be.equal('top hats')
     //     })
     // })
-    // it('POST /api/categories/new-category', () => {
-    //   var newCategory = {name: 'baseball caps'}
-    //   return request(app)
-    //     .post('/api/categories/new-category')
-    //     .send(newCategory)
-    //     .expect(200)
-    //     .then(res => {
-    //       expect(res.body).to.be.an('object')
-    //       expect(res.body.name).to.be.equal('baseball caps')
-    //       expect(res.body.id).to.be.equal(2)
-    //     })
-    // })
+    it('POST /api/players', () => {
+      var player = {
+        givenName: 'Jordan',
+        surname: 'Speith',
+        birthYear: 1992,
+      }
+      return request(app)
+        .post('/api/players')
+        .send(player)
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('object')
+          expect(res.body.givenName).to.be.equal('Jordan')
+          expect(res.body.id).to.be.equal(3)
+        })
+    })
   }) // end describe('/api/players')
 }) // end describe('Player routes')

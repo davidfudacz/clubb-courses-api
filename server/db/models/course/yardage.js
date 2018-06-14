@@ -7,6 +7,7 @@ const Yardage = db.define('yardage', {
     allowNull: false,
     validate: {
       notEmpty: true,
+      isNumeric: true,
     }
   },
   par: {
@@ -14,6 +15,7 @@ const Yardage = db.define('yardage', {
     allowNull: false,
     validate: {
       notEmpty: true,
+      isNumeric: true,
     }
   },
   rating: {
@@ -21,12 +23,14 @@ const Yardage = db.define('yardage', {
     allowNull: false,
     validate: {
       notEmpty: true,
+      isNumeric: true,
     },
     get: function () {
       return this.getDataValue('rating') / 10
     },
     set: function (rating) {
-      this.setDataValue('rating', rating * 10)
+      if (!rating) this.setDataValue('') //this will pass through to the sequelize validation error
+      if (typeof rating === 'number') this.setDataValue('rating', rating * 10)
     }
   },
   slope: {
@@ -34,6 +38,7 @@ const Yardage = db.define('yardage', {
     allowNull: false,
     validate: {
       notEmpty: true,
+      isNumeric: true,
     }
   },
 })

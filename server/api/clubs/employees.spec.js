@@ -72,17 +72,32 @@ describe('Club routes', () => {
     //       expect(res.body.name).to.be.equal('top hats')
     //     })
     // })
-    // it('POST /api/categories/new-category', () => {
-    //   var newCategory = {name: 'baseball caps'}
-    //   return request(app)
-    //     .post('/api/categories/new-category')
-    //     .send(newCategory)
-    //     .expect(200)
-    //     .then(res => {
-    //       expect(res.body).to.be.an('object')
-    //       expect(res.body.name).to.be.equal('baseball caps')
-    //       expect(res.body.id).to.be.equal(2)
-    //     })
-    // })
+    it('POSTs an employee to the club', async () => {
+      try {
+        var employee = {
+          givenName: 'Brian',
+          surname: 'Kribs',
+        }
+        await request(app)
+          .post('/api/clubs/1/employees')
+          .send(employee)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.be.an('object')
+            expect(res.body.givenName).to.be.equal('Brian')
+            expect(res.body.id).to.be.equal(4)
+          })
+          return request(app)
+          .get('/api/clubs/1/employees')
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.be.an('array')
+            expect(res.body.length).to.be.equal(3)
+          })
+      }
+      catch (err) {
+        console.log(err)
+      }
+    })
   }) // end describe('/api/clubs')
 }) // end describe('Club routes')

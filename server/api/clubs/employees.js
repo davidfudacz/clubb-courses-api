@@ -22,4 +22,16 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    const clubId = req.club.id
+    const employee = await Employee.create(req.body)
+    await employee.addClub(clubId)
+    res.json(employee)
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router

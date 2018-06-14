@@ -25,4 +25,14 @@ router.get('/:id', (req, res, next) => {
   res.json(req.tournament)
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    const tournament = await Tournament.create(req.body)
+    res.json(tournament)
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router

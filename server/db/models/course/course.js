@@ -13,6 +13,7 @@ const Course = db.define('course', {
     allowNull: false,
     validate: {
       notEmpty: true,
+      isNumeric: true,
     }
   }
 })

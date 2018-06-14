@@ -25,4 +25,14 @@ router.get('/:id', (req, res, next) => {
   res.json(req.architect)
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    const architect = await Architect.create(req.body)
+    res.json(architect)
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router

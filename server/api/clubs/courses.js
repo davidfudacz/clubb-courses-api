@@ -20,7 +20,7 @@ router.post('/', async (req, res, next) => {
   try {
     const clubId = req.club.id
     const course = await Course.create(req.body)
-    course.setClub(clubId)
+    await course.setClub(clubId)
     res.json(course)
   }
   catch (err) {
