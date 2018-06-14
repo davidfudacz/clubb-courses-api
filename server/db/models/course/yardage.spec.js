@@ -202,24 +202,7 @@ describe('Yardage model', () => {
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
       })
-    }) // end describe years are numeric
-
-    describe('url is a url', () => {
-      it('for imgUrl', async () => {
-        let error
-        try {
-          await Yardage.create({
-            surname: 'SirName',
-            givenName: 'GiveName',
-            imgUrl: 'soNotAUrl'
-          })
-        }
-        catch (err) {
-          error = err
-        }
-        expect(error.name).to.be.equal('SequelizeValidationError')
-      })
-    }) // end describe url is a url
+    }) // end describe entries are numeric
   }) // end describe validations
 
   describe('getters and setters', () => {
@@ -238,8 +221,6 @@ describe('Yardage model', () => {
           error = err
         }
         expect(error).to.be.an('undefined')
-        // just in case we add something and forget to test it...
-        // add in the created and updatedAt fields
         expect(yardage.dataValues.rating).to.be.equal(751)
       })
     }) // end describe setter
@@ -259,8 +240,6 @@ describe('Yardage model', () => {
           error = err
         }
         expect(error).to.be.an('undefined')
-        // just in case we add something and forget to test it...
-        // add in the created and updatedAt fields
         expect(yardage.dataValues.rating).to.be.equal(751)
         expect(yardage.rating).to.be.equal(75.1)
       })

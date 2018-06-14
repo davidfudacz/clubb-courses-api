@@ -3,7 +3,7 @@ const db = require('../../../db')
 
 const Yardage = db.define('yardage', {
   yardage: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -11,7 +11,7 @@ const Yardage = db.define('yardage', {
     }
   },
   par: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -19,7 +19,7 @@ const Yardage = db.define('yardage', {
     }
   },
   rating: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -34,7 +34,7 @@ const Yardage = db.define('yardage', {
     }
   },
   slope: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
