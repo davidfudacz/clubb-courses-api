@@ -221,7 +221,7 @@ describe('Yardage model', () => {
           error = err
         }
         expect(error).to.be.an('undefined')
-        expect(yardage.dataValues.rating).to.be.equal(751)
+        expect(yardage.dataValues.rating).to.be.equal('751')
       })
     }) // end describe setter
 
@@ -240,8 +240,8 @@ describe('Yardage model', () => {
           error = err
         }
         expect(error).to.be.an('undefined')
-        expect(yardage.dataValues.rating).to.be.equal(751)
-        expect(yardage.rating).to.be.equal(75.1)
+        expect(yardage.dataValues.rating).to.be.equal('751')
+        expect(yardage.rating).to.be.equal('75.1')
       })
     }) // end describe getter
   }) // end describe getters and setters
@@ -265,10 +265,10 @@ describe('Yardage model', () => {
           // just in case we add something and forget to test it...
           // add in the created and updatedAt fields
           expect(Object.keys(yardage.dataValues).length).to.be.equal(8)
-          expect(yardage.yardage).to.be.equal(7550)
-          expect(yardage.par).to.be.equal(72)
-          expect(yardage.rating).to.be.equal(75.1)
-          expect(yardage.slope).to.be.equal(140)
+          expect(yardage.yardage).to.be.equal('7550')
+          expect(yardage.par).to.be.equal('72')
+          expect(yardage.rating).to.be.equal('75.1')
+          expect(yardage.slope).to.be.equal('140')
         })
       }) // end describe creating an instance
   }) // end describe creations

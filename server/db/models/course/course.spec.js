@@ -94,7 +94,7 @@ describe('Course model', () => {
         expect(Object.keys(course.dataValues).length).to.be.equal(7)
         expect(course.name).to.be.equal('course course')
         expect(course.informal).to.be.equal('course')
-        expect(course.numOfHoles).to.be.equal(18)
+        expect(course.numOfHoles).to.be.equal('18')
       })
     }) // end describe creating an instance
   }) // end describe creations

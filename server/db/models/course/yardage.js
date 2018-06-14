@@ -26,7 +26,7 @@ const Yardage = db.define('yardage', {
       isNumeric: true,
     },
     get: function () {
-      return this.getDataValue('rating') / 10
+      return (this.getDataValue('rating') / 10).toString()
     },
     set: function (rating) {
       if (!rating) this.setDataValue('') //this will pass through to the sequelize validation error
