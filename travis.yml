@@ -15,13 +15,13 @@ install:
   - npm i -g npm@5.7.1 # delete once 5.7.X is out of "pre-release"
   - npm ci             # faster, goes only from package-lock
 before_script:
-  - psql -c 'create database "shopper-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-  # skip_cleanup: true # prevents travis from deleting the build
-  # provider: heroku
-  # app: "ccadd-topshop" # see README
-  # api_key:
-  #   secure: "VDJWmA0kuu1ljpTrkay9LPWdoB5Ikh1WrlX68AVW6nq+ZHbOgMAB8IVB05M5cP93kRMB5dywRQhkf0+SknywPkzeWpx3wzzNN0KPnBMyxf6H3IGdMO/PKsjqWuaJa7Qcs3XEP3iqf7AgOiW4bPMlVGW8fW65alO2+nEzzCmgAdpe6K0rRhHyJf0rmNwRvaQTBEVUGdDMjOFvgd31KkUUG+hS6hmYVRXXf5V2R/yGMtwU0TI/8Uf/iK/V+asP/hGvuDm91aqM89X01kfs6+/dtKGZB6tchnBLneAQffmHR9Alc3EMqz6Oi9qBzxEZ/6Fy1qnk8xXPxpLBp9vIPE/DQMt5ynpFopPXfCrp9yLLno114hKt6OWvhRGgT/qSTZ5uNHemEUgYdKOJCIqn8lG/70RgnAh8lXhL+JJ8a/POBe7oyc8WKfs7zufckQIRq334b4nHwMeDLzbvcxdDt07gfiHTpKlrReMLqPmyuchSN0GPe3kkdSbjRL1Ax5PJZFztE/7fupQ6O+P+IBAUkzTO39RkpKzXmH9zbhi7RpMiN3rqFn1SjZeTYPoQEL4ADtHvKS+09SHYZplPf0xT08+FLdBonSsGk2+74MFsjMjE3iKAtYJEPt1OsNyqNtg2ThG+h5f7xSJmM4IGbmy32xK6XqCmwx2OiSmNofC+4+uheQk="
+  - psql -c 'create database "teesheet-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: "teesheetapp" # see README
+  api_key:
+    secure: "o5WBnvymPmI6vTD+lQEoOrLlyL9IxrV/lV3EAC3jUdtknODhtzN1bqa3VWzKLXNEIglwz2NwGnIrgKYseDf0iTxFL5zKMEYQXLURNSWNuKD6OPAr1X+I3W88Evd0DOapZGwvB342weitTNA7WEMHbEyRIcj3Ng9ZlQdymnpuQFnGqEUHwYM+XH7cmX1nrAy+/gUFbdTVJLqoYtfP8JezYMt1HrdzUUTmO7Vs7mkSLFadye2l5XZEq2CPo1v8qYBr4391EkI8JTpFI/5pBSnuHs2oL1iKVHLrKeN1+lHR/9K4/qySFUJXCTMioSFrUUUxFHm62VnvNkDVaLkp1ChWV8YaOo/jS5NykhgNnouKoyTzOLybNXgQZWXuFStWSOM83+2WetV8Vh2uGeEks2xl90iOJfGL6+UuQM7clC797kwC6Tr7DaB9tQDcuEkpISNNUVSOTgwnLvxm/PQVZ309tZm8iHq7GJkqF42q0v/99US9IREFi/0er3VBBg58ORHOHxbobJK9W+eqFOluxsPHly1DYDKU4R/S16uhEdLFszLnT7JKXeITiQeIaxT52Ks1e+YyRyCjL3edVimrkR9YoI9oJs9ZNjgMjYMiHbmR4wzrZgJiJgcUgQI1DxhARSdrVHtibJR8cddFnxr1fSOTC5ZOgc6lREGN6qyq0bALLLA="
