@@ -8,17 +8,12 @@ const Course = db.define('course', {
   informal: {
     type: Sequelize.STRING,
   },
-  built: {
-    type: Sequelize.STRING,
-    validate: {
-      isNumeric: true
-    }
-  },
   numOfHoles: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
+      isNumeric: true,
     }
   }
 })

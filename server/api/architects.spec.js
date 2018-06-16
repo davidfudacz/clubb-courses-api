@@ -70,17 +70,23 @@ describe('Architect routes', () => {
     //       expect(res.body.name).to.be.equal('top hats')
     //     })
     // })
-    // it('POST /api/categories/new-category', () => {
-    //   var newCategory = {name: 'baseball caps'}
-    //   return request(app)
-    //     .post('/api/categories/new-category')
-    //     .send(newCategory)
-    //     .expect(200)
-    //     .then(res => {
-    //       expect(res.body).to.be.an('object')
-    //       expect(res.body.name).to.be.equal('baseball caps')
-    //       expect(res.body.id).to.be.equal(2)
-    //     })
-    // })
+    it('POSTs an architect', () => {
+      var architect = {
+        givenName: 'George',
+        surname: 'Fazio',
+        birthYear: 1915,
+        deathYear: 1948,
+      }
+
+      return request(app)
+        .post('/api/architects')
+        .send(architect)
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('object')
+          expect(res.body.givenName).to.be.equal('George')
+          expect(res.body.id).to.be.equal(3)
+        })
+    })
   }) // end describe('/api/architects')
 }) // end describe('Architect routes')

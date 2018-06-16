@@ -25,4 +25,14 @@ router.get('/:id', (req, res, next) => {
   res.json(req.player)
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    const player = await Player.create(req.body)
+    res.json(player)
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router
