@@ -59,19 +59,9 @@ describe('Player routes', () => {
           expect(res.body.givenName).to.be.a('string')
         })
     })
-    // it('PUT /api/categories', () => {
-    //   var newCategory = {name: 'top hats'}
-    //   return request(app)
-    //     .put('/api/categories/1')
-    //     .send(newCategory)
-    //     .expect(200)
-    //     .then(res => {
-    //       expect(res.body).to.be.an('object')
-    //       expect(res.body.name).to.be.equal('top hats')
-    //     })
-    // })
+
     it('POST /api/players', () => {
-      var player = {
+      const player = {
         givenName: 'Jordan',
         surname: 'Speith',
         birthYear: 1992,
@@ -83,6 +73,29 @@ describe('Player routes', () => {
         .then(res => {
           expect(res.body).to.be.an('object')
           expect(res.body.givenName).to.be.equal('Jordan')
+          expect(res.body.id).to.be.equal(3)
+        })
+    })
+
+    it('PUT /api/players', async () => {
+      const player = {
+        givenName: 'Jordan',
+        surname: 'Speith',
+        birthYear: 1992,
+      }
+      await Player.create(player)
+
+      const newPlayer = {
+        surname: 'Spieth',
+      }
+
+      return request(app)
+        .put('/api/players/3')
+        .send(newPlayer)
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('object')
+          expect(res.body.surname).to.be.equal('Spieth')
           expect(res.body.id).to.be.equal(3)
         })
     })

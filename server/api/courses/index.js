@@ -21,6 +21,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    const course = req.body
+    await req.course.update(course)
+    res.json(req.course)
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
 router.get('/:id', (req, res, next) => {
   res.json(req.course)
 })
