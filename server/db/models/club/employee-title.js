@@ -12,6 +12,8 @@ const EmployeeTitle = db.define('employeeTitle', {
   },
   informal: {
     type: Sequelize.STRING,
+    allowNull: true,
+    unique: true,
   },
 })
 
