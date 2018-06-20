@@ -59,17 +59,7 @@ describe('Architect routes', () => {
           expect(res.body.givenName).to.be.a('string')
         })
     })
-    // it('PUT /api/categories', () => {
-    //   var newCategory = {name: 'top hats'}
-    //   return request(app)
-    //     .put('/api/categories/1')
-    //     .send(newCategory)
-    //     .expect(200)
-    //     .then(res => {
-    //       expect(res.body).to.be.an('object')
-    //       expect(res.body.name).to.be.equal('top hats')
-    //     })
-    // })
+
     it('POSTs an architect', () => {
       var architect = {
         givenName: 'George',
@@ -85,6 +75,32 @@ describe('Architect routes', () => {
         .then(res => {
           expect(res.body).to.be.an('object')
           expect(res.body.givenName).to.be.equal('George')
+          expect(res.body.deathYear).to.be.equal('1948')
+          expect(res.body.id).to.be.equal(3)
+        })
+    })
+
+    it.skip('PUTs to update an existing architect', async () => {
+      var architect = {
+        givenName: 'George',
+        surname: 'Fazio',
+        birthYear: 1915,
+        deathYear: 1948,
+      }
+      await Architect.create(architect)
+
+      const updatedArchitect = {
+        deathYear: 1950,
+      }
+
+      return request(app)
+        .put('/api/architects/3')
+        .send(updatedArchitect)
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('object')
+          expect(res.body.givenName).to.be.equal('George')
+          expect(res.body.deathYear).to.be.equal('1950')
           expect(res.body.id).to.be.equal(3)
         })
     })

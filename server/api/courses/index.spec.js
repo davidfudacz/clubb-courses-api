@@ -18,13 +18,11 @@ describe('Course routes', () => {
         {
           name: 'North Course',
           informal: 'North',
-          built: 1908,
           numOfHoles: 18,
         },
         {
           name: 'South Course',
           informal: 'South',
-          built: 1974,
           numOfHoles: 18,
         }
       ]
@@ -52,28 +50,32 @@ describe('Course routes', () => {
           expect(res.body.informal).to.be.a('string')
         })
     })
-    // it('PUT /api/categories', () => {
-    //   var newCategory = {name: 'top hats'}
-    //   return request(app)
-    //     .put('/api/categories/1')
-    //     .send(newCategory)
-    //     .expect(200)
-    //     .then(res => {
-    //       expect(res.body).to.be.an('object')
-    //       expect(res.body.name).to.be.equal('top hats')
-    //     })
-    // })
-    // it('POST /api/categories/new-category', () => {
-    //   var newCategory = {name: 'baseball caps'}
-    //   return request(app)
-    //     .post('/api/categories/new-category')
-    //     .send(newCategory)
-    //     .expect(200)
-    //     .then(res => {
-    //       expect(res.body).to.be.an('object')
-    //       expect(res.body.name).to.be.equal('baseball caps')
-    //       expect(res.body.id).to.be.equal(2)
-    //     })
-    // })
-  }) // end describe('/api/clubs')
-}) // end describe('Club routes')
+  }) // end describe('/api/courses')
+
+
+  describe('PUT /api/courses', () => {
+
+    beforeEach(async() => {
+      await Course.create({
+        name: 'South Course',
+        informal: 'South',
+        numOfHoles: 18,
+      })
+    })
+    it('PUTs to update an existing course', () => {
+      var updatedCourse = {
+        informal: 'Not South'
+      }
+      return request(app)
+        .put('/api/courses/1')
+        .send(updatedCourse)
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('object')
+          expect(res.body.name).to.be.equal('South Course')
+          expect(res.body.informal).to.be.equal('Not South')
+          expect(res.body.id).to.be.equal(1)
+        })
+    })
+  }) // end describe('PUT /api/courses')
+}) // end describe('Course routes')

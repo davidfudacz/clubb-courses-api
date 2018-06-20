@@ -35,4 +35,14 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    await req.tournament.update(req.body)
+    res.json(req.tournament)
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router

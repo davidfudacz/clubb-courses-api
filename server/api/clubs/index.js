@@ -32,6 +32,17 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    const club = req.body
+    await req.club.update(club)
+    res.json(req.club)
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
 router.get('/:id', (req, res, next) => {
   res.json(req.club)
 })

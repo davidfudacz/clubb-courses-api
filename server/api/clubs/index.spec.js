@@ -11,7 +11,7 @@ describe('Club routes', () => {
     return db.sync({force: true})
   })
 
-  describe('/api/clubs/', () => {
+  describe('GET /api/clubs/', () => {
 
     beforeEach(async() => {
       const clubs = [
@@ -55,21 +55,10 @@ describe('Club routes', () => {
           expect(res.body.informal).to.be.a('string')
         })
     })
-    // it('PUT /api/categories', () => {
-    //   var newCategory = {name: 'top hats'}
-    //   return request(app)
-    //     .put('/api/categories/1')
-    //     .send(newCategory)
-    //     .expect(200)
-    //     .then(res => {
-    //       expect(res.body).to.be.an('object')
-    //       expect(res.body.name).to.be.equal('top hats')
-    //     })
-    // })
-  }) // end describe('/api/clubs')
+  }) // end describe('GET /api/clubs')
 
 
-  describe('/api/clubs/', () => {
+  describe('POST /api/clubs', () => {
     it('POSTs a new club', () => {
       var newClub = {
         name: 'Ridge Country Club',
@@ -86,5 +75,32 @@ describe('Club routes', () => {
           expect(res.body.id).to.be.equal(1)
         })
     })
-  }) // end describe('/api/clubs')
+  }) // end describe('POST /api/clubs')
+
+
+  describe.skip('PUT /api/clubs', () => {
+
+    beforeEach(async() => {
+      await Club.create({
+        name: 'Old Elm Club',
+        informal: 'Old Elm',
+        established: 1912,
+      })
+    })
+    it('PUTs to update an existing club', () => {
+      var updatedClub = {
+        established: 1940,
+      }
+      return request(app)
+        .put('/api/clubs/1')
+        .send(updatedClub)
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('object')
+          expect(res.body.name).to.be.equal('Old Elm Club')
+          expect(res.body.established).to.be.equal('1940')
+          expect(res.body.id).to.be.equal(1)
+        })
+    })
+  }) // end describe('PUT /api/clubs')
 }) // end describe('Club routes')
