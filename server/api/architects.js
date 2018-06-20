@@ -35,4 +35,17 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    console.log('before', req.architect.dataValues)
+    await req.architect.update(req.body)
+    console.log('after', req.architect.dataValues)
+
+    res.json(req.architect)
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router
