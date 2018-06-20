@@ -64,7 +64,8 @@ describe('Course routes', () => {
     })
     it('PUTs to update an existing course', () => {
       var updatedCourse = {
-        informal: 'Not South'
+        informal: 'Not South',
+        numOfHoles: 9,
       }
       return request(app)
         .put('/api/courses/1')
@@ -74,6 +75,7 @@ describe('Course routes', () => {
           expect(res.body).to.be.an('object')
           expect(res.body.name).to.be.equal('South Course')
           expect(res.body.informal).to.be.equal('Not South')
+          expect(res.body.numOfHoles).to.be.equal('9')
           expect(res.body.id).to.be.equal(1)
         })
     })

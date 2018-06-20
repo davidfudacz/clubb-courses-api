@@ -37,8 +37,14 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    await req.player.update(req.body)
-    res.json(req.player)
+    const updatedPlayer = await Player.update(req.body, {
+      where: {
+        id: req.player.id,
+      },
+      returning: true,
+    })
+    const returningPlayer = updatedPlayer[1][0]
+    res.json(returningPlayer)
   }
   catch (err) {
     next(err)

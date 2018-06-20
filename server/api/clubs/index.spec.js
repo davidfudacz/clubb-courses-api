@@ -78,7 +78,7 @@ describe('Club routes', () => {
   }) // end describe('POST /api/clubs')
 
 
-  describe.skip('PUT /api/clubs', () => {
+  describe('PUT /api/clubs', () => {
 
     beforeEach(async() => {
       await Club.create({

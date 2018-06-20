@@ -37,11 +37,14 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    console.log('before', req.architect.dataValues)
-    await req.architect.update(req.body)
-    console.log('after', req.architect.dataValues)
-
-    res.json(req.architect)
+    const updatedArchitect = await Architect.update(req.body, {
+      where: {
+        id: req.architect.id,
+      },
+      returning: true,
+    })
+    const returnedArchitect = updatedArchitect[1][0]
+    res.json(returnedArchitect)
   }
   catch (err) {
     next(err)

@@ -64,17 +64,6 @@ describe('Club/courses routes', () => {
         })
     })
 
-    // it('PUT /api/categories', () => {
-    //   var newCategory = {name: 'top hats'}
-    //   return request(app)
-    //     .put('/api/categories/1')
-    //     .send(newCategory)
-    //     .expect(200)
-    //     .then(res => {
-    //       expect(res.body).to.be.an('object')
-    //       expect(res.body.name).to.be.equal('top hats')
-    //     })
-    // })
     it('POST /api/clubs/1/courses', () => {
       var newCourse = {
         name: 'North Course',
