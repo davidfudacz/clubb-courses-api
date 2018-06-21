@@ -37,8 +37,14 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    await req.tournament.update(req.body)
-    res.json(req.tournament)
+    const updatedTournament = await Tournament.update(req.body, {
+      where: {
+        id: req.tournament.id,
+      },
+      returning: true,
+    })
+    const returningTournament = updatedTournament[1][0]
+    res.json(returningTournament)
   }
   catch (err) {
     next(err)

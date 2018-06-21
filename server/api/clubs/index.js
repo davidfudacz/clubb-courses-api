@@ -34,9 +34,14 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const club = req.body
-    await req.club.update(club)
-    res.json(req.club)
+    const updatedClub = await Club.update(req.body, {
+      where: {
+        id: req.club.id,
+      },
+      returning: true,
+    })
+    const returningClub = updatedClub[1][0]
+    res.json(returningClub)
   }
   catch (err) {
     next(err)

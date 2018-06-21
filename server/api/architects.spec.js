@@ -80,7 +80,7 @@ describe('Architect routes', () => {
         })
     })
 
-    it.skip('PUTs to update an existing architect', async () => {
+    it('PUTs to update an existing architect', async () => {
       var architect = {
         givenName: 'George',
         surname: 'Fazio',

@@ -14,6 +14,10 @@ const Address = db.define('address', {
   },
   zip: {
     type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      isNumeric: true,
+    }
   },
 })
 

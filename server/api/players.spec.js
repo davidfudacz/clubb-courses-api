@@ -77,7 +77,7 @@ describe('Player routes', () => {
         })
     })
 
-    it('PUT /api/players', async () => {
+    it('PUTs to update an existing player', async () => {
       const player = {
         givenName: 'Jordan',
         surname: 'Speith',
@@ -87,6 +87,7 @@ describe('Player routes', () => {
 
       const newPlayer = {
         surname: 'Spieth',
+        birthYear: 1993
       }
 
       return request(app)
@@ -96,6 +97,7 @@ describe('Player routes', () => {
         .then(res => {
           expect(res.body).to.be.an('object')
           expect(res.body.surname).to.be.equal('Spieth')
+          expect(res.body.birthYear).to.be.equal('1993')
           expect(res.body.id).to.be.equal(3)
         })
     })

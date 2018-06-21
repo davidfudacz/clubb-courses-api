@@ -23,9 +23,14 @@ router.get('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const course = req.body
-    await req.course.update(course)
-    res.json(req.course)
+    const updatedCourse = await Course.update(req.body, {
+      where: {
+        id: req.course.id,
+      },
+      returning: true,
+    })
+    const returningCourse = updatedCourse[1][0]
+    res.json(returningCourse)
   }
   catch (err) {
     next(err)

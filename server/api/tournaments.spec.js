@@ -6,7 +6,7 @@ const db = require('../db')
 const app = require('../../server')
 const { Tournament } = require('../db/models')
 
-describe.only('Tournament routes', () => {
+describe('Tournament routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -58,17 +58,7 @@ describe.only('Tournament routes', () => {
           expect(res.body.informal).to.be.a('string')
         })
     })
-    // it('PUT /api/categories', () => {
-    //   var newCategory = {name: 'top hats'}
-    //   return request(app)
-    //     .put('/api/categories/1')
-    //     .send(newCategory)
-    //     .expect(200)
-    //     .then(res => {
-    //       expect(res.body).to.be.an('object')
-    //       expect(res.body.name).to.be.equal('top hats')
-    //     })
-    // })
+
     it('POST /api/tournaments', () => {
       var tournament = {
         name: 'The US Open Championship',
@@ -95,6 +85,7 @@ describe.only('Tournament routes', () => {
       await Tournament.create(tournament)
       const newTournament = {
         informal: 'The Open',
+        established: 1887,
       }
 
       return request(app)
@@ -104,6 +95,7 @@ describe.only('Tournament routes', () => {
         .then(res => {
           expect(res.body).to.be.an('object')
           expect(res.body.informal).to.be.equal('The Open')
+          expect(res.body.established).to.be.equal('1887')
           expect(res.body.id).to.be.equal(3)
         })
     })
