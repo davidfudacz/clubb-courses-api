@@ -49,7 +49,7 @@ describe('Event model', () => {
         expect(error).to.be.an('undefined')
         // just in case we add something and forget to test it...
         // add in the created and updatedAt fields
-        expect(Object.keys(event.dataValues).length).to.be.equal(6)
+        expect(Object.keys(event.dataValues).length).to.be.equal(7)
         expect(event.year).to.be.equal('1908')
         expect(event.courseId).to.be.equal(1)
         expect(event.tournamentId).to.be.equal(1)
