@@ -10,28 +10,36 @@ async function seedCourses () {
 
 const courses = [
   {
-    name: 'North Course',
-    informal: 'North',
-    built: '1908',
     numOfHoles: 18,
     clubId: 1,
   },
   {
-    name: 'South Course',
-    informal: 'South',
-    built: '1908',
-    numOfHoles: 18,
-    clubId: 1,
-  },
-  {
-    built: '1908',
     numOfHoles: 18,
     clubId: 2,
   },
   {
-    built: '1908',
     numOfHoles: 18,
     clubId: 3,
+  },
+  {
+    numOfHoles: 18,
+    clubId: 4,
+  },
+  {
+    numOfHoles: 18,
+    clubId: 5,
+  },
+  {
+    name: 'South Course',
+    informal: 'South',
+    numOfHoles: 18,
+    clubId: 6,
+  },
+  {
+    name: 'North Course',
+    informal: 'North',
+    numOfHoles: 18,
+    clubId: 6,
   },
 ]
 
