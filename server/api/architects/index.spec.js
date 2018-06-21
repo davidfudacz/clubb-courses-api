@@ -2,9 +2,9 @@
 
 const { expect } = require('chai')
 const request = require('supertest')
-const db = require('../db')
-const app = require('../../server')
-const { Architect } = require('../db/models')
+const db = require('../../db')
+const app = require('../../../server')
+const { Architect } = require('../../db/models')
 
 describe('Architect routes', () => {
   beforeEach(() => {

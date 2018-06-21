@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Architect } = require('../db/models')
+const { Architect } = require('../../db/models')
 
 router.param('id', async (req, res, next, id) => {
   try {
@@ -50,5 +50,7 @@ router.put('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+router.use('/:id/builds', require('./builds'))
 
 module.exports = router
