@@ -56,22 +56,10 @@ describe('Club routes', () => {
         .then(res => {
           expect(res.body).to.be.an('array')
           expect(res.body.length).to.be.equal(2)
-          res.body.forEach(employee => expect(employee.clubs[0].id).to.be.equal(1))
           res.body.forEach(employee => expect(employee.givenName).to.be.a('string'))
         })
     })
 
-    // it('PUT /api/categories', () => {
-    //   var newCategory = {name: 'top hats'}
-    //   return request(app)
-    //     .put('/api/categories/1')
-    //     .send(newCategory)
-    //     .expect(200)
-    //     .then(res => {
-    //       expect(res.body).to.be.an('object')
-    //       expect(res.body.name).to.be.equal('top hats')
-    //     })
-    // })
     it('POSTs an employee to the club', async () => {
       try {
         var employee = {

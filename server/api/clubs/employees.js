@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Employee, Club } = require('../../db/models')
+const { Employee, Club, EmployeeTitle } = require('../../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -12,10 +12,28 @@ router.get('/', async (req, res, next) => {
             id: clubId
           },
           attributes: ['id'],
-        }
+        },
+        EmployeeTitle
       ]
     })
-    res.json(employees)
+    const response = employees.map(employee => {
+      const title = employee.employeeTitle ? employee.employeeTitle.title : null
+      const informal = employee.employeeTitle ? employee.employeeTitle.informal : null
+      return {
+        id: employee.id,
+        givenName: employee.givenName,
+        surname: employee.surname,
+        email: employee.email,
+        startYear: employee.startYear,
+        endYear: employee.endYear,
+        imgUrl: employee.imgUrl,
+        employeeTitle: {
+          title,
+          informal
+        },
+      }
+    })
+    res.json(response)
   }
   catch (err) {
     next(err)
