@@ -29,7 +29,7 @@ const builds = [
   },
   {
     courseId: 3,
-    architects: [2, 10],
+    architects: [1, 10],
     year: 1913,
     buildType: 'original',
   },
