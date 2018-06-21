@@ -47,6 +47,9 @@ State.belongsTo(Country)
 Club.belongsTo(Address)
 Club.belongsTo(Membership)
 
+Event.belongsTo(Player, { as: 'winner' })
+// Player.hasMany(Event, { as: 'wins' })
+
 module.exports = {
   User,
   Club,
