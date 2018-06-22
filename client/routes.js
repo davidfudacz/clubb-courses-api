@@ -2,7 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { getAllClubsFromServerThunkerator } from './store'
+import {
+  getAllClubsFromServerThunkerator,
+  getAllCoursesFromServerThunkerator
+} from './store'
 import {
   Home,
 } from './components'
@@ -36,6 +39,7 @@ const mapStateToProps = ({ clubs }) => ({ clubs })
 const mapDispatchToProps = (dispatch) => ({
   initialize: () => {
     dispatch(getAllClubsFromServerThunkerator())
+    dispatch(getAllCoursesFromServerThunkerator())
   }
 })
 

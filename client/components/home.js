@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ClubNameHeader, ClubNameLink } from '../components'
+import { ClubNameHeader, ClubNameLink, CourseNameHeader, CourseNameLink } from '../components'
 
 class Home extends React.Component {
   render () {
@@ -16,11 +16,23 @@ class Home extends React.Component {
               <ClubNameLink
                 club={club}
               />
-              {
-                club.courses.length > 1
-                  ? club.courses.map(course => <p style={{marginLeft: 10}} key={course.id}>{course.name}</p>)
-                  : null
-              }
+              </div>
+            )
+          })
+        }
+        <h1 style={{color: 'red'}}>Courses</h1>
+        {
+          this.props.courses.map(course => {
+            return (
+              <div key={course.id}>
+              <CourseNameHeader
+                course={course}
+                isInformal={true}
+              />
+              <CourseNameLink
+                course={course}
+                isInformal={true}
+              />
               </div>
             )
           })

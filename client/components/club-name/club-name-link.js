@@ -1,13 +1,12 @@
 import React from 'react'
 import { Link } from '../ui-elements'
-import { _parseClubUrl } from '../../utilities'
+import { _parseClubUrl, _parseClubNameForDisplay } from '../../utilities'
 
 const ClubNameHeader = (props) => {
   if (!props.club) throw new Error('ClubNameHeader component requires a club object prop')
-  const { isInformal, name, informal } = props.club
-  const displayName = isInformal && !!informal ? informal : name
+  const { isInformal, club } = props
   return (
-    <Link to={_parseClubUrl(props.club)}>{displayName}</Link>
+    <Link to={_parseClubUrl(props.club)}>{_parseClubNameForDisplay(club, isInformal)}</Link>
   )
 }
 

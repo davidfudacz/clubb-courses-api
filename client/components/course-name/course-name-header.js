@@ -1,12 +1,12 @@
 import React from 'react'
 import { Header } from '../ui-elements'
+import { _parseCourseNameForDisplay } from '../../utilities'
 
 const CourseNameHeader = (props) => {
-  if (!props.club) throw new Error('CourseNameHeader component requires a club object prop')
-  const { isInformal, name, informal } = props.club
-  const displayName = isInformal && !!informal ? informal : name
+  if (!props.course) throw new Error('CourseNameHeader component requires a club object prop')
+  const { isInformal, course } = props
   return (
-    <Header>{displayName}</Header>
+    <Header>{_parseCourseNameForDisplay(course, isInformal)}</Header>
   )
 }
 
