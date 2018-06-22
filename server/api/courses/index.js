@@ -16,7 +16,23 @@ router.get('/', async (req, res, next) => {
     const courses = await Course.findAll({
       include: [ Club ]
     })
-    res.json(courses)
+    const response = courses.map(({ id, informal, name, numOfHoles, club }) => {
+      const clubObj = {
+        id: club.id,
+        established: club.established,
+        informal: club.informal,
+        name: club.name,
+        logoUrl: club.logoUrl,
+      }
+      return {
+        id,
+        informal,
+        name,
+        numOfHoles,
+        club: clubObj,
+      }
+    })
+    res.json(response)
   }
   catch (err) {
     next(err)

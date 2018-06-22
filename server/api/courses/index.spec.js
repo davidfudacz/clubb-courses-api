@@ -4,7 +4,7 @@ const { expect } = require('chai')
 const request = require('supertest')
 const db = require('../../db')
 const app = require('../../../server')
-const { Course } = require('../../db/models')
+const { Club, Course } = require('../../db/models')
 
 describe('Course routes', () => {
   beforeEach(() => {
@@ -14,19 +14,28 @@ describe('Course routes', () => {
   describe('/api/courses/', () => {
 
     beforeEach(async() => {
+      await Club.create({
+          name: 'Beverly Country Club',
+          informal: 'Beverly',
+          established: 1908,
+        })
+
       const courses = [
         {
           name: 'North Course',
           informal: 'North',
           numOfHoles: 18,
+          clubId: 1,
         },
         {
           name: 'South Course',
           informal: 'South',
           numOfHoles: 18,
+          clubId: 1,
         }
       ]
       await Course.bulkCreate(courses)
+
     })
 
     it('GETs all courses', () => {
