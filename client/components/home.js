@@ -20,15 +20,18 @@ class Home extends React.Component {
             )
           })
         }
+        <h1 style={{color: 'red'}}>Courses</h1>
         {
           this.props.courses.map(course => {
             return (
               <div key={course.id}>
               <CourseNameHeader
                 course={course}
+                isInformal={true}
               />
               <CourseNameLink
                 course={course}
+                isInformal={true}
               />
               </div>
             )
