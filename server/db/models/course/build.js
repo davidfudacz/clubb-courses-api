@@ -12,6 +12,14 @@ const Build = db.define('build', {
       isNumeric: true
     }
   },
+  numOfHoles: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      isNumeric: true,
+    }
+  }
 })
 
 module.exports = Build

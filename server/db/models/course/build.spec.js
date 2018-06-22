@@ -10,13 +10,62 @@ describe('Build model', () => {
   })
 
   describe('validations', () => {
+    describe('do not allow null', () => {
+      it('for numOfHoles', async () => {
+        let error
+        try {
+          await Build.create({
+            buildType: 'original',
+            year: 1908,
+          })
+        }
+        catch (err) {
+          error = err
+        }
+        expect(error.name).to.be.equal('SequelizeValidationError')
+      })
+    }) // end describe do not allow null
+
+    describe('do not allow empty', () => {
+      it('for numOfHoles', async () => {
+        let error
+        try {
+          await Build.create({
+            buildType: 'original',
+            year: 1908,
+            numOfHoles: '',
+          })
+        }
+        catch (err) {
+          error = err
+        }
+        expect(error.name).to.be.equal('SequelizeValidationError')
+      })
+    }) // end describe do not allow null
+
     describe('entries are numeric', () => {
       it('for year', async () => {
         let error
         try {
           await Build.create({
-            buildType: 'haha',
-            year: 'haha',
+            buildType: 'original',
+            year: '',
+            numOfHoles: 18,
+          })
+        }
+        catch (err) {
+          error = err
+        }
+        expect(error.name).to.be.equal('SequelizeValidationError')
+      })
+
+      it('for numOfHoles', async () => {
+        let error
+        try {
+          await Build.create({
+            buildType: 'original',
+            year: 1908,
+            numOfHoles: 'haha',
           })
         }
         catch (err) {
@@ -33,6 +82,7 @@ describe('Build model', () => {
           await Build.create({
             buildType: 'haha',
             year: 1908,
+            numOfHoles: 18,
           })
         }
         catch (err) {
@@ -51,6 +101,7 @@ describe('Build model', () => {
             build = await Build.create({
               buildType: 'original',
               year: 1908,
+              numOfHoles: 18,
             })
           }
           catch (err) {
@@ -59,7 +110,7 @@ describe('Build model', () => {
           expect(error).to.be.an('undefined')
           // just in case we add something and forget to test it...
           // add in the created and updatedAt fields
-          expect(Object.keys(build.dataValues).length).to.be.equal(6)
+          expect(Object.keys(build.dataValues).length).to.be.equal(7)
           expect(build.buildType).to.be.equal('original')
           expect(build.year).to.be.equal('1908')
         })
