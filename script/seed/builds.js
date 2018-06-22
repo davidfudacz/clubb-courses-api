@@ -1,19 +1,5 @@
 const { Build } = require('../../server/db/models')
 
-async function seedBuilds () {
-  const buildsProms = builds.map(async build => {
-    const { buildType, year, courseId, architects } = build
-    const createdBuild = await Build.create({
-      buildType,
-      year,
-    })
-    await createdBuild.setCourse(courseId)
-    await createdBuild.addArchitects(architects)
-  })
-  await Promise.all(buildsProms)
-  console.log(`Seeded ${builds.length} builds`)
-}
-
 const builds = [
   {
     courseId: 1,
@@ -58,5 +44,19 @@ const builds = [
     buildType: 'original',
   },
 ]
+
+async function seedBuilds () {
+  const buildsProms = builds.map(async build => {
+    const { buildType, year, courseId, architects } = build
+    const createdBuild = await Build.create({
+      buildType,
+      year,
+    })
+    await createdBuild.setCourse(courseId)
+    await createdBuild.addArchitects(architects)
+  })
+  await Promise.all(buildsProms)
+  console.log(`Seeded ${builds.length} builds`)
+}
 
 module.exports = seedBuilds

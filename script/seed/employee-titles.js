@@ -1,13 +1,5 @@
 const { EmployeeTitle } = require('../../server/db/models')
 
-async function seedEmployeeTitles () {
-  const employeeTitleProms = employeeTitles.map(title => {
-    return EmployeeTitle.create(title)
-  })
-  await Promise.all(employeeTitleProms)
-  console.log(`Seeded ${employeeTitles.length} employee titles`)
-}
-
 const employeeTitles = [
   {
     id: 1,
@@ -34,5 +26,13 @@ const employeeTitles = [
     informal: 'Super'
   },
 ]
+
+async function seedEmployeeTitles () {
+  const employeeTitleProms = employeeTitles.map(title => {
+    return EmployeeTitle.create(title)
+  })
+  await Promise.all(employeeTitleProms)
+  console.log(`Seeded ${employeeTitles.length} employee titles`)
+}
 
 module.exports = seedEmployeeTitles

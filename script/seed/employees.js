@@ -1,20 +1,5 @@
 const { Employee } = require('../../server/db/models')
 
-async function seedEmployees () {
-  const employeesProms = employees.map(async employee => {
-    const { clubId, givenName, surname, startYear, employeeTitleId } = employee
-    const createdEmployee = await Employee.create({
-      givenName,
-      surname,
-      startYear,
-      employeeTitleId,
-    })
-    await createdEmployee.addClub(clubId)
-  })
-  await Promise.all(employeesProms)
-  console.log(`Seeded ${employees.length} employees`)
-}
-
 const employees = [
   {
     clubId: 1,
@@ -59,5 +44,20 @@ const employees = [
     employeeTitleId: 5,
   },
 ]
+
+async function seedEmployees () {
+  const employeesProms = employees.map(async employee => {
+    const { clubId, givenName, surname, startYear, employeeTitleId } = employee
+    const createdEmployee = await Employee.create({
+      givenName,
+      surname,
+      startYear,
+      employeeTitleId,
+    })
+    await createdEmployee.addClub(clubId)
+  })
+  await Promise.all(employeesProms)
+  console.log(`Seeded ${employees.length} employees`)
+}
 
 module.exports = seedEmployees

@@ -1,13 +1,5 @@
 const { Course } = require('../../server/db/models')
 
-async function seedCourses () {
-  const coursesProms = courses.map(course => {
-    return Course.create(course)
-  })
-  await Promise.all(coursesProms)
-  console.log(`Seeded ${courses.length} courses`)
-}
-
 const courses = [
   {
     numOfHoles: 18,
@@ -42,5 +34,13 @@ const courses = [
     clubId: 6,
   },
 ]
+
+async function seedCourses () {
+  const coursesProms = courses.map(course => {
+    return Course.create(course)
+  })
+  await Promise.all(coursesProms)
+  console.log(`Seeded ${courses.length} courses`)
+}
 
 module.exports = seedCourses

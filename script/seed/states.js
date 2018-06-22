@@ -1,13 +1,5 @@
 const { State } = require('../../server/db/models')
 
-async function seedStates () {
-  const statesProms = states.map(state => {
-    return State.create(state)
-  })
-  await Promise.all(statesProms)
-  console.log(`Seeded ${states.length} users`)
-}
-
 const states = [
   {
     name: 'Alabama',
@@ -221,5 +213,13 @@ const states = [
     name: 'Wyoming',
     abbreviation: 'WY',
   }]
+
+  async function seedStates () {
+    const statesProms = states.map(state => {
+      return State.create(state)
+    })
+    await Promise.all(statesProms)
+    console.log(`Seeded ${states.length} users`)
+  }
 
   module.exports = seedStates

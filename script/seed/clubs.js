@@ -1,13 +1,5 @@
 const { Club } = require('../../server/db/models')
 
-async function seedClubs () {
-  const clubsProms = clubs.map(club => {
-    return Club.create(club)
-  })
-  await Promise.all(clubsProms)
-  console.log(`Seeded ${clubs.length} clubs`)
-}
-
 const clubs = [
   {
     id: 1,
@@ -46,5 +38,13 @@ const clubs = [
     established: 1915,
   },
 ]
+
+async function seedClubs () {
+  const clubsProms = clubs.map(club => {
+    return Club.create(club)
+  })
+  await Promise.all(clubsProms)
+  console.log(`Seeded ${clubs.length} clubs`)
+}
 
 module.exports = seedClubs

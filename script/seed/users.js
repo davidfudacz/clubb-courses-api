@@ -1,13 +1,5 @@
 const { User } = require('../../server/db/models')
 
-async function seedUsers () {
-  const usersProms = users.map(user => {
-    return User.create(user)
-  })
-  await Promise.all(usersProms)
-  console.log(`Seeded ${users.length} users`)
-}
-
 const users = [
   {
     givenName: 'Dave',
@@ -20,5 +12,13 @@ const users = [
     email: 'jmoss4688@gmail.com',
   }
 ]
+
+async function seedUsers () {
+  const usersProms = users.map(user => {
+    return User.create(user)
+  })
+  await Promise.all(usersProms)
+  console.log(`Seeded ${users.length} users`)
+}
 
 module.exports = seedUsers
