@@ -30,7 +30,7 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = ({ clubs }) => ({ clubs })
+const mapStateToProps = ({ clubs, courses }) => ({ clubs, courses })
 
 const mapDispatchToProps = null
 
