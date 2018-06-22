@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Club } = require('../../db/models')
+const { Club, Course } = require('../../db/models')
 
 router.param('id', async (req, res, next, id) => {
   try {
@@ -13,7 +13,9 @@ router.param('id', async (req, res, next, id) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const clubs = await Club.findAll()
+    const clubs = await Club.findAll({
+      include: [ Course ]
+    })
     res.json(clubs)
   }
   catch (err) {
