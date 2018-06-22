@@ -12,7 +12,18 @@ class Home extends React.Component {
     return (
       <div>
         {
-          this.props.clubs.map(club => <p key={club.id}>{club.name}</p>)
+          this.props.clubs.map(club => {
+            return (
+              <div key={club.id}>
+              <p>{club.name}</p>
+              {
+                club.courses.length > 1
+                  ? club.courses.map(course => <p style={{marginLeft: 10}} key={course.id}>{course.name}</p>)
+                  : null
+              }
+              </div>
+            )
+          })
         }
       </div>
     )
