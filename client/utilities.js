@@ -14,25 +14,6 @@ export const _parseCourseUrl = (courseObj) => {
   return `/courses/${id}/${parsedName}`
 }
 
-export const _parseCourseNameForDisplay = (courseObj, isInformal) => {
-  const clubName = courseObj.club.name
-  const clubNameInformal = courseObj.club.informal
-  const courseName = courseObj.name
-  const courseNameInformal = courseObj.informal
-  if (courseName) {
-    if (isInformal && courseNameInformal) {
-      return `${clubNameInformal} (${courseNameInformal})`
-    }
-    return `${clubName} (${courseName})`
-  }
-  else {
-    if (isInformal && clubNameInformal) {
-      return clubNameInformal
-    }
-    return clubName
-  }
-}
-
 export const _parseClubNameForDisplay = (clubObj, isInformal) => {
   const clubName = clubObj.name
   const clubNameInformal = clubObj.informal
@@ -40,6 +21,21 @@ export const _parseClubNameForDisplay = (clubObj, isInformal) => {
       return clubNameInformal
     }
     return clubName
+}
+
+export const _parseCourseNameForDisplay = (courseObj, isInformal) => {
+  const clubName = _parseClubNameForDisplay(courseObj.club, isInformal)
+  const courseName = courseObj.name
+  const courseNameInformal = courseObj.informal
+  if (courseName) {
+    if (isInformal && courseNameInformal) {
+      return `${clubName} (${courseNameInformal})`
+    }
+    return `${clubName} (${courseName})`
+  }
+  else {
+    return clubName
+  }
 }
 
 export const _sortClubsAlphabetically = (clubs, isInformal) => {
