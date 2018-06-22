@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Course, Club } = require('../../db/models')
+const { Course, Club, Build } = require('../../db/models')
 
 router.param('id', async (req, res, next, id) => {
   try {
@@ -14,9 +14,9 @@ router.param('id', async (req, res, next, id) => {
 router.get('/', async (req, res, next) => {
   try {
     const courses = await Course.findAll({
-      include: [ Club ]
+      include: [ Club, Build ]
     })
-    const response = courses.map(({ id, informal, name, numOfHoles, club }) => {
+    const response = courses.map(({ id, builds, informal, name, numOfHoles, club }) => {
       const clubObj = {
         id: club.id,
         established: club.established,
@@ -24,11 +24,20 @@ router.get('/', async (req, res, next) => {
         name: club.name,
         logoUrl: club.logoUrl,
       }
+      //get the year of the original build
+      let built = null
+      if (builds.length) {
+        built = builds.find(({ buildType }) => {
+          if (buildType === 'original') return true
+        })
+        .year
+      }
       return {
         id,
         informal,
         name,
         numOfHoles,
+        built,
         club: clubObj,
       }
     })

@@ -1,13 +1,16 @@
+/* eslint react/prefer-stateless-function: 0 */
 import React from 'react'
 import { connect } from 'react-redux'
 import { ClubNameHeader, ClubNameLink, CourseNameHeader, CourseNameLink } from '../components'
+import { _sortClubsAlphabetically, _sortCoursesAlphabetically } from '../utilities'
 
 class Home extends React.Component {
   render () {
+    console.log(_sortClubsAlphabetically(this.props.clubs))
     return (
       <div>
         {
-          this.props.clubs.map(club => {
+          _sortClubsAlphabetically(this.props.clubs).map(club => {
             return (
               <div key={club.id}>
               <ClubNameHeader
@@ -22,7 +25,7 @@ class Home extends React.Component {
         }
         <h1 style={{color: 'red'}}>Courses</h1>
         {
-          this.props.courses.map(course => {
+          _sortCoursesAlphabetically(this.props.courses).map(course => {
             return (
               <div key={course.id}>
               <CourseNameHeader
