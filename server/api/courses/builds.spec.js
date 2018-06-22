@@ -50,11 +50,13 @@ describe('Courses/builds routes', () => {
           buildType: 'original',
           year: 1924,
           courseId: course.id,
+          numOfHoles: 18,
         })
         const secondBuild = await Build.create({
           buildType: 'restoration',
           year: 2004,
           courseId: course.id,
+          numOfHoles: 18,
         })
 
         build.addArchitects([1, 2])
@@ -76,25 +78,14 @@ describe('Courses/builds routes', () => {
           res.body.forEach(build => expect(build.courseId).to.be.equal(1))
           res.body.forEach(build => expect(build.architects).to.be.an('array'))
           res.body.forEach(build => expect(build.architects[0].givenName).to.be.a('string'))
-          
         })
     })
 
-    // it('PUT /api/categories', () => {
-    //   var newCategory = {name: 'top hats'}
-    //   return request(app)
-    //     .put('/api/categories/1')
-    //     .send(newCategory)
-    //     .expect(200)
-    //     .then(res => {
-    //       expect(res.body).to.be.an('object')
-    //       expect(res.body.name).to.be.equal('top hats')
-    //     })
-    // })
     it('POSTs a course build', () => {
       var newCourse = {
         buildType: 'original',
         year: 1983,
+        numOfHoles: 18,
       }
       return request(app)
         .post('/api/courses/1/builds')
@@ -106,10 +97,12 @@ describe('Courses/builds routes', () => {
           expect(res.body.id).to.be.equal(3)
         })
     })
+
     it('POSTs mulitple architects for a course build', async () => {
       var newCourse = {
         buildType: 'original',
         year: 1983,
+        numOfHoles: 18,
       }
       await request(app)
         .post('/api/courses/1/builds')
