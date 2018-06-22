@@ -1,13 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getAllClubsFromServerThunkerator } from '../store'
-
+import { ClubNameHeader, ClubNameLink } from '../components'
 
 class Home extends React.Component {
-  componentDidMount () {
-    this.props.initialize()
-  }
-
   render () {
     return (
       <div>
@@ -15,7 +10,12 @@ class Home extends React.Component {
           this.props.clubs.map(club => {
             return (
               <div key={club.id}>
-              <p>{club.name}</p>
+              <ClubNameHeader
+                club={club}
+              />
+              <ClubNameLink
+                club={club}
+              />
               {
                 club.courses.length > 1
                   ? club.courses.map(course => <p style={{marginLeft: 10}} key={course.id}>{course.name}</p>)
@@ -32,10 +32,6 @@ class Home extends React.Component {
 
 const mapStateToProps = ({ clubs }) => ({ clubs })
 
-const mapDispatchToProps = (dispatch) => ({
-  initialize: () => {
-    dispatch(getAllClubsFromServerThunkerator())
-  }
-})
+const mapDispatchToProps = null
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

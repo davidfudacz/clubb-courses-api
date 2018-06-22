@@ -28,7 +28,6 @@ const clubs = [
   {
     id: 5,
     name: 'Shoreacres',
-    informal: 'Beverly',
     established: 1916,
   },
   {
