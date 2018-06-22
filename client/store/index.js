@@ -4,10 +4,12 @@ import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import user from './user'
 import clubs from './clubs'
+import courses from './courses'
 
 const reducer = combineReducers({
   user,
   clubs,
+  courses,
 })
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -18,3 +20,4 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './user'
 export * from './clubs'
+export * from './courses'
