@@ -6,7 +6,6 @@ import {
   ClubNameLink,
   CourseNameHeader,
   CourseNameLink,
-  Button,
 } from '../components'
 import { _sortClubsAlphabetically, _sortCoursesAlphabetically } from '../utilities'
 
@@ -19,10 +18,8 @@ class Home extends React.Component {
             return (
               <div key={club.id}>
               <ClubNameHeader
-                type={'primary'}
                 club={club}
               />
-              <Button type={'primary'}>Button</Button>
               <ClubNameLink
                 club={club}
               />
