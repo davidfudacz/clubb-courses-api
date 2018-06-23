@@ -2,9 +2,11 @@ const { Membership } = require('../../server/db/models')
 
 const memberships = [
   {
+    id: 1,
     name: 'Private'
   },
   {
+    id: 2,
     name: 'Public'
   },
 ]

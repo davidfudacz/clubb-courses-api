@@ -2,18 +2,23 @@ const { Tee } = require('../../server/db/models')
 
 const tees = [
   {
+    id: 1,
     name: 'Black',
   },
   {
+    id: 2,
     name: 'White',
   },
   {
+    id: 3,
     name: 'Red',
   },
   {
+    id: 4,
     name: 'Tips',
   },
   {
+    id: 5,
     name: 'Championship',
   },
 ]
