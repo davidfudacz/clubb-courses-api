@@ -40,3 +40,21 @@ export const buttonStyle = {
     color: secondaryColor
   }
 }
+
+export const tableStyle = {
+  border: '1px solid black',
+  borderCollapse: 'collapse',
+}
+
+export const thStyle = {
+  border: '1px solid black',
+  borderCollapse: 'collapse',
+  padding: '10px',
+}
+
+export const tdStyle = {
+  border: '1px solid black',
+  borderCollapse: 'collapse',
+  padding: '10px',
+  textAlign: 'center',
+}

@@ -5,22 +5,27 @@ import { withRouter } from 'react-router-dom'
 import { getClubFromServerThunkerator } from '../store'
 import {
   ClubNameHeader,
+  Course,
 } from '../components'
 
 class Club extends React.Component {
 
   componentDidMount () {
-    console.log(this.props)
     const clubId = this.props.match.params.clubId
     this.props.fetchClub(clubId)
   }
 
   render () {
+    const { activeClub } = this.props
+    const courses = activeClub.courses ? activeClub.courses : []
     return (
       <div>
         <ClubNameHeader
-          club={this.props.activeClub}
+          club={activeClub}
         />
+        {
+          courses.map(course => <Course key={course.id} course={course} />)
+        }
       </div>
     )
   }
