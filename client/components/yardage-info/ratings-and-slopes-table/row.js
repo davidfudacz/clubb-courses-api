@@ -20,17 +20,17 @@ const Row = (props) => {
   const { abbreviation: teeGender } = props.yardageInfo.teeGender
   return (
     <tr>
-      <th style={tdStyle}>{teeName}</th>
-      <th style={tdStyle}>{frontYardage}</th>
-      <th style={tdStyle}>{`${frontRating} / ${frontSlope}`}</th>
-      <th style={tdStyle}>{frontPar}</th>
-      <th style={tdStyle}>{backYardage}</th>
-      <th style={tdStyle}>{`${backRating} / ${backSlope}`}</th>
-      <th style={tdStyle}>{backPar}</th>
-      <th style={tdStyle}>{totalYardage}</th>
-      <th style={tdStyle}>{`${totalRating} / ${totalSlope}`}</th>
-      <th style={tdStyle}>{totalPar}</th>
-      <th style={tdStyle}>{teeGender}</th>
+      <td style={tdStyle}>{teeName}</td>
+      <td style={tdStyle}>{frontYardage}</td>
+      <td style={tdStyle}>{`${frontRating} / ${frontSlope}`}</td>
+      <td style={tdStyle}>{frontPar}</td>
+      <td style={tdStyle}>{backYardage}</td>
+      <td style={tdStyle}>{`${backRating} / ${backSlope}`}</td>
+      <td style={tdStyle}>{backPar}</td>
+      <td style={tdStyle}>{totalYardage}</td>
+      <td style={tdStyle}>{`${totalRating} / ${totalSlope}`}</td>
+      <td style={tdStyle}>{totalPar}</td>
+      <td style={tdStyle}>{teeGender}</td>
     </tr>
   )
 }

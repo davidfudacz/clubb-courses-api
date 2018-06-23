@@ -66,3 +66,15 @@ export const _sortCoursesAlphabetically = (courses, isInformal) => {
     return 0;
   })
 }
+
+export const _sortHolesByNumber = (holes) => {
+  return holes.sort((a, b) => +a.number - +b.number)
+}
+
+export const _collapseMensParForScorecard = (yardageInfos) => {
+  return yardageInfos.find(yardageInfo => yardageInfo.teeGenderId === 1)
+}
+
+export const _collapseWomensParForScorecard = (yardageInfos) => {
+  return yardageInfos.find(yardageInfo => yardageInfo.teeGenderId === 2)
+}
