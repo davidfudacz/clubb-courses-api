@@ -2,9 +2,9 @@
 
 const { expect } = require('chai')
 const db = require('../../index')
-const { Yardage } = require('../../models')
+const { YardageInfo } = require('../../models')
 
-describe('Yardage model', () => {
+describe('YardageInfo model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -14,7 +14,7 @@ describe('Yardage model', () => {
       it('for yardage', async () => {
         let error
         try {
-          await Yardage.create({
+          await YardageInfo.create({
             par: 72,
             rating: 75.1,
             slope: 145,
@@ -29,7 +29,7 @@ describe('Yardage model', () => {
       it('for par', async () => {
         let error
         try {
-          await Yardage.create({
+          await YardageInfo.create({
             yardage: 7550,
             rating: 75.1,
             slope: 145,
@@ -44,7 +44,7 @@ describe('Yardage model', () => {
       it('for rating', async () => {
         let error
         try {
-          await Yardage.create({
+          await YardageInfo.create({
             yardage: 7550,
             par: 72,
             slope: 145,
@@ -59,7 +59,7 @@ describe('Yardage model', () => {
       it('for slope', async () => {
         let error
         try {
-          await Yardage.create({
+          await YardageInfo.create({
             yardage: 7550,
             rating: 75.1,
             par: 72,
@@ -76,7 +76,7 @@ describe('Yardage model', () => {
       it('for yardage', async () => {
         let error
         try {
-          await Yardage.create({
+          await YardageInfo.create({
             yardage: '',
             par: 72,
             rating: 75.1,
@@ -92,7 +92,7 @@ describe('Yardage model', () => {
       it('for par', async () => {
         let error
         try {
-          await Yardage.create({
+          await YardageInfo.create({
             yardage: 7550,
             par: '',
             rating: 75.1,
@@ -108,7 +108,7 @@ describe('Yardage model', () => {
       it('for rating', async () => {
         let error
         try {
-          await Yardage.create({
+          await YardageInfo.create({
             yardage: 7550,
             par: 72,
             rating: '',
@@ -124,7 +124,7 @@ describe('Yardage model', () => {
       it('for slope', async () => {
         let error
         try {
-          await Yardage.create({
+          await YardageInfo.create({
             yardage: 7550,
             par: 72,
             rating: 75.1,
@@ -142,7 +142,7 @@ describe('Yardage model', () => {
       it('for yardage', async () => {
         let error
         try {
-          await Yardage.create({
+          await YardageInfo.create({
             yardage: 'haha',
             par: 72,
             rating: 75.1,
@@ -158,7 +158,7 @@ describe('Yardage model', () => {
       it('for par', async () => {
         let error
         try {
-          await Yardage.create({
+          await YardageInfo.create({
             yardage: 7550,
             par: 'haha',
             rating: 75.1,
@@ -174,7 +174,7 @@ describe('Yardage model', () => {
       it('for rating', async () => {
         let error
         try {
-          await Yardage.create({
+          await YardageInfo.create({
             yardage: 7550,
             par: 72,
             rating: 'haha',
@@ -190,7 +190,7 @@ describe('Yardage model', () => {
       it('for slope', async () => {
         let error
         try {
-          await Yardage.create({
+          await YardageInfo.create({
             yardage: 7550,
             par: 72,
             rating: 75.1,
@@ -210,7 +210,7 @@ describe('Yardage model', () => {
       it('multiplies by 10', async () => {
         let yardage, error
         try {
-          yardage = await Yardage.create({
+          yardage = await YardageInfo.create({
             yardage: 7550,
             par: 72,
             rating: 75.1,
@@ -229,7 +229,7 @@ describe('Yardage model', () => {
       it('divides by 10', async () => {
         let yardage, error
         try {
-          yardage = await Yardage.create({
+          yardage = await YardageInfo.create({
             yardage: 7550,
             par: 72,
             rating: 75.1,
@@ -251,7 +251,7 @@ describe('Yardage model', () => {
         it('persists all columns', async () => {
           let yardage, error
           try {
-            yardage = await Yardage.create({
+            yardage = await YardageInfo.create({
               yardage: 7550,
               par: 72,
               rating: 75.1,

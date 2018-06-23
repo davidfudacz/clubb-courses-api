@@ -1,7 +1,15 @@
 const Sequelize = require('sequelize')
 const db = require('../../../db')
 
-const Yardage = db.define('yardage', {
+const Hole = db.define('hole', {
+  number: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      isNumeric: true,
+    }
+  },
   yardage: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -18,22 +26,7 @@ const Yardage = db.define('yardage', {
       isNumeric: true,
     }
   },
-  rating: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      isNumeric: true,
-    },
-    get: function () {
-      return (this.getDataValue('rating') / 10).toString()
-    },
-    set: function (rating) {
-      if (!rating) this.setDataValue('') //this will pass through to the sequelize validation error
-      if (typeof rating === 'number') this.setDataValue('rating', rating * 10)
-    }
-  },
-  slope: {
+  mensHandicap: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
@@ -41,6 +34,13 @@ const Yardage = db.define('yardage', {
       isNumeric: true,
     }
   },
+  womensHandicap: {
+    type: Sequelize.STRING,
+    validate: {
+      notEmpty: true,
+      isNumeric: true,
+    }
+  }
 })
 
-module.exports = Yardage
+module.exports = Hole
