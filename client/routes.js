@@ -8,6 +8,7 @@ import {
 } from './store'
 import {
   Home,
+  Club,
 } from './components'
 
 /**
@@ -24,6 +25,7 @@ class Routes extends React.Component {
       <div className="mainContent">
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route path="/clubs/:clubId" component={Club} />
         <Route path="/" component={Home} />
       </Switch>
         </div>
@@ -38,8 +40,6 @@ const mapStateToProps = ({ clubs }) => ({ clubs })
 
 const mapDispatchToProps = (dispatch) => ({
   initialize: () => {
-    dispatch(getAllClubsFromServerThunkerator())
-    dispatch(getAllCoursesFromServerThunkerator())
   }
 })
 

@@ -1,9 +1,40 @@
 const router = require('express').Router()
-const { Club, Course, Address } = require('../../db/models')
+const {
+  Club,
+  Address,
+  City,
+  State,
+  Country,
+  Build,
+  Architect,
+  Course,
+  Yardage,
+  Tee,
+} = require('../../db/models')
 
 router.param('id', async (req, res, next, id) => {
   try {
-    req.club = await Club.findById(id)
+    req.club = await Club.findById(id, {
+      include: [
+        {
+          model: Address,
+          include: [ City, State, Country ]
+        },
+        {
+          model: Course,
+          include: [
+            {
+              model: Build,
+              include: [ Architect ]
+            },
+            {
+              model: Yardage,
+              include: [ Tee ]
+            }
+          ]
+        }
+      ]
+    })
     next()
   }
   catch (err) {

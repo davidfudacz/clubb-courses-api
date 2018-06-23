@@ -2,6 +2,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
+  getAllClubsFromServerThunkerator,
+  getAllCoursesFromServerThunkerator,
+} from '../store'
+import {
   ClubNameHeader,
   ClubNameLink,
   CourseNameHeader,
@@ -10,6 +14,10 @@ import {
 import { _sortClubsAlphabetically, _sortCoursesAlphabetically } from '../utilities'
 
 class Home extends React.Component {
+
+  componentDidMount () {
+    this.props.initialize()
+  }
   render () {
     return (
       <div>
@@ -51,6 +59,11 @@ class Home extends React.Component {
 
 const mapStateToProps = ({ clubs, courses }) => ({ clubs, courses })
 
-const mapDispatchToProps = null
+const mapDispatchToProps = (dispatch) => ({
+  initialize: () => {
+    dispatch(getAllClubsFromServerThunkerator())
+    dispatch(getAllCoursesFromServerThunkerator())
+  }
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

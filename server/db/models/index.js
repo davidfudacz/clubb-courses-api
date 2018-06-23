@@ -34,6 +34,9 @@ Event.belongsTo(Course)
 Course.hasMany(Yardage)
 Yardage.belongsTo(Course)
 
+Tee.hasMany(Yardage)
+Yardage.belongsTo(Tee)
+
 Tournament.hasMany(Event)
 Event.belongsTo(Tournament)
 
