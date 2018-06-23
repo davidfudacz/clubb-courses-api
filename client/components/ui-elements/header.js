@@ -1,8 +1,10 @@
 import React from 'react'
+import { headerStyle } from '../../styles'
 
-const CustomHeader = (props) => {
+const Header = (props) => {
+  const { type } = props
   return (
-    <h1>
+    <h1 style={headerStyle[type]}>
     {
       props.children
     }
@@ -10,4 +12,4 @@ const CustomHeader = (props) => {
   )
 }
 
-export default CustomHeader
+export default Header

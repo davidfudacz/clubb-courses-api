@@ -4,9 +4,9 @@ import { _parseClubNameForDisplay } from '../../utilities'
 
 const ClubNameHeader = (props) => {
   if (!props.club) throw new Error('ClubNameHeader component requires a club object prop')
-  const { isInformal, club } = props
+  const { isInformal, club, type } = props
   return (
-    <Header>{_parseClubNameForDisplay(club, isInformal)}</Header>
+    <Header type={type}>{_parseClubNameForDisplay(club, isInformal)}</Header>
   )
 }
 

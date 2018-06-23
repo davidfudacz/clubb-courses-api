@@ -1,0 +1,42 @@
+const primaryColor = 'blue'
+const secondaryColor = 'purple'
+const flexBoxJustifiedAndAlignedCenter = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+}
+
+export const headerStyle = {
+  primary: {
+    color: primaryColor
+  },
+  secondary: {
+    color: secondaryColor
+  }
+}
+
+export const subHeaderStyle = {
+  primary: {
+    color: primaryColor
+  },
+  secondary: {
+    color: secondaryColor
+  }
+}
+
+export const buttonStyle = {
+  primary: {
+    ...flexBoxJustifiedAndAlignedCenter,
+    padding: '15px',
+    width: '100px',
+    backgroundColor: secondaryColor,
+    color: primaryColor
+  },
+  secondary: {
+    ...flexBoxJustifiedAndAlignedCenter,
+    padding: '15px',
+    width: '100px',
+    backgroundColor: primaryColor,
+    color: secondaryColor
+  }
+}
