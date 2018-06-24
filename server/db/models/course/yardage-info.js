@@ -53,7 +53,7 @@ const YardageInfo = db.define('yardageInfo', {
       isNumeric: true,
     },
     get: function () {
-      return (this.getDataValue('rating') / 10).toString()
+      return (this.getDataValue('frontRating') / 10).toString()
     },
     set: function (rating) {
       if (!rating) this.setDataValue('') //this will pass through to the sequelize validation error
@@ -67,7 +67,7 @@ const YardageInfo = db.define('yardageInfo', {
       isNumeric: true,
     },
     get: function () {
-      return (this.getDataValue('rating') / 10).toString()
+      return (this.getDataValue('backRating') / 10).toString()
     },
     set: function (rating) {
       if (!rating) this.setDataValue('') //this will pass through to the sequelize validation error
@@ -82,7 +82,7 @@ const YardageInfo = db.define('yardageInfo', {
       isNumeric: true,
     },
     get: function () {
-      return (this.getDataValue('rating') / 10).toString()
+      return (this.getDataValue('totalRating') / 10).toString()
     },
     set: function (rating) {
       if (!rating) this.setDataValue('') //this will pass through to the sequelize validation error

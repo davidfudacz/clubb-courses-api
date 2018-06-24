@@ -10,6 +10,8 @@ const {
   Course,
   YardageInfo,
   Tee,
+  TeeGender,
+  Hole,
 } = require('../../db/models')
 
 router.param('id', async (req, res, next, id) => {
@@ -29,7 +31,7 @@ router.param('id', async (req, res, next, id) => {
             },
             {
               model: YardageInfo,
-              include: [ Tee ]
+              include: [ Tee, Hole, TeeGender ]
             }
           ]
         }
