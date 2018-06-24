@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from '../ui-elements'
-import { _parseCourseUrl, _parseCourseNameForDisplay } from '../../utilities'
+import { Link } from '../../ui-elements'
+import { _parseCourseUrl, _parseCourseNameForDisplay } from '../../../utilities'
 
 const CourseNameLink = (props) => {
   if (!props.course) throw new Error('CourseNameLink component requires a club object prop')

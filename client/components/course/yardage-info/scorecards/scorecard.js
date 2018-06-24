@@ -2,11 +2,11 @@ import React from 'react'
 import YardageRow from './yardage-row'
 import ParRow from './par-row'
 import HandicapRow from './handicap-row'
-import { tableStyle, thStyle } from '../../../styles'
+import { tableStyle, thStyle } from '../../../../styles'
 import {
   _collapseMensParForScorecard,
   _collapseWomensParForScorecard,
-} from '../../../utilities'
+} from '../../../../utilities'
 
 const Scorecard = (props) => {
   const { yardageInfos } = props

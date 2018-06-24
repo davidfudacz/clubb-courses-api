@@ -1,5 +1,5 @@
 import React from 'react'
-import { tdStyle } from '../../../styles'
+import { tdStyle } from '../../../../styles'
 
 const Row = (props) => {
   const {

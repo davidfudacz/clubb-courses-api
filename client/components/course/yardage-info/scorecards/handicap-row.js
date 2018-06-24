@@ -1,6 +1,6 @@
 import React from 'react'
-import { thStyle, tdStyle } from '../../../styles'
-import { _sortHolesByNumber } from '../../../utilities'
+import { thStyle, tdStyle } from '../../../../styles'
+import { _sortHolesByNumber } from '../../../../utilities'
 
 const ParRow = (props) => {
   const {

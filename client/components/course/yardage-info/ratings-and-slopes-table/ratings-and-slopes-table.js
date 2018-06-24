@@ -1,6 +1,6 @@
 import React from 'react'
 import Row from './row'
-import { tableStyle, thStyle } from '../../../styles'
+import { tableStyle, thStyle } from '../../../../styles'
 
 const RatingsAndSlopesTable = (props) => {
   const { yardageInfos } = props

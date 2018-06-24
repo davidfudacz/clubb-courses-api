@@ -3,7 +3,7 @@ import Scorecard from './scorecard'
 import {
   _sortMensYardageInfos,
   _sortWomensYardageInfos,
-} from '../../../utilities'
+} from '../../../../utilities'
 
 const ScorecardWrapper = (props) => {
   const { yardageInfos } = props
