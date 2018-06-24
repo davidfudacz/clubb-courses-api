@@ -50,6 +50,13 @@ const builds = [
     buildType: 'original',
     numOfHoles: 18,
   },
+  {
+    courseId: 1,
+    architects: [5],
+    year: 1995,
+    buildType: 'restoration',
+    numOfHoles: 18,
+  },
 ]
 
 async function seedBuilds () {
