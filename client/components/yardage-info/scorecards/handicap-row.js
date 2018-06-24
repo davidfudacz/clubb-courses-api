@@ -9,7 +9,6 @@ const ParRow = (props) => {
   const sortedHoles = _sortHolesByNumber(holes)
   const teeGender = props.yardageInfo.teeGender.informal
   const genderAccessor = teeGender.replace(`'`, ``).toLowerCase() + 'Handicap'
-  console.log(genderAccessor)
   return (
     <tr>
       <th style={thStyle}>{`${teeGender} Handicap`}</th>

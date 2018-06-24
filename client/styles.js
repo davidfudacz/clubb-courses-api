@@ -49,12 +49,12 @@ export const tableStyle = {
 export const thStyle = {
   border: '1px solid black',
   borderCollapse: 'collapse',
-  padding: '10px',
+  padding: '3px',
 }
 
 export const tdStyle = {
   border: '1px solid black',
   borderCollapse: 'collapse',
-  padding: '10px',
+  padding: '3px',
   textAlign: 'center',
 }
