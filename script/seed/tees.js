@@ -7,7 +7,7 @@ const tees = [
   },
   {
     id: 2,
-    name: 'White',
+    name: 'Blue',
   },
   {
     id: 3,

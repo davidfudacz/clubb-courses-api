@@ -1,4 +1,4 @@
 export { default as YardageInfoWrapper } from './yardage-info-wrapper'
 
-export * from './scorecard'
+export * from './scorecards'
 export * from './ratings-and-slopes-table'

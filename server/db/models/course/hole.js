@@ -28,7 +28,6 @@ const Hole = db.define('hole', {
   },
   mensHandicap: {
     type: Sequelize.STRING,
-    allowNull: false,
     validate: {
       notEmpty: true,
       isNumeric: true,

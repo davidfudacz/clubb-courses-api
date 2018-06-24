@@ -3,15 +3,19 @@ import YardageRow from './yardage-row'
 import ParRow from './par-row'
 import HandicapRow from './handicap-row'
 import { tableStyle, thStyle } from '../../../styles'
-import { _collapseMensParForScorecard, _collapseWomensParForScorecard } from '../../../utilities'
+import {
+  _collapseMensParForScorecard,
+  _collapseWomensParForScorecard,
+} from '../../../utilities'
 
 const Scorecard = (props) => {
   const { yardageInfos } = props
+  const gender = yardageInfos[0].teeGender.informal
   const mensParYardageInfo = _collapseMensParForScorecard(yardageInfos)
   const womensParYardageInfo = _collapseWomensParForScorecard(yardageInfos)
   return (
     <div>
-      <h3>Scorecard</h3>
+      <h3>{`${gender} Scorecard`}</h3>
       <table style={tableStyle}>
         <tbody>
         <tr>
@@ -40,16 +44,29 @@ const Scorecard = (props) => {
         </tr>
         {
           yardageInfos.map(yardageInfo => {
-            if (yardageInfo.teeGenderId === 1) {
-              return (
-                <YardageRow key={yardageInfo.id} yardageInfo={yardageInfo} />
-              )
-            }
+            return (
+              <YardageRow key={yardageInfo.id} yardageInfo={yardageInfo} />
+            )
           })
         }
         {
           mensParYardageInfo
           ? <ParRow yardageInfo={mensParYardageInfo} />
+          : null
+        }
+        {
+          womensParYardageInfo
+          ? <ParRow yardageInfo={womensParYardageInfo} />
+          : null
+        }
+        {
+          mensParYardageInfo
+          ? <HandicapRow yardageInfo={mensParYardageInfo} />
+          : null
+        }
+        {
+          womensParYardageInfo
+          ? <HandicapRow yardageInfo={womensParYardageInfo} />
           : null
         }
         </tbody>

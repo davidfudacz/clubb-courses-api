@@ -253,6 +253,132 @@ const holes = [
     mensHandicap: 4,
     yardageInfoId: 2,
   },
+  {
+    number: 1,
+    yardage: 339,
+    par: 4,
+    womensHandicap: 13,
+    yardageInfoId: 3,
+  },
+  {
+    number: 2,
+    yardage: 471,
+    par: 5,
+    womensHandicap: 3,
+    yardageInfoId: 3,
+  },
+  {
+    number: 3,
+    yardage: 159,
+    par: 3,
+    womensHandicap: 15,
+    yardageInfoId: 3,
+  },
+  {
+    number: 4,
+    yardage: 370,
+    par: 4,
+    womensHandicap: 7,
+    yardageInfoId: 3,
+  },
+  {
+    number: 5,
+    yardage: 340,
+    par: 4,
+    womensHandicap: 5,
+    yardageInfoId: 3,
+  },
+  {
+    number: 6,
+    yardage: 153,
+    par: 3,
+    womensHandicap: 17,
+    yardageInfoId: 3,
+  },
+  {
+    number: 7,
+    yardage: 434,
+    par: 5,
+    womensHandicap: 1,
+    yardageInfoId: 3,
+  },
+  {
+    number: 8,
+    yardage: 393,
+    par: 4,
+    womensHandicap: 9,
+    yardageInfoId: 3,
+  },
+  {
+    number: 9,
+    yardage: 365,
+    par: 4,
+    womensHandicap: 11,
+    yardageInfoId: 3,
+  },
+  {
+    number: 10,
+    yardage: 170,
+    par: 3,
+    womensHandicap: 16,
+    yardageInfoId: 3,
+  },
+  {
+    number: 11,
+    yardage: 450,
+    par: 5,
+    womensHandicap: 2,
+    yardageInfoId: 3,
+  },
+  {
+    number: 12,
+    yardage: 130,
+    par: 3,
+    womensHandicap: 18,
+    yardageInfoId: 3,
+  },
+  {
+    number: 13,
+    yardage: 358,
+    par: 4,
+    womensHandicap: 10,
+    yardageInfoId: 3,
+  },
+  {
+    number: 14,
+    yardage: 319,
+    par: 4,
+    womensHandicap: 12,
+    yardageInfoId: 3,
+  },
+  {
+    number: 15,
+    yardage: 446,
+    par: 4,
+    womensHandicap: 6,
+    yardageInfoId: 3,
+  },
+  {
+    number: 16,
+    yardage: 372,
+    par: 4,
+    womensHandicap: 8,
+    yardageInfoId: 3,
+  },
+  {
+    number: 17,
+    yardage: 189,
+    par: 3,
+    womensHandicap: 14,
+    yardageInfoId: 3,
+  },
+  {
+    number: 18,
+    yardage: 456,
+    par: 5,
+    womensHandicap: 4,
+    yardageInfoId: 3,
+  },
 ]
 
 async function seedTees () {
@@ -260,6 +386,11 @@ async function seedTees () {
     formal: `Gentlemen's`,
     informal: `Men's`,
     abbreviation: `M`,
+  })
+  await TeeGender.create({
+    formal: `Ladie's`,
+    informal: `Women's`,
+    abbreviation: `F`,
   })
   await YardageInfo.create({
     frontYardage: 3597,
@@ -275,7 +406,7 @@ async function seedTees () {
     totalRating: 74.4,
     totalSlope: 139,
     courseId: 1,
-    teeId: 1,
+    teeId: 5,
     teeGenderId: 1,
   })
   await YardageInfo.create({
@@ -294,6 +425,23 @@ async function seedTees () {
     courseId: 1,
     teeId: 2,
     teeGenderId: 1,
+  })
+  await YardageInfo.create({
+    frontYardage: 3024,
+    backYardage: 2890,
+    totalYardage: 5914,
+    frontPar: 36,
+    backPar: 35,
+    totalPar: 71,
+    frontRating: 38.2,
+    backRating: 37.1,
+    frontSlope: 137,
+    backSlope: 131,
+    totalRating: 75.3,
+    totalSlope: 134,
+    courseId: 1,
+    teeId: 3,
+    teeGenderId: 2,
   })
   const holeProms = holes.map(hole => {
     return Hole.create(hole)

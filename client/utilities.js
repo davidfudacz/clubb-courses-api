@@ -67,6 +67,20 @@ export const _sortCoursesAlphabetically = (courses, isInformal) => {
   })
 }
 
+export const _sortMensYardageInfos = (yardageInfos) => {
+  const output =
+    yardageInfos.filter(yardageInfo => yardageInfo.teeGenderId === 1)
+    .sort((a, b) => +a.totalYardage - +b.totalYardage)
+  return output
+}
+
+export const _sortWomensYardageInfos = (yardageInfos) => {
+  const output =
+    yardageInfos.filter(yardageInfo => yardageInfo.teeGenderId === 2)
+    .sort((a, b) => +a.totalYardage - +b.totalYardage)
+  return output
+}
+
 export const _sortHolesByNumber = (holes) => {
   return holes.sort((a, b) => +a.number - +b.number)
 }

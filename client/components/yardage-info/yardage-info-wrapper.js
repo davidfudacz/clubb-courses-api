@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   RatingsAndSlopesTable,
-  Scorecard,
+  ScorecardsWrapper,
 } from './index.js'
 
 const YardageInfoWrapper = (props) => {
@@ -10,7 +10,7 @@ const YardageInfoWrapper = (props) => {
     return (
       <div>
         <RatingsAndSlopesTable yardageInfos={yardageInfos} />
-        <Scorecard yardageInfos={yardageInfos} />
+        <ScorecardsWrapper yardageInfos={yardageInfos} />
       </div>
     )
   }
