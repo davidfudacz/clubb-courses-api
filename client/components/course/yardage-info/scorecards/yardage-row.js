@@ -1,6 +1,6 @@
 import React from 'react'
-import { tdStyle, thStyle } from '../../../styles'
-import { _sortHolesByNumber } from '../../../utilities'
+import { tdStyle, thStyle } from '../../../../styles'
+import { _sortHolesByNumber } from '../../../../utilities'
 
 const YardageRow = (props) => {
   const {

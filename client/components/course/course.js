@@ -1,7 +1,5 @@
 import React from 'react'
-import {
-  YardageInfoWrapper,
-} from '../components'
+import YardageInfoWrapper from './yardage-info-wrapper'
 
 const Course = (props) => {
   return (
