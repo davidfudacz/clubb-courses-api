@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
-const db = require('../db')
+const db = require('../../../db')
 
-const Tournament = db.define('tournament', {
+const Publisher = db.define('publisher', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -11,13 +11,11 @@ const Tournament = db.define('tournament', {
   },
   informal: {
     type: Sequelize.STRING,
-  },
-  established: {
-    type: Sequelize.STRING,
+    allowNull: false,
     validate: {
-      isNumeric: true
+      notEmpty: true,
     }
   },
 })
 
-module.exports = Tournament
+module.exports = Publisher

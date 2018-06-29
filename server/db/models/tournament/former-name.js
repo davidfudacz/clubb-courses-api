@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../../../db')
 
-const Country = db.define('country', {
+const FormerName = db.define('formerName', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -9,20 +9,25 @@ const Country = db.define('country', {
       notEmpty: true,
     }
   },
-  abbreviation: {
+  informal: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
     }
   },
-  demonym: {
+  startYear: {
     type: Sequelize.STRING,
-    allowNull: false,
     validate: {
-      notEmpty: true,
+      isNumeric: true
     }
-  }
+  },
+  endYear: {
+    type: Sequelize.STRING,
+    validate: {
+      isNumeric: true
+    }
+  },
 })
 
-module.exports = Country
+module.exports = FormerName

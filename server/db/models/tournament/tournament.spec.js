@@ -1,8 +1,8 @@
 /* global describe beforeEach it */
 
 const { expect } = require('chai')
-const db = require('../index')
-const { Tournament } = require('../models')
+const db = require('../../index')
+const { Tournament } = require('../../models')
 
 describe('Tournament model', () => {
   beforeEach(() => {
