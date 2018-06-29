@@ -11,6 +11,7 @@ import {
   ClubNameLink,
   CourseNameHeader,
   CourseNameLink,
+  RankingListLink,
 } from '../components'
 import {
   _sortClubsAlphabetically,
@@ -61,7 +62,7 @@ class Home extends React.Component {
           this.props.rankingLists.map(rankingList => {
             return (
               <div key={rankingList.id}>
-              {rankingList.rankingListName.informal}
+              <RankingListLink rankingList={rankingList} />
               </div>
             )
           })
