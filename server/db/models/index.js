@@ -3,11 +3,11 @@ const User = require('./user')
 const { Club, Employee, EmployeeTitle, Membership } = require('./club')
 const { Course, Tee, YardageInfo, Build, TeeGender, Hole } = require('./course')
 const { Address, City, State, Country } = require('./address')
+const { Publisher, List, Ranking } = require('./rankings')
+const { Player, Nationality } = require('./player')
+const { Tournament, Event, FormerName } = require('./tournament')
 const Architect = require('./architect')
 const ArchitectBuild = require('./architectBuild')
-const Tournament = require('./tournament')
-const Event = require('./event')
-const Player = require('./player')
 
 // clubs can have many courses, but each course only belongs to one club
 Course.belongsTo(Club)
@@ -46,18 +46,36 @@ YardageInfo.belongsTo(TeeGender)
 Tournament.hasMany(Event)
 Event.belongsTo(Tournament)
 
+Tournament.hasMany(FormerName)
+FormerName.belongsTo(Tournament)
+
 Employee.belongsTo(EmployeeTitle)
 
 Address.belongsTo(City)
 Address.belongsTo(State)
 Address.belongsTo(Country)
 State.belongsTo(Country)
+City.belongsTo(State)
 
 Club.belongsTo(Address)
 Club.belongsTo(Membership)
 
+Player.belongsTo(City, { as: 'hometown' })
+Player.belongsTo(Nationality)
+
+Nationality.belongsTo(Country)
+
 Event.belongsTo(Player, { as: 'winner' })
 // Player.hasMany(Event, { as: 'wins' })
+
+List.belongsTo(Publisher)
+Publisher.hasMany(List)
+
+Ranking.belongsTo(List)
+List.hasMany(Ranking)
+
+Ranking.belongsTo(Course)
+Course.hasMany(Ranking)
 
 module.exports = {
   User,
@@ -79,5 +97,10 @@ module.exports = {
   ArchitectBuild,
   Tournament,
   Event,
+  FormerName,
   Player,
+  Nationality,
+  Publisher,
+  List,
+  Ranking,
 }

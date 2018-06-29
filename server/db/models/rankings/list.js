@@ -1,40 +1,27 @@
-
 const Sequelize = require('sequelize')
-const db = require('../db')
+const db = require('../../../db')
 
-const Player = db.define('player', {
-  givenName: {
+const List = db.define('list', {
+  name: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
     }
   },
-  surname: {
+  informal: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
     }
   },
-  birthYear: {
+  year: {
     type: Sequelize.STRING,
     validate: {
       isNumeric: true
     }
   },
-  deathYear: {
-    type: Sequelize.STRING,
-    validate: {
-      isNumeric: true
-    }
-  },
-  imgUrl: {
-    type: Sequelize.STRING,
-    validate: {
-      isUrl: true,
-    }
-  }
 })
 
-module.exports = Player
+module.exports = List
