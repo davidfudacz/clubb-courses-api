@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from './link'
+import Link from './link'
 import { _parseCourseUrl, _parseCourseNameForDisplay } from '../../../utilities'
 
 const CourseNameLink = (props) => {
