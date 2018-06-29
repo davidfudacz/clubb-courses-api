@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {
   getAllClubsFromServerThunkerator,
   getAllCoursesFromServerThunkerator,
+  getAllRankingListsFromServerThunkerator,
 } from '../store'
 import {
   ClubNameHeader,
@@ -11,7 +12,10 @@ import {
   CourseNameHeader,
   CourseNameLink,
 } from '../components'
-import { _sortClubsAlphabetically, _sortCoursesAlphabetically } from '../utilities'
+import {
+  _sortClubsAlphabetically,
+  _sortCoursesAlphabetically,
+} from '../utilities'
 
 class Home extends React.Component {
 
@@ -52,17 +56,28 @@ class Home extends React.Component {
             )
           })
         }
+        <h1 style={{color: 'red'}}>Lists</h1>
+        {
+          this.props.rankingLists.map(rankingList => {
+            return (
+              <div key={rankingList.id}>
+              {rankingList.rankingListName.informal}
+              </div>
+            )
+          })
+        }
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ clubs, courses }) => ({ clubs, courses })
+const mapStateToProps = ({ clubs, courses, rankingLists }) => ({ clubs, courses, rankingLists })
 
 const mapDispatchToProps = (dispatch) => ({
   initialize: () => {
     dispatch(getAllClubsFromServerThunkerator())
     dispatch(getAllCoursesFromServerThunkerator())
+    dispatch(getAllRankingListsFromServerThunkerator())
   }
 })
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header } from './header'
+import Header from './header'
 import { _parseClubNameForDisplay } from '../../../utilities'
 
 const ClubNameHeader = (props) => {
@@ -7,6 +7,7 @@ const ClubNameHeader = (props) => {
   const { isInformal, club, type } = props
   return (
     <Header type={type}>{_parseClubNameForDisplay(club, isInformal)}</Header>
+    // <h1>WTF</h1>
   )
 }
 
