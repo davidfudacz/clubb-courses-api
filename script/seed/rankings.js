@@ -1,4 +1,4 @@
-const { Publisher, Ranking, List } = require('../../server/db/models')
+const { Publisher, Ranking, List, ListName } = require('../../server/db/models')
 
 const publishers = [
   {
@@ -18,22 +18,37 @@ const publishers = [
   }
 ]
 
-const lists = [
+const listNames = [
   {
+    id: 1,
     name: 'Top 100 Courses in the United States',
     informal: 'Top 100 (US)',
+  },
+  {
+    id: 2,
+    name: `America's 100 Greatest Public Courses`,
+    informal: 'Top 100 Public (US)',
+  },
+  {
+    id: 3,
+    name: 'Top 100 Classic Courses',
+    informal: 'Top 100 Classic',
+  },
+]
+
+const lists = [
+  {
+    listNameId: 1,
     year: 2017,
     publisherId: 3,
   },
   {
-    name: `America's 100 Greatest Public Courses`,
-    informal: 'Top 100 Public (US)',
+    listNameId: 2,
     year: 2017,
     publisherId: 1,
   },
   {
-    name: 'Top 100 Classic Courses',
-    informal: 'Top 100 Classic',
+    listNameId: 3,
     year: 2017,
     publisherId: 2,
   },
@@ -138,6 +153,12 @@ async function seedRankings () {
   })
   await Promise.all(publisherProms)
   console.log(`Seeded ${publishers.length} Publisher names`)
+
+  const listNameProms = listNames.map(listName => {
+    return ListName.create(listName)
+  })
+  await Promise.all(listNameProms)
+  console.log(`Seeded ${listNames.length} List names`)
 
   const listProms = lists.map(list => {
     return List.create(list)
