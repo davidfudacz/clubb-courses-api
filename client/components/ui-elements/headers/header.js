@@ -1,5 +1,5 @@
 import React from 'react'
-import { headerStyle } from '../../styles'
+import { headerStyle } from '../../../styles'
 
 const Header = (props) => {
   const { type } = props

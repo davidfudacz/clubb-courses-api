@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header } from '../../ui-elements'
+import { Header } from './header'
 import { _parseCourseNameForDisplay } from '../../../utilities'
 
 const CourseNameHeader = (props) => {
