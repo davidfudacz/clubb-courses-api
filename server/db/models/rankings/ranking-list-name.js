@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../../../db')
 
-const ListName = db.define('listName', {
+const RankingListName = db.define('rankingListName', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -18,4 +18,4 @@ const ListName = db.define('listName', {
   },
 })
 
-module.exports = ListName
+module.exports = RankingListName
