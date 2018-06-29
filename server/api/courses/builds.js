@@ -8,7 +8,8 @@ router.get('/', async (req, res, next) => {
       where: {
         courseId
       },
-      include: [Architect]
+      include: [Architect],
+      order: ['year']
     })
     res.json(builds)
   }

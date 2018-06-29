@@ -11,196 +11,208 @@ describe('YardageInfo model', () => {
 
   describe('validations', () => {
     describe('do not allow null', () => {
-      it('for yardage', async () => {
+      it('for totalYardage', async () => {
         let error
         try {
           await YardageInfo.create({
-            par: 72,
-            rating: 75.1,
-            slope: 145,
+            totalPar: 72,
+            totalRating: 75.1,
+            totalSlope: 145,
           })
         }
         catch (err) {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
-      it('for par', async () => {
+      it('for totalPar', async () => {
         let error
         try {
           await YardageInfo.create({
-            yardage: 7550,
-            rating: 75.1,
-            slope: 145,
+            totalYardage: 7550,
+            totalRating: 75.1,
+            totalSlope: 145,
           })
         }
         catch (err) {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
-      it('for rating', async () => {
+      it('for totalRating', async () => {
         let error
         try {
           await YardageInfo.create({
-            yardage: 7550,
-            par: 72,
-            slope: 145,
+            totalYardage: 7550,
+            totalPar: 72,
+            totalSlope: 145,
           })
         }
         catch (err) {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
-      it('for slope', async () => {
+      it('for totalSlope', async () => {
         let error
         try {
           await YardageInfo.create({
-            yardage: 7550,
-            rating: 75.1,
-            par: 72,
+            totalYardage: 7550,
+            totalRating: 75.1,
+            totalPar: 72,
           })
         }
         catch (err) {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe do not allow null
 
     describe('do not allow empty', () => {
-      it('for yardage', async () => {
+      it('for totalYardage', async () => {
         let error
         try {
           await YardageInfo.create({
-            yardage: '',
-            par: 72,
-            rating: 75.1,
-            slope: 145,
+            totalYardage: '',
+            totalPar: 72,
+            totalRating: 75.1,
+            totalSlope: 145,
           })
         }
         catch (err) {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(2)
       })
 
-      it('for par', async () => {
+      it('for totalPar', async () => {
         let error
         try {
           await YardageInfo.create({
-            yardage: 7550,
-            par: '',
-            rating: 75.1,
-            slope: 145,
+            totalYardage: 7550,
+            totalPar: '',
+            totalRating: 75.1,
+            totalSlope: 145,
           })
         }
         catch (err) {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(2)
       })
 
-      it('for rating', async () => {
+      it('for totalRating', async () => {
         let error
         try {
           await YardageInfo.create({
-            yardage: 7550,
-            par: 72,
-            rating: '',
-            slope: 145,
+            totalYardage: 7550,
+            totalPar: 72,
+            totalRating: '',
+            totalSlope: 145,
           })
         }
         catch (err) {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
-      it('for slope', async () => {
+      it('for totalSlope', async () => {
         let error
         try {
           await YardageInfo.create({
-            yardage: 7550,
-            par: 72,
-            rating: 75.1,
-            slope: '',
+            totalYardage: 7550,
+            totalPar: 72,
+            totalRating: 75.1,
+            totalSlope: '',
           })
         }
         catch (err) {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(2)
       })
     }) // end describe do not allow empty
 
     describe('entries are numeric', () => {
-      it('for yardage', async () => {
+      it('for totalYardage', async () => {
         let error
         try {
           await YardageInfo.create({
-            yardage: 'haha',
-            par: 72,
-            rating: 75.1,
-            slope: 145,
+            totalYardage: 'haha',
+            totalPar: 72,
+            totalRating: 75.1,
+            totalSlope: 145,
           })
         }
         catch (err) {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
-      it('for par', async () => {
+      it('for totalPar', async () => {
         let error
         try {
           await YardageInfo.create({
-            yardage: 7550,
-            par: 'haha',
-            rating: 75.1,
-            slope: 145,
+            totalYardage: 7550,
+            totalPar: 'haha',
+            totalRating: 75.1,
+            totalSlope: 145,
           })
         }
         catch (err) {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
       
-      it('for rating', async () => {
+      it('for totalRating', async () => {
         let error
         try {
           await YardageInfo.create({
-            yardage: 7550,
-            par: 72,
-            rating: 'haha',
-            slope: 145,
+            totalYardage: 7550,
+            totalPar: 72,
+            totalRating: 'haha',
+            totalSlope: 145,
           })
         }
         catch (err) {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
-      it('for slope', async () => {
+      it('for totalSlope', async () => {
         let error
         try {
           await YardageInfo.create({
-            yardage: 7550,
-            par: 72,
-            rating: 75.1,
-            slope: 'haha',
+            totalYardage: 7550,
+            totalPar: 72,
+            totalRating: 75.1,
+            totalSlope: 'haha',
           })
         }
         catch (err) {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe entries are numeric
   }) // end describe validations
@@ -211,17 +223,17 @@ describe('YardageInfo model', () => {
         let yardage, error
         try {
           yardage = await YardageInfo.create({
-            yardage: 7550,
-            par: 72,
-            rating: 75.1,
-            slope: 140,
+            totalYardage: 7550,
+            totalPar: 72,
+            totalRating: 75.1,
+            totalSlope: 140,
           })
         }
         catch (err) {
           error = err
         }
         expect(error).to.be.an('undefined')
-        expect(yardage.dataValues.rating).to.be.equal('751')
+        expect(yardage.dataValues.totalRating).to.be.equal('751')
       })
     }) // end describe setter
 
@@ -230,18 +242,18 @@ describe('YardageInfo model', () => {
         let yardage, error
         try {
           yardage = await YardageInfo.create({
-            yardage: 7550,
-            par: 72,
-            rating: 75.1,
-            slope: 140,
+            totalYardage: 7550,
+            totalPar: 72,
+            totalRating: 75.1,
+            totalSlope: 140,
           })
         }
         catch (err) {
           error = err
         }
         expect(error).to.be.an('undefined')
-        expect(yardage.dataValues.rating).to.be.equal('751')
-        expect(yardage.rating).to.be.equal('75.1')
+        expect(yardage.dataValues.totalRating).to.be.equal('751')
+        expect(yardage.totalRating).to.be.equal('75.1')
       })
     }) // end describe getter
   }) // end describe getters and setters
@@ -252,10 +264,18 @@ describe('YardageInfo model', () => {
           let yardage, error
           try {
             yardage = await YardageInfo.create({
-              yardage: 7550,
-              par: 72,
-              rating: 75.1,
-              slope: 140,
+              frontYardage: 3597,
+              backYardage: 3419,
+              totalYardage: 7016,
+              frontPar: 36,
+              backPar: 35,
+              totalPar: 71,
+              frontRating: 37.7,
+              backRating: 36.7,
+              frontSlope: 140,
+              backSlope: 137,
+              totalRating: 74.4,
+              totalSlope: 139,
             })
           }
           catch (err) {
@@ -264,11 +284,19 @@ describe('YardageInfo model', () => {
           expect(error).to.be.an('undefined')
           // just in case we add something and forget to test it...
           // add in the created and updatedAt fields
-          expect(Object.keys(yardage.dataValues).length).to.be.equal(8)
-          expect(yardage.yardage).to.be.equal('7550')
-          expect(yardage.par).to.be.equal('72')
-          expect(yardage.rating).to.be.equal('75.1')
-          expect(yardage.slope).to.be.equal('140')
+          expect(Object.keys(yardage.dataValues).length).to.be.equal(18)
+          expect(yardage.totalYardage).to.be.equal('7016')
+          expect(yardage.totalPar).to.be.equal('71')
+          expect(yardage.totalRating).to.be.equal('74.4')
+          expect(yardage.totalSlope).to.be.equal('139')
+          expect(yardage.frontYardage).to.be.equal('3597')
+          expect(yardage.frontPar).to.be.equal('36')
+          expect(yardage.frontRating).to.be.equal('37.7')
+          expect(yardage.frontSlope).to.be.equal('140')
+          expect(yardage.backYardage).to.be.equal('3419')
+          expect(yardage.backPar).to.be.equal('35')
+          expect(yardage.backRating).to.be.equal('36.7')
+          expect(yardage.backSlope).to.be.equal('137')
         })
       }) // end describe creating an instance
   }) // end describe creations

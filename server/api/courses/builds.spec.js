@@ -59,8 +59,8 @@ describe('Courses/builds routes', () => {
           numOfHoles: 18,
         })
 
-        build.addArchitects([1, 2])
-        secondBuild.addArchitect(3)
+        await build.addArchitects([1, 2])
+        await secondBuild.addArchitect(3)
 
       }
       catch (err) {
@@ -75,6 +75,8 @@ describe('Courses/builds routes', () => {
         .then(res => {
           expect(res.body).to.be.an('array')
           expect(res.body.length).to.be.equal(2)
+          expect(res.body[0].buildType).to.be.equal('original')
+          expect(res.body[1].buildType).to.be.equal('restoration')
           res.body.forEach(build => expect(build.courseId).to.be.equal(1))
           res.body.forEach(build => expect(build.architects).to.be.an('array'))
           res.body.forEach(build => expect(build.architects[0].givenName).to.be.a('string'))
