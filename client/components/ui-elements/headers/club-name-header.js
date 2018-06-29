@@ -7,7 +7,6 @@ const ClubNameHeader = (props) => {
   const { isInformal, club, type } = props
   return (
     <Header type={type}>{_parseClubNameForDisplay(club, isInformal)}</Header>
-    // <h1>WTF</h1>
   )
 }
 

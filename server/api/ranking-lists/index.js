@@ -1,9 +1,28 @@
 const router = require('express').Router()
-const { RankingList, RankingListName, Publisher } = require('../../db/models')
+const {
+  RankingList,
+  RankingListName,
+  Publisher,
+  Ranking,
+  Course,
+  Club
+} = require('../../db/models')
 
 router.param('id', async (req, res, next, id) => {
   try {
-    req.rankingList = await RankingList.findById(id)
+    req.rankingList = await RankingList.findById(id, {
+      include: [ RankingListName, Publisher,
+        {
+          model: Ranking,
+          include: [
+            {
+              model: Course,
+              include: [ Club ]
+            }
+          ]
+        }
+      ]
+    })
     next()
   }
   catch (err) {

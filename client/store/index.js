@@ -7,6 +7,7 @@ import clubs from './clubs'
 import courses from './courses'
 import activeClub from './active-club'
 import rankingLists from './ranking-lists'
+import activeRankingList from './active-ranking-list'
 
 const reducer = combineReducers({
   user,
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   courses,
   activeClub,
   rankingLists,
+  activeRankingList,
 })
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -27,3 +29,4 @@ export * from './clubs'
 export * from './courses'
 export * from './active-club'
 export * from './ranking-lists'
+export * from './active-ranking-list'

@@ -3,12 +3,9 @@ import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
-  getAllClubsFromServerThunkerator,
-  getAllCoursesFromServerThunkerator
-} from './store'
-import {
   Home,
   Club,
+  RankingList,
 } from './components'
 
 /**
@@ -26,6 +23,7 @@ class Routes extends React.Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/clubs/:clubId" component={Club} />
+        <Route path="/ranking-lists/:rankingListId" component={RankingList} />
         <Route path="/" component={Home} />
       </Switch>
         </div>

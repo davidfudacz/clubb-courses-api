@@ -1,3 +1,6 @@
+import {
+  _lowerCaseAlphanumericWithDashes,
+} from '../utilities'
 
 export const _parsePublisherNameForDisplay = (publisherObj, isInformal) => {
   const publisherName = publisherObj.name
@@ -9,6 +12,7 @@ export const _parsePublisherNameForDisplay = (publisherObj, isInformal) => {
 }
 
 export const _parseRankingListNameForDisplay = (rankingListObj, isInformal) => {
+  if (!rankingListObj.rankingListName) return null
   const publisherName = _parsePublisherNameForDisplay(rankingListObj.publisher, isInformal)
   const rankingListName = rankingListObj.rankingListName.name
   const rankingListNameInformal = rankingListObj.rankingListName.informal
@@ -16,7 +20,6 @@ export const _parseRankingListNameForDisplay = (rankingListObj, isInformal) => {
     return `${rankingListNameInformal} (${publisherName})`
   }
   return `${rankingListName} (${publisherName})`
-
 }
 
 export const _parseRankingListUrl = (rankingListObj) => {
@@ -24,7 +27,7 @@ export const _parseRankingListUrl = (rankingListObj) => {
   const name = rankingListObj.rankingListName.name
   const publisherName = rankingListObj.publisher.name
   const year = rankingListObj.year
-  let parsedName = name.toLowerCase().split(' ').join('-')
-  let parsedPublisherName = publisherName.toLowerCase().split(' ').join('-')
+  let parsedName = _lowerCaseAlphanumericWithDashes(name)
+  let parsedPublisherName = _lowerCaseAlphanumericWithDashes(publisherName)
   return `/ranking-lists/${id}/${parsedPublisherName}-${parsedName}-${year}`
 }

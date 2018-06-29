@@ -1,1 +1,1 @@
-export { default as List } from './list'
+export { default as RankingList } from './ranking-list'
