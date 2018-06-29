@@ -1,4 +1,4 @@
-const { Publisher, Ranking, List } = '../../server/db/models'
+const { Publisher, Ranking, List } = require('../../server/db/models')
 
 const publishers = [
   {
@@ -149,7 +149,7 @@ async function seedRankings () {
     return Ranking.create(ranking)
   })
   await Promise.all(rankingProms)
-  console.log(`Seeded ${rankings.length} Ranking names`)
+  console.log(`Seeded ${rankings.length} Rankings`)
 }
 
 module.exports = seedRankings
