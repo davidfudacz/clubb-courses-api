@@ -3,7 +3,7 @@ const User = require('./user')
 const { Club, Employee, EmployeeTitle, Membership } = require('./club')
 const { Course, Tee, YardageInfo, Build, TeeGender, Hole } = require('./course')
 const { Address, City, State, Country } = require('./address')
-const { Publisher, List, ListName, Ranking } = require('./rankings')
+const { Publisher, RankingList, RankingListName, Ranking } = require('./rankings')
 const { Player, Nationality } = require('./player')
 const { Tournament, Event, FormerName } = require('./tournament')
 const Architect = require('./architect')
@@ -77,14 +77,14 @@ Nationality.belongsTo(Country)
 Event.belongsTo(Player, { as: 'winner' })
 // Player.hasMany(Event, { as: 'wins' })
 
-List.belongsTo(Publisher)
-Publisher.hasMany(List)
+RankingList.belongsTo(Publisher)
+Publisher.hasMany(RankingList)
 
-List.belongsTo(ListName)
-ListName.hasMany(List)
+RankingList.belongsTo(RankingListName)
+RankingListName.hasMany(RankingList)
 
-Ranking.belongsTo(List)
-List.hasMany(Ranking)
+Ranking.belongsTo(RankingList)
+RankingList.hasMany(Ranking)
 
 Ranking.belongsTo(Course)
 Course.hasMany(Ranking)
@@ -113,7 +113,7 @@ module.exports = {
   Player,
   Nationality,
   Publisher,
-  List,
-  ListName,
+  RankingList,
+  RankingListName,
   Ranking,
 }
