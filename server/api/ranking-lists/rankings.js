@@ -3,10 +3,10 @@ const { Ranking, Course, Club, Build } = require('../../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
-    const listId = req.list.id
+    const rankingListId = req.rankingList.id
     const rankings = await Ranking.findAll({
       where: {
-        listId
+        rankingListId
       },
       include: [
         {
@@ -57,7 +57,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const ranking = await Ranking.create(req.body)
-    await ranking.setList(req.list.id)
+    await ranking.setList(req.rankingList.id)
     res.json(ranking)
   }
   catch (err) {

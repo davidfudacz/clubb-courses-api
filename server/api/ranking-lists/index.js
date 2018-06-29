@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const { List, ListName, Publisher } = require('../../db/models')
+const { RankingList, RankingListName, Publisher } = require('../../db/models')
 
 router.param('id', async (req, res, next, id) => {
   try {
-    req.list = await List.findById(id)
+    req.rankingList = await RankingList.findById(id)
     next()
   }
   catch (err) {
@@ -13,10 +13,10 @@ router.param('id', async (req, res, next, id) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const lists = await List.findAll({
-      include: [ ListName, Publisher ]
+    const rankingLists = await RankingList.findAll({
+      include: [ RankingListName, Publisher ]
     })
-    res.json(lists)
+    res.json(rankingLists)
   }
   catch (err) {
     next(err)
@@ -24,13 +24,13 @@ router.get('/', async (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  res.json(req.list)
+  res.json(req.rankingList)
 })
 
 router.post('/', async (req, res, next) => {
   try {
-    const list = await List.create(req.body)
-    res.json(list)
+    const rankingList = await RankingList.create(req.body)
+    res.json(rankingList)
   }
   catch (err) {
     next(err)
@@ -39,14 +39,14 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const updatedList = await List.update(req.body, {
+    const updatedRankingList = await RankingList.update(req.body, {
       where: {
-        id: req.list.id,
+        id: req.rankingList.id,
       },
       returning: true,
     })
-    const returningList = updatedList[1][0]
-    res.json(returningList)
+    const returningRankingList = updatedRankingList[1][0]
+    res.json(returningRankingList)
   }
   catch (err) {
     next(err)

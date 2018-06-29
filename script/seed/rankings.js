@@ -1,4 +1,4 @@
-const { Publisher, Ranking, List, ListName } = require('../../server/db/models')
+const { Publisher, Ranking, RankingList, RankingListName } = require('../../server/db/models')
 
 const publishers = [
   {
@@ -18,7 +18,7 @@ const publishers = [
   }
 ]
 
-const listNames = [
+const rankingListNames = [
   {
     id: 1,
     name: 'Top 100 Courses in the United States',
@@ -36,19 +36,19 @@ const listNames = [
   },
 ]
 
-const lists = [
+const rankingLists = [
   {
-    listNameId: 1,
+    rankingListNameId: 1,
     year: 2017,
     publisherId: 3,
   },
   {
-    listNameId: 2,
+    rankingListNameId: 2,
     year: 2017,
     publisherId: 1,
   },
   {
-    listNameId: 3,
+    rankingListNameId: 3,
     year: 2017,
     publisherId: 2,
   },
@@ -58,92 +58,92 @@ const rankings = [
   {
     rank: 1,
     courseId: 1,
-    listId: 1,
+    rankingListId: 1,
   },
   {
     rank: 2,
     courseId: 2,
-    listId: 1,
+    rankingListId: 1,
   },
   {
     rank: 3,
     courseId: 3,
-    listId: 1,
+    rankingListId: 1,
   },
   {
     rank: 4,
     courseId: 4,
-    listId: 1,
+    rankingListId: 1,
   },
   {
     rank: 5,
     courseId: 5,
-    listId: 1,
+    rankingListId: 1,
   },
   {
     rank: 6,
     courseId: 6,
-    listId: 1,
+    rankingListId: 1,
   },
   {
     rank: 1,
     courseId: 2,
-    listId: 2,
+    rankingListId: 2,
   },
   {
     rank: 2,
     courseId: 1,
-    listId: 2,
+    rankingListId: 2,
   },
   {
     rank: 3,
     courseId: 4,
-    listId: 2,
+    rankingListId: 2,
   },
   {
     rank: 4,
     courseId: 3,
-    listId: 2,
+    rankingListId: 2,
   },
   {
     rank: 5,
     courseId: 5,
-    listId: 2,
+    rankingListId: 2,
   },
   {
     rank: 6,
     courseId: 6,
-    listId: 2,
+    rankingListId: 2,
   },
   {
     rank: 1,
     courseId: 3,
-    listId: 3,
+    rankingListId: 3,
   },
   {
     rank: 2,
     courseId: 1,
-    listId: 3,
+    rankingListId: 3,
   },
   {
     rank: 3,
     courseId: 4,
-    listId: 3,
+    rankingListId: 3,
   },
   {
     rank: 4,
     courseId: 2,
-    listId: 3,
+    rankingListId: 3,
   },
   {
     rank: 5,
     courseId: 6,
-    listId: 3,
+    rankingListId: 3,
   },
   {
     rank: 6,
     courseId: 5,
-    listId: 3,
+    rankingListId: 3,
   },
 ]
 
@@ -154,17 +154,17 @@ async function seedRankings () {
   await Promise.all(publisherProms)
   console.log(`Seeded ${publishers.length} Publisher names`)
 
-  const listNameProms = listNames.map(listName => {
-    return ListName.create(listName)
+  const rankingListNameProms = rankingListNames.map(rankingListName => {
+    return RankingListName.create(rankingListName)
   })
-  await Promise.all(listNameProms)
-  console.log(`Seeded ${listNames.length} List names`)
+  await Promise.all(rankingListNameProms)
+  console.log(`Seeded ${rankingListNames.length} RankingList names`)
 
-  const listProms = lists.map(list => {
-    return List.create(list)
+  const rankingListProms = rankingLists.map(rankingList => {
+    return RankingList.create(rankingList)
   })
-  await Promise.all(listProms)
-  console.log(`Seeded ${lists.length} Lists`)
+  await Promise.all(rankingListProms)
+  console.log(`Seeded ${rankingLists.length} RankingLists`)
 
   const rankingProms = rankings.map(ranking => {
     return Ranking.create(ranking)
