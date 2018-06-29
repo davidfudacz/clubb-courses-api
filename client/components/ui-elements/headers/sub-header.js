@@ -1,5 +1,5 @@
 import React from 'react'
-import { subHeaderStyle } from '../../styles'
+import { subHeaderStyle } from '../../../styles'
 
 const SubHeader = (props) => {
   const { type } = props

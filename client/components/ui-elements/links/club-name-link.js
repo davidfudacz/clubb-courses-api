@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from '../../ui-elements'
+import { Link } from './link'
 import { _parseClubUrl, _parseClubNameForDisplay } from '../../../utilities'
 
 const ClubNameHeader = (props) => {
