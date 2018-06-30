@@ -7,6 +7,9 @@ router.get('/', async (req, res, next) => {
     const courses = await Course.findAll({
       where: {
         clubId,
+      },
+      attributes: {
+        exclude: [ 'createdAt', 'updatedAt' ]
       }
     })
     res.json(courses)

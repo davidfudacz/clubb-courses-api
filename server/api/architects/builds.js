@@ -16,8 +16,7 @@ router.get('/', async (req, res, next) => {
         }],
       }]
     })
-    const response = builds.map(architectBuild => {
-      const { build } = architectBuild
+    const response = builds.map(({ build }) => {
       const { id, buildType, year, course } = build
       return {
         id,
