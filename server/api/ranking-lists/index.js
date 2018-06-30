@@ -22,7 +22,24 @@ router.get('/', async (req, res, next) => {
     const rankingLists = await RankingList.findAll({
       include: [ RankingListName, Publisher ]
     })
-    res.json(rankingLists)
+    const response = rankingLists.map(rankingList => {
+      const { id, year, rankingListName, publisher } = rankingList
+      return {
+        id,
+        year,
+        rankingListName: {
+          id: rankingListName.id,
+          name: rankingListName.name,
+          informal: rankingListName.informal,
+        },
+        publisher: {
+          id: publisher.id,
+          name: publisher.name,
+          informal: publisher.informal,
+        }
+      }
+    })
+    res.json(response)
   }
   catch (err) {
     next(err)
