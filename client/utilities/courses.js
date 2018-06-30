@@ -15,10 +15,16 @@ export const _parseCourseUrl = (courseObj) => {
   return url
 }
 
-export const _parseCourseNameForDisplay = (courseObj, isInformal) => {
-  const clubName = _parseClubNameForDisplay(courseObj.club, isInformal)
+export const _parseCourseNameForDisplay = (courseObj, isInformal, onlyCourseName) => {
   const courseName = courseObj.name
   const courseNameInformal = courseObj.informal
+  if (onlyCourseName) {
+    if (isInformal && courseNameInformal) {
+      return courseNameInformal
+    }
+    return courseName
+  }
+  const clubName = _parseClubNameForDisplay(courseObj.club, isInformal)
   if (courseName) {
     if (isInformal && courseNameInformal) {
       return `${clubName} (${courseNameInformal})`

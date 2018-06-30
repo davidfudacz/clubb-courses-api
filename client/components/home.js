@@ -10,15 +10,18 @@ import {
   clearRankingLists,
 } from '../store'
 import {
-  ClubNameHeader,
-  ClubNameLink,
-  CourseNameHeader,
-  CourseNameLink,
-  RankingListLink,
+  Header,
+  Link,
 } from '../components'
 import {
   _sortClubsAlphabetically,
   _sortCoursesAlphabetically,
+  _parseClubNameForDisplay,
+  _parseClubUrl,
+  _parseCourseNameForDisplay,
+  _parseCourseUrl,
+  _parseRankingListUrl,
+  _parseRankingListNameForDisplay,
 } from '../utilities'
 
 class Home extends React.Component {
@@ -37,12 +40,8 @@ class Home extends React.Component {
           _sortClubsAlphabetically(this.props.clubs).map(club => {
             return (
               <div key={club.id}>
-              <ClubNameHeader
-                club={club}
-              />
-              <ClubNameLink
-                club={club}
-              />
+                <Header>{_parseClubNameForDisplay(club)}</Header>
+                <Link to={_parseClubUrl(club)}>{_parseClubNameForDisplay(club)}</Link>
               </div>
             )
           })
@@ -52,14 +51,8 @@ class Home extends React.Component {
           _sortCoursesAlphabetically(this.props.courses).map(course => {
             return (
               <div key={course.id}>
-              <CourseNameHeader
-                course={course}
-                isInformal={true}
-              />
-              <CourseNameLink
-                course={course}
-                isInformal={true}
-              />
+                <Header>{_parseCourseNameForDisplay(course, true)}</Header>
+                <Link to={_parseCourseUrl(course)}>{_parseCourseNameForDisplay(course, true)}</Link>
               </div>
             )
           })
@@ -69,7 +62,7 @@ class Home extends React.Component {
           this.props.rankingLists.map(rankingList => {
             return (
               <div key={rankingList.id}>
-              <RankingListLink rankingList={rankingList} />
+                <Link to={_parseRankingListUrl(rankingList)}>{_parseRankingListNameForDisplay(rankingList, true)}</Link>
               </div>
             )
           })
