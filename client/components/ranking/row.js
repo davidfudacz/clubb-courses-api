@@ -1,6 +1,7 @@
 import React from 'react'
 import { tdStyle } from '../../styles'
-import { CourseNameLink } from '../../components'
+import { Link } from '../../components'
+import { _parseCourseUrl, _parseCourseNameForDisplay } from '../../utilities';
 
 const Row = (props) => {
   const {
@@ -11,7 +12,7 @@ const Row = (props) => {
   return (
     <tr>
       <td style={tdStyle}>{rank}</td>
-      <td style={tdStyle}>{<CourseNameLink course={course} />}</td>
+      <td style={tdStyle}>{<Link to={_parseCourseUrl}>{_parseCourseNameForDisplay(course)}</Link>}</td>
       <td style={tdStyle}>{yearOriginallyBuilt}</td>
     </tr>
   )

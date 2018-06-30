@@ -8,11 +8,11 @@ import {
   clearRankings,
 } from '../../store'
 import {
-  RankingListNameHeader,
+  Header,
 } from '../../components'
 import Row from './row'
 import { tableStyle, thStyle } from '../../styles'
-import { _sortRankingsByRank } from '../../utilities'
+import { _sortRankingsByRank, _parseRankingListNameForDisplay } from '../../utilities'
 
 class RankingList extends React.Component {
 
@@ -29,9 +29,7 @@ class RankingList extends React.Component {
     const { activeRankingList, activeRankings } = this.props
     return (
       <div>
-        <RankingListNameHeader
-          rankingList={activeRankingList}
-        />
+        <Header>{_parseRankingListNameForDisplay(activeRankingList, true)}</Header>
     <div>
       <h3>Front/Back Ratings and Slopes</h3>
       <table style={tableStyle}>

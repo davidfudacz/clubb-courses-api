@@ -4,14 +4,17 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { getClubFromServerThunkerator, clearClub } from '../store'
 import {
-  ClubNameHeader,
-  Course,
+  Header,
+  CourseList,
 } from '../components'
+import {
+  _parseClubNameForDisplay,
+} from '../utilities'
 
 class Club extends React.Component {
 
   componentDidMount () {
-    const clubId = this.props.match.params.clubIdgit
+    const clubId = this.props.match.params.clubId
     this.props.fetchClub(clubId)
   }
 
@@ -21,15 +24,14 @@ class Club extends React.Component {
 
   render () {
     const { activeClub } = this.props
-    const courses = activeClub.courses ? activeClub.courses : []
+    const courseToHighlight = this.props.match.params.courseId
     return (
       <div>
-        <ClubNameHeader
+        <Header>{_parseClubNameForDisplay(activeClub, false)}</Header>
+        <CourseList
+          courseToHighlight={courseToHighlight}
           club={activeClub}
         />
-        {
-          courses.map(course => <Course key={course.id} course={course} />)
-        }
       </div>
     )
   }
