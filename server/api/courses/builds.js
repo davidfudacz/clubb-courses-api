@@ -12,9 +12,9 @@ router.get('/', async (req, res, next) => {
       order: [ 'year' ]
     })
     const response = builds.map(({ id, buildType, year, numOfHoles, architects }) => {
-      const architectsArray = architects.map(({ id, givenName, surname, birthYear, deathYear, imgUrl }) => {
+      const architectsArray = architects.map(({ id: architectId, givenName, surname, birthYear, deathYear, imgUrl }) => {
         return {
-          id,
+          id: architectId,
           givenName,
           surname,
           birthYear,
