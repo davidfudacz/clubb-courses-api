@@ -30,8 +30,23 @@ router.get('/', async (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  console.log(req.rankingList)
-  res.json(req.rankingList)
+  const { id, year, rankingListName, publisher } = req.rankingList
+
+  const response = {
+    id,
+    year,
+    rankingListName: {
+      id: rankingListName.id,
+      name: rankingListName.name,
+      informal: rankingListName.informal,
+    },
+    publisher: {
+      id: publisher.id,
+      name: publisher.name,
+      informal: publisher.informal,
+    }
+  }
+  res.json(response)
 })
 
 router.post('/', async (req, res, next) => {
