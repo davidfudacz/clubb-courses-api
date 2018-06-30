@@ -3,7 +3,11 @@ const { Course, Club, Build } = require('../../db/models')
 
 router.param('id', async (req, res, next, id) => {
   try {
-    req.course = await Course.findById(id)
+    req.course = await Course.findById(id, {
+      attributes: {
+        exclude: [ 'createdAt', 'updatedAt' ]
+      }
+    })
     next()
   }
   catch (err) {
@@ -25,9 +29,9 @@ router.get('/', async (req, res, next) => {
         logoUrl: club.logoUrl,
       }
       //get the year of the original build
-      let built = null
+      let yearOriginallyBuilt = null
       if (builds.length) {
-        built = builds.find(({ buildType }) => {
+        yearOriginallyBuilt = builds.find(({ buildType }) => {
           if (buildType === 'original') return true
         })
         .year
@@ -37,7 +41,7 @@ router.get('/', async (req, res, next) => {
         informal,
         name,
         numOfHoles,
-        built,
+        yearOriginallyBuilt,
         club: clubObj,
       }
     })
