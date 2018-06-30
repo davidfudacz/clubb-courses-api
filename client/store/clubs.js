@@ -3,6 +3,7 @@ import axios from 'axios'
 //actions
 const GET_ALL_CLUBS_FROM_SERVER = 'GET_ALL_CLUBS_FROM_SERVER'
 const ADD_CLUB_FROM_SERVER = 'ADD_CLUB_FROM_SERVER'
+const CLEAR_CLUBS = 'CLEAR_CLUBS'
 
 //action creators
 export const getAllClubsFromServer = clubs => ({
@@ -13,6 +14,10 @@ export const getAllClubsFromServer = clubs => ({
 export const addClubFromServer = club => ({
   type: ADD_CLUB_FROM_SERVER,
   club,
+})
+
+export const clearClubs = () => ({
+  type: CLEAR_CLUBS,
 })
 
 //thunks
@@ -30,6 +35,8 @@ export default (prevState = [], action) => {
       return action.clubs
     case ADD_CLUB_FROM_SERVER:
       return [...prevState, action.club]
+    case CLEAR_CLUBS:
+      return []
     default:
       return prevState
   }

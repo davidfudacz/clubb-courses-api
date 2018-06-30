@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { getClubFromServerThunkerator } from '../store'
+import { getClubFromServerThunkerator, clearClub } from '../store'
 import {
   ClubNameHeader,
   Course,
@@ -11,8 +11,12 @@ import {
 class Club extends React.Component {
 
   componentDidMount () {
-    const clubId = this.props.match.params.clubId
+    const clubId = this.props.match.params.clubIdgit
     this.props.fetchClub(clubId)
+  }
+
+  componentWillUnmount () {
+    this.props.clearClub()
   }
 
   render () {
@@ -35,6 +39,7 @@ const mapStateToProps = ({ activeClub }) => ({ activeClub })
 
 const mapDispatchToProps = (dispatch) => ({
   fetchClub: (id) => dispatch(getClubFromServerThunkerator(id)),
+  clearClub: () => dispatch(clearClub())
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Club))

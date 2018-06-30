@@ -1,15 +1,18 @@
-/* eslint id-length: 0 */
+
 import {
   _parseClubNameForDisplay,
+  _lowerCaseAlphanumericWithDashes,
 } from '../utilities'
 
 export const _parseCourseUrl = (courseObj) => {
-  const id = courseObj.id
-  const name = courseObj.club.name
-  const courseName = courseObj.name
-  let parsedName = name.toLowerCase().split(' ').join('-')
-  if (courseName) parsedName += `-${courseName.toLowerCase().split(' ').join('-')}`
-  return `/courses/${id}/${parsedName}`
+  let url = `/clubs`
+  url += `/${courseObj.club.id}`
+  url += `/${_lowerCaseAlphanumericWithDashes(courseObj.club.name)}`
+  if (courseObj.name) {
+    url += `/${courseObj.id}`
+    url += `/${_lowerCaseAlphanumericWithDashes(courseObj.name)}`
+  }
+  return url
 }
 
 export const _parseCourseNameForDisplay = (courseObj, isInformal) => {

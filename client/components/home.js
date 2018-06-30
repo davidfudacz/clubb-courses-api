@@ -5,6 +5,9 @@ import {
   getAllClubsFromServerThunkerator,
   getAllCoursesFromServerThunkerator,
   getAllRankingListsFromServerThunkerator,
+  clearClubs,
+  clearCourses,
+  clearRankingLists,
 } from '../store'
 import {
   ClubNameHeader,
@@ -22,6 +25,10 @@ class Home extends React.Component {
 
   componentDidMount () {
     this.props.initialize()
+  }
+
+  componentWillUnmount () {
+    this.props.clear()
   }
   render () {
     return (
@@ -79,6 +86,11 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(getAllClubsFromServerThunkerator())
     dispatch(getAllCoursesFromServerThunkerator())
     dispatch(getAllRankingListsFromServerThunkerator())
+  },
+  clear: () => {
+    dispatch(clearClubs())
+    dispatch(clearCourses())
+    dispatch(clearRankingLists())
   }
 })
 
