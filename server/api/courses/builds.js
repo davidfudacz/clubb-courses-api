@@ -8,10 +8,30 @@ router.get('/', async (req, res, next) => {
       where: {
         courseId
       },
-      include: [Architect],
-      order: ['year']
+      include: [ Architect ],
+      order: [ 'year' ]
     })
-    res.json(builds)
+    const response = builds.map(({ id, buildType, year, numOfHoles, architects }) => {
+      const architectsArray = architects.map(({ id, givenName, surname, birthYear, deathYear, imgUrl }) => {
+        return {
+          id,
+          givenName,
+          surname,
+          birthYear,
+          deathYear,
+          imgUrl,
+        }
+      })
+      return {
+        id,
+        buildType,
+        year,
+        numOfHoles,
+        architects: architectsArray,
+      }
+    })
+
+    res.json(response)
   }
   catch (err) {
     next(err)

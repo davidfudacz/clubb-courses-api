@@ -3,7 +3,11 @@ const { Architect } = require('../../db/models')
 
 router.param('id', async (req, res, next, id) => {
   try {
-    req.architect = await Architect.findById(id)
+    req.architect = await Architect.findById(id, {
+      attributes: {
+        exclude: [ 'createdAt', 'updatedAt' ]
+      }
+    })
     next()
   }
   catch (err) {
@@ -13,7 +17,11 @@ router.param('id', async (req, res, next, id) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const architects = await Architect.findAll()
+    const architects = await Architect.findAll({
+      attributes: {
+        exclude: [ 'createdAt', 'updatedAt' ]
+      }
+    })
     res.json(architects)
   }
   catch (err) {

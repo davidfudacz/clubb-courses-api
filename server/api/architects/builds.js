@@ -16,21 +16,22 @@ router.get('/', async (req, res, next) => {
         }],
       }]
     })
-    const response = builds.map(build => {
+    const response = builds.map(({ build }) => {
+      const { id, buildType, year, course } = build
       return {
-        id: build.build.id,
-        buildType: build.build.buildType,
-        year: build.build.year,
+        id,
+        buildType,
+        year,
         course: {
-          id: build.build.course.id,
-          name: build.build.course.name,
-          informal: build.build.course.informal,
-          numOfHoles: build.build.course.numOfHoles,
+          id: course.id,
+          name: course.name,
+          informal: course.informal,
+          numOfHoles: course.numOfHoles,
           club: {
-            id: build.build.course.club.id,
-            name: build.build.course.club.name,
-            informal: build.build.course.club.informal,
-            established: build.build.course.club.established,
+            id: course.club.id,
+            name: course.club.name,
+            informal: course.club.informal,
+            established: course.club.established,
           }
         }
       }

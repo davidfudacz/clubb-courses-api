@@ -3,25 +3,12 @@ const {
   RankingList,
   RankingListName,
   Publisher,
-  Ranking,
-  Course,
-  Club
 } = require('../../db/models')
 
 router.param('id', async (req, res, next, id) => {
   try {
     req.rankingList = await RankingList.findById(id, {
-      include: [ RankingListName, Publisher,
-        {
-          model: Ranking,
-          include: [
-            {
-              model: Course,
-              include: [ Club ]
-            }
-          ]
-        }
-      ]
+      include: [ RankingListName, Publisher ]
     })
     next()
   }
@@ -35,7 +22,24 @@ router.get('/', async (req, res, next) => {
     const rankingLists = await RankingList.findAll({
       include: [ RankingListName, Publisher ]
     })
-    res.json(rankingLists)
+    const response = rankingLists.map(rankingList => {
+      const { id, year, rankingListName, publisher } = rankingList
+      return {
+        id,
+        year,
+        rankingListName: {
+          id: rankingListName.id,
+          name: rankingListName.name,
+          informal: rankingListName.informal,
+        },
+        publisher: {
+          id: publisher.id,
+          name: publisher.name,
+          informal: publisher.informal,
+        }
+      }
+    })
+    res.json(response)
   }
   catch (err) {
     next(err)
@@ -43,7 +47,23 @@ router.get('/', async (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  res.json(req.rankingList)
+  const { id, year, rankingListName, publisher } = req.rankingList
+
+  const response = {
+    id,
+    year,
+    rankingListName: {
+      id: rankingListName.id,
+      name: rankingListName.name,
+      informal: rankingListName.informal,
+    },
+    publisher: {
+      id: publisher.id,
+      name: publisher.name,
+      informal: publisher.informal,
+    }
+  }
+  res.json(response)
 })
 
 router.post('/', async (req, res, next) => {

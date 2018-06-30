@@ -16,22 +16,21 @@ class RankingList extends React.Component {
   }
 
   render () {
-    const { activeRankingList } = this.props
-    const rankings = activeRankingList.rankings ? activeRankingList.rankings : []
+    const { activeRankingList, activeRankings } = this.props
     return (
       <div>
         <RankingListNameHeader
           rankingList={activeRankingList}
         />
         {
-          rankings.map(ranking => <CourseNameLink key={ranking.id} course={ranking.course} />)
+          activeRankings.map(ranking => <CourseNameLink key={ranking.id} course={ranking.course} />)
         }
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ activeRankingList }) => ({ activeRankingList })
+const mapStateToProps = ({ activeRankingList, activeRankings }) => ({ activeRankingList, activeRankings })
 
 const mapDispatchToProps = (dispatch) => ({
   fetchRankingList: (id) => {

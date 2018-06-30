@@ -7,6 +7,6 @@ router.use('/architects', require('./architects'))
 router.use('/players', require('./players'))
 router.use('/tournaments', require('./tournaments'))
 router.use('/ranking-lists', require('./ranking-lists'))
-// router.use('/publications', require('./publications'))
+router.use('/publishers', require('./publishers'))
 
 module.exports = router

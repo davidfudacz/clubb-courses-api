@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const { Player } = require('../db/models')
+const { Publisher } = require('../../db/models')
 
 router.param('id', async (req, res, next, id) => {
   try {
-    req.player = await Player.findById(id, {
+    req.publisher = await Publisher.findById(id, {
       attributes: {
         exclude: [ 'createdAt', 'updatedAt' ]
       }
@@ -17,26 +17,12 @@ router.param('id', async (req, res, next, id) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const players = await Player.findAll({
+    const publishers = await Publisher.findAll({
       attributes: {
         exclude: [ 'createdAt', 'updatedAt' ]
       }
     })
-    res.json(players)
-  }
-  catch (err) {
-    next(err)
-  }
-})
-
-router.get('/:id', (req, res, next) => {
-  res.json(req.player)
-})
-
-router.post('/', async (req, res, next) => {
-  try {
-    const player = await Player.create(req.body)
-    res.json(player)
+    res.json(publishers)
   }
   catch (err) {
     next(err)
@@ -45,18 +31,24 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const updatedPlayer = await Player.update(req.body, {
+    const updatedPublisher = await Publisher.update(req.body, {
       where: {
-        id: req.player.id,
+        id: req.publisher.id,
       },
       returning: true,
     })
-    const returningPlayer = updatedPlayer[1][0]
-    res.json(returningPlayer)
+    const returningPublisher = updatedPublisher[1][0]
+    res.json(returningPublisher)
   }
   catch (err) {
     next(err)
   }
 })
+
+router.get('/:id', (req, res, next) => {
+  res.json(req.publisher)
+})
+
+router.use('/:id/ranking-lists', require('./ranking-lists'))
 
 module.exports = router
