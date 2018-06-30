@@ -3,6 +3,7 @@ import axios from 'axios'
 //actions
 const GET_ALL_COURSES_FROM_SERVER = 'GET_ALL_COURSES_FROM_SERVER'
 const ADD_COURSE_FROM_SERVER = 'ADD_COURSE_FROM_SERVER'
+const CLEAR_COURSES = 'CLEAR_COURSES'
 
 //action creators
 export const getAllCoursesFromServer = courses => ({
@@ -13,6 +14,10 @@ export const getAllCoursesFromServer = courses => ({
 export const addCourseFromServer = course => ({
   type: ADD_COURSE_FROM_SERVER,
   course,
+})
+
+export const clearCourses = () => ({
+  type: CLEAR_COURSES,
 })
 
 //thunks
@@ -30,6 +35,8 @@ export default (prevState = [], action) => {
       return action.courses
     case ADD_COURSE_FROM_SERVER:
       return [...prevState, action.course]
+    case CLEAR_COURSES:
+      return []
     default:
       return prevState
   }

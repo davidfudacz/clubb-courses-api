@@ -3,6 +3,7 @@ import axios from 'axios'
 //actions
 const GET_ALL_RANKING_LISTS_FROM_SERVER = 'GET_ALL_RANKING_LISTS_FROM_SERVER'
 const ADD_RANKING_LIST_FROM_SERVER = 'ADD_RANKING_LIST_FROM_SERVER'
+const CLEAR_RANKING_LISTS = 'CLEAR_RANKING_LISTS'
 
 //action creators
 export const getAllRankingListsFromServer = rankingLists => ({
@@ -13,6 +14,10 @@ export const getAllRankingListsFromServer = rankingLists => ({
 export const addRankingListFromServer = rankingList => ({
   type: ADD_RANKING_LIST_FROM_SERVER,
   rankingList,
+})
+
+export const clearRankingLists = () => ({
+  type: CLEAR_RANKING_LISTS,
 })
 
 //thunks
@@ -30,6 +35,8 @@ export default (prevState = [], action) => {
       return action.rankingLists
     case ADD_RANKING_LIST_FROM_SERVER:
       return [...prevState, action.rankingList]
+    case CLEAR_RANKING_LISTS:
+      return []
     default:
       return prevState
   }

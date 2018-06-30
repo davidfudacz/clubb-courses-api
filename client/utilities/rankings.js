@@ -31,3 +31,15 @@ export const _parseRankingListUrl = (rankingListObj) => {
   let parsedPublisherName = _lowerCaseAlphanumericWithDashes(publisherName)
   return `/ranking-lists/${id}/${parsedPublisherName}-${parsedName}-${year}`
 }
+
+export const _sortRankingsByRank = (rankings) => {
+  return rankings.sort((a, b) => {
+    if (a.rank < b.rank) {
+      return -1;
+    }
+    if (a.rank > b.rank) {
+      return 1;
+    }
+    return 0;
+  })
+}

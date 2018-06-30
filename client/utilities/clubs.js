@@ -1,4 +1,4 @@
-/* eslint id-length: 0 */
+
 export const _parseClubUrl = (clubObj) => {
   const id = clubObj.id
   const name = clubObj.name

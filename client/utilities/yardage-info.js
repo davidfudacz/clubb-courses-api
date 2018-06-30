@@ -1,4 +1,4 @@
-/* eslint id-length: 0 */
+
 export const _sortMensYardageInfos = (yardageInfos) => {
   const output =
     yardageInfos.filter(yardageInfo => yardageInfo.teeGenderId === 1)

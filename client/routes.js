@@ -22,7 +22,8 @@ class Routes extends React.Component {
       <div className="mainContent">
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/clubs/:clubId" component={Club} />
+        <Route path="/clubs/:clubId/:parsedClubName/:courseId" component={Club} />
+        <Route path="/clubs/:clubId/:parsedClubName" component={Club} />
         <Route path="/ranking-lists/:rankingListId" component={RankingList} />
         <Route path="/" component={Home} />
       </Switch>
