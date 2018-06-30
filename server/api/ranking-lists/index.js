@@ -3,25 +3,12 @@ const {
   RankingList,
   RankingListName,
   Publisher,
-  Ranking,
-  Course,
-  Club
 } = require('../../db/models')
 
 router.param('id', async (req, res, next, id) => {
   try {
     req.rankingList = await RankingList.findById(id, {
-      include: [ RankingListName, Publisher,
-        {
-          model: Ranking,
-          include: [
-            {
-              model: Course,
-              include: [ Club ]
-            }
-          ]
-        }
-      ]
+      include: [ RankingListName, Publisher ]
     })
     next()
   }
@@ -43,6 +30,7 @@ router.get('/', async (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
+  console.log(req.rankingList)
   res.json(req.rankingList)
 })
 

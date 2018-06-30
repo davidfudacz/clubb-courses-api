@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getRankingsFromServerThunkerator } from '../store'
 
 //actions
 const GET_RANKING_LIST_FROM_SERVER = 'GET_RANKING_LIST_FROM_SERVER'
@@ -19,6 +20,7 @@ export const getRankingListFromServerThunkerator = (id) => {
   return async (dispatch) => {
     const rankingList = await axios.get(`/api/ranking-lists/${id}`)
     dispatch(getRankingListFromServer(rankingList.data))
+    dispatch(getRankingsFromServerThunkerator(id))
   }
 }
 
