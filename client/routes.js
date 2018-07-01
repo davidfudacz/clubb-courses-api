@@ -6,6 +6,7 @@ import {
   Home,
   Club,
   RankingList,
+  ArchitectForm,
 } from './components'
 
 /**
@@ -25,6 +26,7 @@ class Routes extends React.Component {
         <Route path="/clubs/:clubId/:parsedClubName/:courseId" component={Club} />
         <Route path="/clubs/:clubId/:parsedClubName" component={Club} />
         <Route path="/ranking-lists/:rankingListId" component={RankingList} />
+        <Route path="/input/architect" component={ArchitectForm} />
         <Route path="/" component={Home} />
       </Switch>
         </div>
