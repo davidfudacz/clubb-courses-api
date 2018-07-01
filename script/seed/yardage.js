@@ -388,7 +388,7 @@ async function seedTees () {
     abbreviation: `M`,
   })
   await TeeGender.create({
-    formal: `Ladie's`,
+    formal: `Ladies'`,
     informal: `Women's`,
     abbreviation: `F`,
   })
