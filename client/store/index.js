@@ -10,6 +10,7 @@ import activeClub from './active-club'
 import rankingLists from './ranking-lists'
 import activeRankingList from './active-ranking-list'
 import activeRankings from './active-rankings'
+import forms from './forms'
 
 const reducer = combineReducers({
   user,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   activeRankingList,
   activeRankings,
   form: formReducer,
+  forms,
 })
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -35,3 +37,4 @@ export * from './active-club'
 export * from './ranking-lists'
 export * from './active-ranking-list'
 export * from './active-rankings'
+export * from './forms'
