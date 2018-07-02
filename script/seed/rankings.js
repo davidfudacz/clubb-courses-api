@@ -2,17 +2,14 @@ const { Publisher, Ranking, RankingList, RankingListName } = require('../../serv
 
 const publishers = [
   {
-    id: 1,
     name: 'Golf Digest Magazine',
     informal: 'Golf Digest',
   },
   {
-    id: 2,
     name: 'Golfweek Magazine',
     informal: 'Golfweek',
   },
   {
-    id: 3,
     name: 'Golf Magazine',
     informal: 'Golf',
   }
@@ -20,17 +17,14 @@ const publishers = [
 
 const rankingListNames = [
   {
-    id: 1,
     name: 'Top 100 Courses in the United States',
     informal: 'Top 100 (US)',
   },
   {
-    id: 2,
     name: `America's 100 Greatest Public Courses`,
     informal: 'Top 100 Public (US)',
   },
   {
-    id: 3,
     name: 'Top 100 Classic Courses',
     informal: 'Top 100 Classic',
   },
@@ -148,16 +142,14 @@ const rankings = [
 ]
 
 async function seedRankings () {
-  const publisherProms = publishers.map(publisher => {
-    return Publisher.create(publisher)
+  await publishers.forEach(async publisher => {
+    await Publisher.create(publisher)
   })
-  await Promise.all(publisherProms)
   console.log(`Seeded ${publishers.length} Publisher names`)
 
-  const rankingListNameProms = rankingListNames.map(rankingListName => {
-    return RankingListName.create(rankingListName)
+  await rankingListNames.forEach(async rankingListName => {
+    await RankingListName.create(rankingListName)
   })
-  await Promise.all(rankingListNameProms)
   console.log(`Seeded ${rankingListNames.length} RankingList names`)
 
   const rankingListProms = rankingLists.map(rankingList => {
