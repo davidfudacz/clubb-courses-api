@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, reset } from 'redux-form'
 import {
-  postArchitectFormToServerThunkerator,
-  clearArchitectForm,
+  postClubFormToServerThunkerator,
+  clearClubForm,
 } from '../../store'
 import {
   required,
@@ -29,7 +29,7 @@ const renderField = ({
   </div>
 )
 
-class Architect extends React.Component {
+class Club extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -40,13 +40,13 @@ class Architect extends React.Component {
 
   static getDerivedStateFromProps(nextProps) {
     let newState = {}
-    if (nextProps.architect.id) {
+    if (nextProps.club.id) {
       newState = {
         ...newState,
         submitMessageVisible: true,
       }
     }
-    if (!nextProps.architect.id) {
+    if (!nextProps.club.id) {
       newState = {
         ...newState,
         submitMessageVisible: false,
@@ -68,49 +68,40 @@ class Architect extends React.Component {
   }
 
   render () {
-    const { handleSubmit, pristine, submitting, architect, clearSubmitMessage } = this.props
+    const { handleSubmit, pristine, submitting, club, clearSubmitMessage } = this.props
     return (
       <div>
         {
           this.state.submitMessageVisible
-          ? <span onClick={clearSubmitMessage}>You submitted {architect.givenName} {architect.surname}</span>
+          ? <span onClick={clearSubmitMessage}>You submitted {club.name}</span>
           : null
         }
         <form onSubmit={handleSubmit}>
           <div>
             <Field
-              name="givenName"
+              name="name"
               component={renderField}
               type="text"
-              label="First Name"
+              label="Club Name"
               validate={required}
             />
           </div>
           <div>
             <Field
-              name="surname"
+              name="informal"
               component={renderField}
               type="text"
-              label="Last Name"
+              label="Informal Name"
               validate={required}
             />
           </div>
           <div>
             <Field
-              name="birthYear"
+              name="established"
               component={renderField}
               type="text"
-              label="Year of Birth"
-              validate={fourDigitYear}
-            />
-          </div>
-          <div>
-            <Field
-              name="deathYear"
-              component={renderField}
-              type="text"
-              label="Year of Death"
-              validate={fourDigitYear}
+              label="Year Established"
+              validate={[ fourDigitYear, required ]}
             />
           </div>
           <div>
@@ -127,25 +118,25 @@ class Architect extends React.Component {
   }
 }
 const mapState = ({ forms }) => ({
-  architect: forms.architect
+  club: forms.club
 })
 
 const mapDispatch = dispatch => ({
   onSubmit: (values) => {
-    dispatch(postArchitectFormToServerThunkerator(values))
+    dispatch(postClubFormToServerThunkerator(values))
   },
   clearSubmitMessage: () => {
-    dispatch(clearArchitectForm())
+    dispatch(clearClubForm())
   }
 })
 
 const submitSuccess = (result, dispatch) => {
-  dispatch(reset('architectForm'))
+  dispatch(reset('clubForm'))
 }
 
-const ArchitectForm = reduxForm({
-  form: 'architectForm',
+const ClubForm = reduxForm({
+  form: 'clubForm',
   onSubmitSuccess: submitSuccess,
-})(Architect)
+})(Club)
 
-export default connect(mapState, mapDispatch)(ArchitectForm)
+export default connect(mapState, mapDispatch)(ClubForm)

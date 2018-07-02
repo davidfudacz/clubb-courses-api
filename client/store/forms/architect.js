@@ -1,25 +1,25 @@
 import axios from 'axios'
 
 //actions
-const GET_ARCHITECT_FROM_SERVER = 'GET_ARCHITECT_FROM_SERVER'
-const CLEAR_ARCHITECT = 'CLEAR_ARCHITECT'
+const GET_ARCHITECT_FORM_FROM_SERVER = 'GET_ARCHITECT_FORM_FROM_SERVER'
+const CLEAR_ARCHITECT_FORM = 'CLEAR_ARCHITECT_FORM'
 
 //action creators
-export const getArchitectFromServer = architect => ({
-  type: GET_ARCHITECT_FROM_SERVER,
+export const getArchitectFormFromServer = architect => ({
+  type: GET_ARCHITECT_FORM_FROM_SERVER,
   architect,
 })
 
-export const clearArchitect = () => ({
-  type: CLEAR_ARCHITECT,
+export const clearArchitectForm = () => ({
+  type: CLEAR_ARCHITECT_FORM,
 })
 
 //thunks
-export const postArchitectToServerThunkerator = (body) => {
+export const postArchitectFormToServerThunkerator = (body) => {
   return async (dispatch) => {
     try {
       const architect = await axios.post(`/api/architects`, body)
-      dispatch(getArchitectFromServer(architect.data))
+      dispatch(getArchitectFormFromServer(architect.data))
     }
     catch (err) {
       console.log(err)
@@ -30,9 +30,9 @@ export const postArchitectToServerThunkerator = (body) => {
 //reducer
 export default (prevState = {}, action) => {
   switch (action.type) {
-    case GET_ARCHITECT_FROM_SERVER:
+    case GET_ARCHITECT_FORM_FROM_SERVER:
       return action.architect
-    case CLEAR_ARCHITECT:
+    case CLEAR_ARCHITECT_FORM:
       return {}
     default:
       return prevState
