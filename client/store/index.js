@@ -6,6 +6,7 @@ import { reducer as formReducer } from 'redux-form'
 import user from './user'
 import clubs from './clubs'
 import courses from './courses'
+import architects from './architects'
 import activeClub from './active-club'
 import rankingLists from './ranking-lists'
 import activeRankingList from './active-ranking-list'
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   user,
   clubs,
   courses,
+  architects,
   activeClub,
   rankingLists,
   activeRankingList,
@@ -33,6 +35,7 @@ export default store
 export * from './user'
 export * from './clubs'
 export * from './courses'
+export * from './architects'
 export * from './active-club'
 export * from './ranking-lists'
 export * from './active-ranking-list'
