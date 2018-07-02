@@ -82,7 +82,7 @@ const renderCourseSelector = ({ architects, fields, meta: {error, submitFailed} 
                 <option value={9}>9</option>
             </Field>
           </div>
-          <FieldArray name="architects" component={renderArchitectSelector} architects={architects} validate={required} />
+          <FieldArray name={`${field}.architects`} component={renderArchitectSelector} architects={architects} validate={required} />
         </div>
       ))}
       <div>
