@@ -1,7 +1,9 @@
 import React from 'react'
-import { Field, reduxForm, SubmissionError } from 'redux-form'
-import store, {
+import { connect } from 'react-redux'
+import { Field, reduxForm, reset } from 'redux-form'
+import {
   postArchitectToServerThunkerator,
+  clearArchitect,
 } from '../../store'
 import {
   required,
@@ -27,87 +29,123 @@ const renderField = ({
   </div>
 )
 
-const submit = async (values) => {
-  console.log(values)
-  await store.dispatch(postArchitectToServerThunkerator(values))
-  console.log('success')
-}
-
-class ArchitectForm extends React.Component {
+class Architect extends React.Component {
   constructor () {
     super()
     this.state = {
       errors: false,
+      submitMessageVisible: false,
     }
   }
 
   static getDerivedStateFromProps(nextProps) {
-    console.log('here')
+    let newState = {}
+    if (nextProps.architect.id) {
+      newState = {
+        ...newState,
+        submitMessageVisible: true,
+      }
+    }
+    if (!nextProps.architect.id) {
+      newState = {
+        ...newState,
+        submitMessageVisible: false,
+      }
+    }
     if (!nextProps.valid) {
-      return {
+      newState = {
+        ...newState,
         errors: true,
       }
     }
-    else {
-      return {
+    if (nextProps.valid) {
+      newState = {
+        ...newState,
         errors: false,
       }
     }
+    return newState
   }
 
   render () {
-    const { handleSubmit, pristine, reset, submitting } = this.props
+    const { handleSubmit, pristine, submitting, architect, clearSubmitMessage } = this.props
     return (
-      <form>
-        <div>
-          <Field
-            name="givenName"
-            component={renderField}
-            type="text"
-            label="First Name"
-            validate={required}
-          />
-        </div>
-        <div>
-          <Field
-            name="surname"
-            component={renderField}
-            type="text"
-            label="Last Name"
-            validate={required}
-          />
-        </div>
-        <div>
-          <Field
-            name="birthYear"
-            component={renderField}
-            type="text"
-            label="Year of Birth"
-            validate={fourDigitYear}
-          />
-        </div>
-        <div>
-          <Field
-            name="deathYear"
-            component={renderField}
-            type="text"
-            label="Year of Death"
-            validate={fourDigitYear}
-          />
-        </div>
-        <div>
-          <button  onClick={handleSubmit(submit)} type="submit" disabled={submitting || this.state.errors || pristine}>
-            Submit
-          </button>
-          <button type="button" disabled={pristine || submitting} onClick={reset}>
-            Clear Values
-          </button>
-        </div>
-      </form>
+      <div>
+        {
+          this.state.submitMessageVisible
+          ? <span onClick={clearSubmitMessage}>You submitted {architect.givenName} {architect.surname}</span>
+          : null
+        }
+        <form onSubmit={handleSubmit}>
+          <div>
+            <Field
+              name="givenName"
+              component={renderField}
+              type="text"
+              label="First Name"
+              validate={required}
+            />
+          </div>
+          <div>
+            <Field
+              name="surname"
+              component={renderField}
+              type="text"
+              label="Last Name"
+              validate={required}
+            />
+          </div>
+          <div>
+            <Field
+              name="birthYear"
+              component={renderField}
+              type="text"
+              label="Year of Birth"
+              validate={fourDigitYear}
+            />
+          </div>
+          <div>
+            <Field
+              name="deathYear"
+              component={renderField}
+              type="text"
+              label="Year of Death"
+              validate={fourDigitYear}
+            />
+          </div>
+          <div>
+            <button type="submit" disabled={submitting || this.state.errors || pristine}>
+              Submit
+            </button>
+            <button type="button" disabled={pristine || submitting} onClick={reset}>
+              Clear Values
+            </button>
+          </div>
+        </form>
+      </div>
     )
   }
 }
+const mapState = ({ forms }) => ({
+  architect: forms.architect
+})
 
-export default reduxForm({
+const mapDispatch = dispatch => ({
+  onSubmit: (values) => {
+    dispatch(postArchitectToServerThunkerator(values))
+  },
+  clearSubmitMessage: () => {
+    dispatch(clearArchitect())
+  }
+})
+
+const submitSuccess = (result, dispatch) => {
+  dispatch(reset('architectForm'))
+}
+
+const ArchitectForm = reduxForm({
   form: 'architectForm',
-})(ArchitectForm)
+  onSubmitSuccess: submitSuccess,
+})(Architect)
+
+export default connect(mapState, mapDispatch)(ArchitectForm)

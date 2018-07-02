@@ -35,7 +35,6 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req.body)
     const architect = await Architect.create(req.body)
     res.json(architect)
   }
