@@ -62,7 +62,7 @@ const renderCourseSelector = ({ architects, fields, meta: {error, submitFailed} 
             component={renderField}
             type="text"
             label="What is the name of the course?"
-            validate={[ fourDigitYear, required ]}
+            validate={[ required ]}
           />
           <Field
             name={`${field}.yearOriginallyBuilt`}
