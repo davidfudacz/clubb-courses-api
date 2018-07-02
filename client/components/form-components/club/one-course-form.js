@@ -248,7 +248,7 @@ const renderArchitectSelector = ({ architects, fields, meta: { error, submitFail
         <button type="button" onClick={() => fields.push({})}>Add Architect</button>
         {submitFailed && error && <span>{error}</span>}
       </div>
-      {fields.map((architect, index) => (
+      {fields.map((field, index) => (
         <div key={index}>
           <button
             type="button"
@@ -258,7 +258,7 @@ const renderArchitectSelector = ({ architects, fields, meta: { error, submitFail
           </button>
           <h5>Architect #{index + 1}</h5>
           <Field
-            name={`${architect}.id`}
+            name={`${field}.id`}
             component="select"
             validate={required}
           >

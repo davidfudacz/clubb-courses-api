@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import ClubForm from './club-form'
 import ClubAddressForm from './club-address-form'
 import OneCourseForm from './one-course-form'
+import MultipleCourseForm from './multiple-course-form'
 
 const HowManyCourses = (props) => {
   return (
@@ -22,7 +23,7 @@ class ClubWizardForm extends Component {
  constructor(props) {
    super(props)
    this.state = {
-     page: 4,
+     page: 3,
    }
  }
  nextPage = () => {
@@ -63,6 +64,11 @@ class ClubWizardForm extends Component {
          />}
        {page === 4 &&
          <OneCourseForm
+           previousPage={this.previousPage}
+           onSubmit={this.skipPage}
+         />}
+       {page === 5 &&
+         <MultipleCourseForm
            previousPage={this.previousPage}
            onSubmit={this.skipPage}
          />}
