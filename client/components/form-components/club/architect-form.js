@@ -4,11 +4,11 @@ import { Field, reduxForm, reset } from 'redux-form'
 import {
   postArchitectFormToServerThunkerator,
   clearArchitectForm,
-} from '../../store'
+} from '../../../store'
 import {
   required,
   fourDigitYear,
-} from './validations'
+} from '../validations'
 
 const renderField = ({
   input,

@@ -8,5 +8,6 @@ router.use('/players', require('./players'))
 router.use('/tournaments', require('./tournaments'))
 router.use('/ranking-lists', require('./ranking-lists'))
 router.use('/publishers', require('./publishers'))
+router.use('/states', require('./states'))
 
 module.exports = router
