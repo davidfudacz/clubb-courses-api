@@ -16,7 +16,7 @@ import { connect } from 'react-redux'
 
 
 const renderArchitectSelector = ({ architects, fields, meta: { error, submitFailed }}) => {
-  console.log(architects)
+  if (!fields.length) fields.push({})
   return (
     <div>
       <h5>Who built it?</h5>
@@ -38,7 +38,7 @@ const renderArchitectSelector = ({ architects, fields, meta: { error, submitFail
         </div>
       ))}
       <div>
-        <button type="button" onClick={() => fields.push({})}>Add Architect</button>
+        <button type="button" onClick={() => fields.push({})}>Add Another Architect</button>
         {submitFailed && error && <span>{error}</span>}
       </div>
     </div>
@@ -46,6 +46,7 @@ const renderArchitectSelector = ({ architects, fields, meta: { error, submitFail
 }
 
 const renderCourseSelector = ({ architects, fields, meta: {error, submitFailed} }) => {
+  if (!fields.length) fields.push({})
   return (
     <div>
       {fields.map((field, index) => (
@@ -86,7 +87,7 @@ const renderCourseSelector = ({ architects, fields, meta: {error, submitFailed} 
         </div>
       ))}
       <div>
-        <button type="button" onClick={() => fields.push({})}>Add Course</button>
+        <button type="button" onClick={() => fields.push({})}>Add Another Course</button>
         {submitFailed && error && <span>{error}</span>}
       </div>
     </div>
