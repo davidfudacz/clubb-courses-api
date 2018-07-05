@@ -28,6 +28,21 @@ export const getAllClubsFromServerThunkerator = () => {
   }
 }
 
+export const submitClubFormThunkerator = (form) => {
+  return async (dispatch) => {
+    const club = await axios.post('/api/clubs', form)
+    // if (form.courses) {
+    //   const courses = form.courses
+    // }
+    // else {
+    //   const course = await axios.post(`api/clubs/${club.id}/courses`, {
+    //     numOfHoles:
+    //   })
+    // }
+    console.log('submitted', club.data)
+  }
+}
+
 //reducer
 export default (prevState = [], action) => {
   switch (action.type) {

@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const {
   Club,
+  Membership,
   Address,
   City,
   State,
@@ -84,8 +85,63 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const club = req.body
+    console.log(req.body)
+    const {
+      name,
+      informal,
+      established,
+      membership,
+      street,
+      city,
+      state,
+      zip,
+      country,
+      yearCourseBuilt,
+      architects,
+      numOfHoles,
+      courses,
+    } = req.body
+    const club = {
+      name,
+      informal,
+      established,
+    }
     const createdClub = await Club.create(club)
+    if (courses) {
+      console.log('multiple courses')
+    }
+    else {
+      const course = await Course.create({ numOfHoles })
+      await course.setClub(createdClub.id)
+      const build = await Build.create({
+        buildType: 'original',
+        year: yearCourseBuilt,
+        numOfHoles,
+      })
+      const architectIds = architects.map(({ id }) => id)
+      await build.addArchitects(architectIds)
+      await build.setCourse(course)
+    }
+    if (street && city && state && zip) {
+      const address = await Address.create({
+        street,
+        zip,
+      })
+      const createdCity = await City.findOrCreate({
+        where: {
+          name: city
+        }
+      })
+      await address.setCity(createdCity[0])
+      await address.setState(state)
+      await createdClub.setAddress(address)
+    }
+    const membershipInstance = await Membership.findOne({
+      where: {
+        name: membership,
+      }
+    })
+    await createdClub.setMembership(membershipInstance)
     res.json(createdClub)
   }
   catch (err) {

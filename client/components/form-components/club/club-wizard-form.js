@@ -6,6 +6,7 @@ import ClubForm from './club-form'
 import ClubAddressForm from './club-address-form'
 import OneCourseForm from './one-course-form'
 import MultipleCourseForm from './multiple-course-form'
+import { submitClubFormThunkerator } from '../../../store';
 
 const ClubHasMultipleCourses = (props) => {
   return (
@@ -58,12 +59,12 @@ class ClubWizardForm extends Component {
       {page === 4 &&
         <OneCourseForm
           previousPage={this.previousPage}
-          onSubmit={this.skipPage}
+          onSubmit={onSubmit}
         />}
       {page === 5 &&
         <MultipleCourseForm
           previousPage={this.previousPage}
-          onSubmit={this.onSubmit}
+          onSubmit={onSubmit}
         />}
      </div>
    )
@@ -74,7 +75,7 @@ const mapState = null
 
 const mapDispatch = dispatch => ({
   onSubmit: values => {
-    console.log(values)
+    dispatch(submitClubFormThunkerator(values))
   }
 })
 
