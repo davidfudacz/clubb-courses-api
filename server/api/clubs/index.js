@@ -88,7 +88,6 @@ router.post('/', async (req, res, next) => {
     console.log(req.body)
     const {
       name,
-      informal,
       established,
       membership,
       street,
@@ -103,7 +102,6 @@ router.post('/', async (req, res, next) => {
     } = req.body
     const club = {
       name,
-      informal,
       established,
     }
     const createdClub = await Club.create(club)
@@ -153,7 +151,6 @@ router.post('/', async (req, res, next) => {
       }
     })
     await createdClub.setMembership(membershipInstance)
-    console.log(createdClub)
     res.send(201)
   }
   catch (err) {
