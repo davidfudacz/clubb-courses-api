@@ -142,6 +142,7 @@ router.post('/', async (req, res, next) => {
       }
     })
     await createdClub.setMembership(membershipInstance)
+    console.log(createdClub)
     res.json(createdClub)
   }
   catch (err) {

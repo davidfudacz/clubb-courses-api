@@ -18,9 +18,14 @@ export const clearRankingList = () => ({
 //thunks
 export const getRankingListFromServerThunkerator = (id) => {
   return async (dispatch) => {
-    const rankingList = await axios.get(`/api/ranking-lists/${id}`)
-    dispatch(getRankingListFromServer(rankingList.data))
-    dispatch(getRankingsFromServerThunkerator(id))
+    try {
+      const rankingList = await axios.get(`/api/ranking-lists/${id}`)
+      dispatch(getRankingListFromServer(rankingList.data))
+      dispatch(getRankingsFromServerThunkerator(id))
+    }
+    catch (err) {
+      console.log(err)
+    }
   }
 }
 
