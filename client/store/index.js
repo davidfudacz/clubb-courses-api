@@ -12,7 +12,6 @@ import rankingLists from './ranking-lists'
 import activeRankingList from './active-ranking-list'
 import activeRankings from './active-rankings'
 import states from './states'
-import forms from './forms'
 
 const reducer = combineReducers({
   user,
@@ -25,7 +24,6 @@ const reducer = combineReducers({
   activeRankings,
   states,
   form: formReducer,
-  forms,
 })
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -43,4 +41,3 @@ export * from './ranking-lists'
 export * from './active-ranking-list'
 export * from './active-rankings'
 export * from './states'
-export * from './forms'

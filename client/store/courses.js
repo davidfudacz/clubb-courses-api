@@ -23,8 +23,13 @@ export const clearCourses = () => ({
 //thunks
 export const getAllCoursesFromServerThunkerator = () => {
   return async (dispatch) => {
-    const courses = await axios.get('/api/courses')
-    dispatch(getAllCoursesFromServer(courses.data))
+    try {
+      const courses = await axios.get('/api/courses')
+      dispatch(getAllCoursesFromServer(courses.data))
+    }
+    catch (err) {
+      console.log(err)
+    }
   }
 }
 

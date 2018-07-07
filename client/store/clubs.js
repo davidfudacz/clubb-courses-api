@@ -23,8 +23,25 @@ export const clearClubs = () => ({
 //thunks
 export const getAllClubsFromServerThunkerator = () => {
   return async (dispatch) => {
-    const clubs = await axios.get('/api/clubs')
-    dispatch(getAllClubsFromServer(clubs.data))
+    try {
+      const clubs = await axios.get('/api/clubs')
+      dispatch(getAllClubsFromServer(clubs.data))
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+export const submitClubFormThunkerator = (form) => {
+  return async (dispatch) => {
+    try {
+      await axios.post('/api/clubs', form)
+      dispatch(getAllClubsFromServer())
+    }
+    catch (err) {
+      console.log(err)
+    }
   }
 }
 

@@ -6,8 +6,9 @@ import ClubForm from './club-form'
 import ClubAddressForm from './club-address-form'
 import OneCourseForm from './one-course-form'
 import MultipleCourseForm from './multiple-course-form'
+import { submitClubFormThunkerator } from '../../../store';
 
-const HowManyCourses = (props) => {
+const ClubHasMultipleCourses = (props) => {
   return (
     <div>
       <h5>Does this club have multiple golf courses?</h5>
@@ -34,14 +35,6 @@ class ClubWizardForm extends Component {
    this.setState({page: this.state.page - 1})
  }
 
- oneCourse = () => {
-   this.setState({ page: 4 })
- }
-
- multipleCourses = () => {
-   this.setState({ page: 5 })
- }
-
  skipPage = () => {
    this.setState({ page: this.state.page + 2 })
  }
@@ -51,27 +44,28 @@ class ClubWizardForm extends Component {
    const { page } = this.state
    return (
      <div>
-       {page === 1 && <ClubForm onSubmit={this.nextPage} />}
-       {page === 2 &&
-         <ClubAddressForm
-           previousPage={this.previousPage}
-           onSubmit={this.nextPage}
-         />}
-       {page === 3 &&
-         <HowManyCourses
-           yes={this.multipleCourses}
-           no={this.oneCourse}
-         />}
-       {page === 4 &&
-         <OneCourseForm
-           previousPage={this.previousPage}
-           onSubmit={this.skipPage}
-         />}
-       {page === 5 &&
-         <MultipleCourseForm
-           previousPage={this.previousPage}
-           onSubmit={this.skipPage}
-         />}
+      {page === 1 &&
+        <ClubForm onSubmit={this.nextPage} />}
+      {page === 2 &&
+        <ClubAddressForm
+          previousPage={this.previousPage}
+          onSubmit={this.nextPage}
+        />}
+      {page === 3 &&
+        <ClubHasMultipleCourses
+          yes={this.skipPage}
+          no={this.nextPage}
+        />}
+      {page === 4 &&
+        <OneCourseForm
+          previousPage={this.previousPage}
+          onSubmit={onSubmit}
+        />}
+      {page === 5 &&
+        <MultipleCourseForm
+          previousPage={this.previousPage}
+          onSubmit={onSubmit}
+        />}
      </div>
    )
  }
@@ -81,7 +75,7 @@ const mapState = null
 
 const mapDispatch = dispatch => ({
   onSubmit: values => {
-    console.log(values)
+    dispatch(submitClubFormThunkerator(values))
   }
 })
 

@@ -240,14 +240,9 @@ import { connect } from 'react-redux'
 
 
 const renderArchitectSelector = ({ architects, fields, meta: { error, submitFailed }}) => {
-  console.log('architects',architects)
-  console.log('fields',fields)
+  if (!fields.length) fields.push({})
   return (
     <div>
-      <div>
-        <button type="button" onClick={() => fields.push({})}>Add Architect</button>
-        {submitFailed && error && <span>{error}</span>}
-      </div>
       {fields.map((field, index) => (
         <div key={index}>
           <button
@@ -267,6 +262,10 @@ const renderArchitectSelector = ({ architects, fields, meta: { error, submitFail
           </Field>
         </div>
       ))}
+      <div>
+        <button type="button" onClick={() => fields.push({})}>Add Another Architect</button>
+        {submitFailed && error && <span>{error}</span>}
+      </div>
     </div>
   )
 }

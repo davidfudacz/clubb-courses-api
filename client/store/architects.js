@@ -23,8 +23,13 @@ export const clearArchitects = () => ({
 //thunks
 export const getAllArchitectsFromServerThunkerator = () => {
   return async (dispatch) => {
-    const architects = await axios.get('/api/architects')
-    dispatch(getAllArchitectsFromServer(architects.data))
+    try {
+      const architects = await axios.get('/api/architects')
+      dispatch(getAllArchitectsFromServer(architects.data))
+    }
+    catch (err) {
+      console.log(err)
+    }
   }
 }
 

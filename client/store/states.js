@@ -23,8 +23,13 @@ export const clearStates = () => ({
 //thunks
 export const getAllStatesFromServerThunkerator = () => {
   return async (dispatch) => {
-    const states = await axios.get('/api/states')
-    dispatch(getAllStatesFromServer(states.data))
+    try {
+      const states = await axios.get('/api/states')
+      dispatch(getAllStatesFromServer(states.data))
+    }
+    catch (err) {
+      console.log(err)
+    }
   }
 }
 

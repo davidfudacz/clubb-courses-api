@@ -67,7 +67,9 @@ State.belongsTo(Country)
 City.belongsTo(State)
 
 Club.belongsTo(Address)
+
 Club.belongsTo(Membership)
+Membership.hasMany(Club)
 
 Player.belongsTo(City, { as: 'hometown' })
 Player.belongsTo(Nationality)

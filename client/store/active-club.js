@@ -17,8 +17,13 @@ export const clearClub = () => ({
 //thunks
 export const getClubFromServerThunkerator = (id) => {
   return async (dispatch) => {
-    const club = await axios.get(`/api/clubs/${id}`)
-    dispatch(getClubFromServer(club.data))
+    try {
+      const club = await axios.get(`/api/clubs/${id}`)
+      dispatch(getClubFromServer(club.data))
+    }
+    catch (err) {
+      console.log(err)
+    }
   }
 }
 
