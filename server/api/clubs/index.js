@@ -108,7 +108,18 @@ router.post('/', async (req, res, next) => {
     }
     const createdClub = await Club.create(club)
     if (courses) {
-      console.log('multiple courses')
+      courses.forEach(async ({ architects, yearCourseBuilt, numOfHoles, name }) => {
+        const course = await Course.create({ name, numOfHoles })
+        await course.setClub(createdClub.id)
+        const build = await Build.create({
+          buildType: 'original',
+          year: yearCourseBuilt,
+          numOfHoles,
+        })
+        const architectIds = architects.map(({ id }) => id)
+        await build.addArchitects(architectIds)
+        await build.setCourse(course)
+      })
     }
     else {
       const course = await Course.create({ numOfHoles })
@@ -143,7 +154,7 @@ router.post('/', async (req, res, next) => {
     })
     await createdClub.setMembership(membershipInstance)
     console.log(createdClub)
-    res.json(createdClub)
+    res.send(201)
   }
   catch (err) {
     next(err)
