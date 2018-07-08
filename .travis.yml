@@ -1,27 +1,27 @@
 language: node_js
 node_js:
-  - node # uses most recent stable node version
+- node
 services:
-  - postgresql # starts up postgres
+- postgresql
 addons:
-  postgresql: '9.6' # highest available postgres version on Travis
-dist: trusty # uses trusty environment
-sudo: false # when on trusty, uses Docker containers for speed
+  postgresql: '9.6'
+dist: trusty
+sudo: false
 notifications:
   email:
-    on_success: change # default: change (only when going from broken to fixed)
-    on_failure: always # default: always (which is annoying, as it should be)
+    on_success: change
+    on_failure: always
 install:
-  - npm i -g npm@5.7.1 # delete once 5.7.X is out of "pre-release"
-  - npm ci             # faster, goes only from package-lock
+- npm i -g npm@5.7.1
+- npm ci
 before_script:
-  - psql -c 'create database "teesheet-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+- psql -c 'create database "teesheet-test";' -U postgres
 before_deploy:
-  - npm run build-client # make the bundle
-  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+- npm run build-client
+- rm -rf node_modules
 deploy:
-  skip_cleanup: true # prevents travis from deleting the build
+  skip_cleanup: true
   provider: heroku
-  app: "teesheetapp" # see README
+  app: teesheetapp
   api_key:
-    secure: "o5WBnvymPmI6vTD+lQEoOrLlyL9IxrV/lV3EAC3jUdtknODhtzN1bqa3VWzKLXNEIglwz2NwGnIrgKYseDf0iTxFL5zKMEYQXLURNSWNuKD6OPAr1X+I3W88Evd0DOapZGwvB342weitTNA7WEMHbEyRIcj3Ng9ZlQdymnpuQFnGqEUHwYM+XH7cmX1nrAy+/gUFbdTVJLqoYtfP8JezYMt1HrdzUUTmO7Vs7mkSLFadye2l5XZEq2CPo1v8qYBr4391EkI8JTpFI/5pBSnuHs2oL1iKVHLrKeN1+lHR/9K4/qySFUJXCTMioSFrUUUxFHm62VnvNkDVaLkp1ChWV8YaOo/jS5NykhgNnouKoyTzOLybNXgQZWXuFStWSOM83+2WetV8Vh2uGeEks2xl90iOJfGL6+UuQM7clC797kwC6Tr7DaB9tQDcuEkpISNNUVSOTgwnLvxm/PQVZ309tZm8iHq7GJkqF42q0v/99US9IREFi/0er3VBBg58ORHOHxbobJK9W+eqFOluxsPHly1DYDKU4R/S16uhEdLFszLnT7JKXeITiQeIaxT52Ks1e+YyRyCjL3edVimrkR9YoI9oJs9ZNjgMjYMiHbmR4wzrZgJiJgcUgQI1DxhARSdrVHtibJR8cddFnxr1fSOTC5ZOgc6lREGN6qyq0bALLLA="
+    secure: qBRxsFXvvgGAZXJWA+zhNgoQju3ieRtzsrHObU4p4UJijqJ4brrL/YoCQ+sMvrXSnD3YHGGQhBJZZTcQxMLDrGgDLoA3Dgrpic/rE9PTiGYGZWoc3dv4StVkgzivOXrnoSVitlzOyd4/qbyiyKGpUCPPkSqV7lZgt8hT6viQXDu8oJa5X18o2it6HoeLMGqyCk7zPP5e8qbZPbLkzRUDa4e6QSD4A29UElsHCxdONZwuP8+cvpi7us8qe7pPYEorYATF2Pnmkmo/iPTHakJAkf5auZNt/Duade/Ro78kgiwF+/DDXMRQmkHyytGSsrmbXQ9E+i4bHQw0m1IYalpkYqlPtKUWZZxaT0MP3U5euj2sAKHFtX0tKbCc/X9s4kOt3hyv3Yu++gK2bKqXwzLANUGhnFTahGyrUTCy2ASeQi84Ov1OOt+KpCDi/ScKLLYk0XFqLAuLEnYl3AFElxqtinUaCWHH2/SVIk8Eywutwza6OjK+GE41k+kQUT/8R8Eqacm7F21qrgsKqq01799uZBvh1wIIneWtowD6P0yanrLyTwUZhQtlAPZN9ZvkQHxKe/Zykqa/h8jCG8RSl8iGWpfZkJF1/j6ZLhXy5CncBjo29BTcgMvFwaBjAcySLw5YaoX3cGi2RYFUyO9gbkvR+NJafTQFP/kLM2xYfflpqBM=
