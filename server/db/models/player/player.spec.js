@@ -1,8 +1,8 @@
 /* global describe beforeEach it */
 
 const { expect } = require('chai')
-const db = require('../index')
-const { Player } = require('../models')
+const db = require('../../index')
+const { Player } = require('../../models')
 
 describe('Player model', () => {
   beforeEach(() => {
@@ -137,7 +137,7 @@ describe('Player model', () => {
         expect(error).to.be.an('undefined')
         // just in case we add something and forget to test it...
         // add in the created and updatedAt fields
-        expect(Object.keys(player.dataValues).length).to.be.equal(8)
+        expect(Object.keys(player.dataValues).length).to.be.equal(10)
         expect(player.givenName).to.be.equal('GiveName')
         expect(player.surname).to.be.equal('SirName')
         expect(player.birthYear).to.be.equal('1908')

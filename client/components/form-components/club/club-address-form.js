@@ -38,7 +38,7 @@ class ClubAddress extends React.Component {
       <form onSubmit={handleSubmit}>
         <label>What is the address of the club?</label>
         <Field
-          name="street"
+          name="lineOne"
           type="text"
           component={renderField}
           label="Address Line 1"

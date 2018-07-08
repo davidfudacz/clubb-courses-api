@@ -2,9 +2,9 @@
 
 const { expect } = require('chai')
 const db = require('../../index')
-const { Membership } = require('../../models')
+const { MembershipType } = require('../../models')
 
-describe('Membership model', () => {
+describe('MembershipType model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -14,7 +14,7 @@ describe('Membership model', () => {
       it('for name', async () => {
         let error
         try {
-          await Membership.create({
+          await MembershipType.create({
           })
         }
         catch (err) {
@@ -28,7 +28,7 @@ describe('Membership model', () => {
       it('for name', async () => {
         let error
         try {
-          await Membership.create({
+          await MembershipType.create({
             name: '',
           })
         }
@@ -43,11 +43,11 @@ describe('Membership model', () => {
       it('for name', async () => {
         let error
         try {
-          await Membership.create({
-            name: 'Membership',
+          await MembershipType.create({
+            name: 'MembershipType',
           })
-          await Membership.create({
-            name: 'Membership',
+          await MembershipType.create({
+            name: 'MembershipType',
           })
         }
         catch (err) {
@@ -61,10 +61,10 @@ describe('Membership model', () => {
   describe('creation', () => {
     describe('creating an instance', () => {
       it('persists all columns', async () => {
-        let membership, error
+        let membershipType, error
         try {
-          membership = await Membership.create({
-            name: 'membership membership',
+          membershipType = await MembershipType.create({
+            name: 'membershipType membershipType',
           })
         }
         catch (err) {
@@ -73,9 +73,9 @@ describe('Membership model', () => {
         expect(error).to.be.an('undefined')
         // just in case we add something and forget to test it...
         // add in the created and updatedAt fields
-        expect(Object.keys(membership.dataValues).length).to.be.equal(4)
-        expect(membership.name).to.be.equal('membership membership')
+        expect(Object.keys(membershipType.dataValues).length).to.be.equal(4)
+        expect(membershipType.name).to.be.equal('membershipType membershipType')
       })
     }) // end describe creating an instance
   }) // end describe creations
-}) // end describe membership model
+}) // end describe membershipType model

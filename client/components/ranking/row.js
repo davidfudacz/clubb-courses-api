@@ -12,7 +12,7 @@ const Row = (props) => {
   return (
     <tr>
       <td style={tdStyle}>{rank}</td>
-      <td style={tdStyle}>{<Link to={_parseCourseUrl}>{_parseCourseNameForDisplay(course)}</Link>}</td>
+      <td style={tdStyle}>{<Link to={_parseCourseUrl(course)}>{_parseCourseNameForDisplay(course)}</Link>}</td>
       <td style={tdStyle}>{yearOriginallyBuilt}</td>
     </tr>
   )

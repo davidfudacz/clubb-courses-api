@@ -68,7 +68,7 @@ describe('Club routes', () => {
       return request(app)
         .post('/api/clubs')
         .send(newClub)
-        .expect(200)
+        .expect(201)
         .then(res => {
           expect(res.body).to.be.an('object')
           expect(res.body.name).to.be.equal('Ridge Country Club')

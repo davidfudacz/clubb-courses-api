@@ -17,7 +17,6 @@ describe('Club routes', () => {
       try {
         await Club.create({
           name: 'Beverly Country Club',
-          informal: 'Beverly',
           established: 1908,
         })
 
@@ -36,8 +35,9 @@ describe('Club routes', () => {
           },
         ]
 
-        const employeeProms = employees.map(employee => Employee.create(employee))
-        await Promise.all(employeeProms)
+        await employees.forEach(async employee => {
+          await Employee.create(employee)
+        })
 
         const club = await Club.findById(1)
 

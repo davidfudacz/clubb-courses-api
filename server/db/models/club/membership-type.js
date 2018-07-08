@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../../../db')
 
-const Membership = db.define('membership', {
+const MembershipType = db.define('membershipType', {
   name: {
     type: Sequelize.STRING,
     unique: true,
@@ -12,4 +12,4 @@ const Membership = db.define('membership', {
   },
 })
 
-module.exports = Membership
+module.exports = MembershipType

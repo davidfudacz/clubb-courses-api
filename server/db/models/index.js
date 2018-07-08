@@ -1,6 +1,6 @@
 
 const User = require('./user')
-const { Club, Employee, EmployeeTitle, Membership } = require('./club')
+const { Club, Employee, EmployeeTitle, MembershipType } = require('./club')
 const { Course, Tee, YardageInfo, Build, TeeGender, Hole } = require('./course')
 const { Address, City, State, Country } = require('./address')
 const { Publisher, RankingList, RankingListName, Ranking } = require('./rankings')
@@ -68,8 +68,8 @@ City.belongsTo(State)
 
 Club.belongsTo(Address)
 
-Club.belongsTo(Membership)
-Membership.hasMany(Club)
+Club.belongsTo(MembershipType)
+MembershipType.hasMany(Club)
 
 Player.belongsTo(City, { as: 'hometown' })
 Player.belongsTo(Nationality)
@@ -96,7 +96,7 @@ module.exports = {
   Club,
   Employee,
   EmployeeTitle,
-  Membership,
+  MembershipType,
   Course,
   Tee,
   TeeGender,

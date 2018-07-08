@@ -145,19 +145,19 @@ const ClubForm = props => {
         validate={[ fourDigitYear, required ]}
       />
       <div>
-        <label>Membership</label>
+        <label>Membership Type</label>
         <div>
           <label>
-            <Field name="membership" component="input" type="radio" value="Public" />
+            <Field name="membershipType" component="input" type="radio" value="Public" />
             {' '}
             Public
           </label>
           <label>
-            <Field name="membership" component="input" type="radio" value="Private" />
+            <Field name="membershipType" component="input" type="radio" value="Private" />
             {' '}
             Private
           </label>
-          <Field name="membership" component={renderError} validate={required} />
+          <Field name="membershipType" component={renderError} validate={required} />
         </div>
       </div>
       <div>

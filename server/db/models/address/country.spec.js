@@ -16,6 +16,7 @@ describe('Country model', () => {
         try {
           await Country.create({
             abbreviation: 'USA',
+            demonym: 'American',
           })
         }
         catch (err) {
@@ -29,6 +30,21 @@ describe('Country model', () => {
         try {
           await Country.create({
             name: 'Unites States of America',
+            demonym: 'American',
+          })
+        }
+        catch (err) {
+          error = err
+        }
+        expect(error.name).to.be.equal('SequelizeValidationError')
+      })
+
+      it('for demonym', async () => {
+        let error
+        try {
+          await Country.create({
+            name: 'Unites States of America',
+            abbreviation: 'USA',
           })
         }
         catch (err) {
@@ -45,6 +61,7 @@ describe('Country model', () => {
           await Country.create({
             name: '',
             abbreviation: 'USA',
+            demonym: 'American',
           })
         }
         catch (err) {
@@ -59,6 +76,22 @@ describe('Country model', () => {
           await Country.create({
             name: 'United States of America',
             abbreviation: '',
+            demonym: 'American',
+          })
+        }
+        catch (err) {
+          error = err
+        }
+        expect(error.name).to.be.equal('SequelizeValidationError')
+      })
+
+      it('for demonym', async () => {
+        let error
+        try {
+          await Country.create({
+            name: 'United States of America',
+            abbreviation: 'USA',
+            demonym: '',
           })
         }
         catch (err) {
@@ -76,7 +109,8 @@ describe('Country model', () => {
         try {
           country = await Country.create({
             name: 'country',
-            abbreviation: 'USA'
+            abbreviation: 'USA',
+            demonym: 'American',
           })
         }
         catch (err) {
@@ -85,7 +119,7 @@ describe('Country model', () => {
         expect(error).to.be.an('undefined')
         // just in case we add something and forget to test it...
         // add in the created and updatedAt fields
-        expect(Object.keys(country.dataValues).length).to.be.equal(5)
+        expect(Object.keys(country.dataValues).length).to.be.equal(6)
         expect(country.name).to.be.equal('country')
         expect(country.abbreviation).to.be.equal('USA')
       })

@@ -1,7 +1,8 @@
+/* eslint complexity: 0 */
 const router = require('express').Router()
 const {
   Club,
-  Membership,
+  MembershipTypes,
   Address,
   City,
   State,
@@ -50,7 +51,7 @@ router.get('/', async (req, res, next) => {
     const clubs = await Club.findAll({
       include: [ Course, Address ]
     })
-    const response = clubs.map(({ courses, address, established, id, informal, logoUrl, membershipId, name }) => {
+    const response = clubs.map(({ courses, address, established, id, informal, logoUrl, membershipTypeId, name }) => {
       const coursesArray = courses.map(course => {
         return {
           id: course.id,
@@ -73,7 +74,7 @@ router.get('/', async (req, res, next) => {
         informal,
         name,
         logoUrl,
-        membershipId,
+        membershipTypeId,
       }
     })
     res.json(response)
@@ -85,12 +86,11 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req.body)
     const {
       name,
       established,
-      membership,
-      street,
+      membershipType,
+      lineOne,
       city,
       state,
       zip,
@@ -119,7 +119,7 @@ router.post('/', async (req, res, next) => {
         await build.setCourse(course)
       })
     }
-    else {
+    if (numOfHoles) {
       const course = await Course.create({ numOfHoles })
       await course.setClub(createdClub.id)
       const build = await Build.create({
@@ -131,9 +131,9 @@ router.post('/', async (req, res, next) => {
       await build.addArchitects(architectIds)
       await build.setCourse(course)
     }
-    if (street && city && state && zip) {
+    if (lineOne && city && state && zip) {
       const address = await Address.create({
-        street,
+        lineOne,
         zip,
       })
       const createdCity = await City.findOrCreate({
@@ -145,13 +145,16 @@ router.post('/', async (req, res, next) => {
       await address.setState(state)
       await createdClub.setAddress(address)
     }
-    const membershipInstance = await Membership.findOne({
-      where: {
-        name: membership,
-      }
-    })
-    await createdClub.setMembership(membershipInstance)
-    res.send(201)
+    if (membershipType) {
+      const membershipTypeInstance = await MembershipTypes.findOne({
+        where: {
+          name: membershipType,
+        }
+      })
+      await createdClub.setMembershipTypes(membershipTypeInstance)
+    }
+    res.status(201)
+    res.send(createdClub)
   }
   catch (err) {
     next(err)
