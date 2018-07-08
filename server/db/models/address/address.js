@@ -2,14 +2,14 @@ const Sequelize = require('sequelize')
 const db = require('../../../db')
 
 const Address = db.define('address', {
-  street: {
+  lineOne: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
     }
   },
-  street2: {
+  lineTwo: {
     type: Sequelize.STRING,
   },
   zip: {

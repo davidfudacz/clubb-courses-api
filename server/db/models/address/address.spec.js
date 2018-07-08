@@ -11,7 +11,7 @@ describe('Address model', () => {
 
   describe('validations', () => {
     describe('do not allow null', () => {
-      it('for street', async () => {
+      it('for lineOne', async () => {
         let error
         try {
           await Address.create({
@@ -28,7 +28,7 @@ describe('Address model', () => {
         let error
         try {
           await Address.create({
-            street: '3434 street',
+            lineOne: '3434 street',
           })
         }
         catch (err) {
@@ -39,11 +39,11 @@ describe('Address model', () => {
     }) // end describe do not allow null
 
     describe('do not allow empty', () => {
-      it('for street', async () => {
+      it('for lineOne', async () => {
         let error
         try {
           await Address.create({
-            street: '',
+            lineOne: '',
             zip: 60657,
           })
         }
@@ -59,7 +59,7 @@ describe('Address model', () => {
         let error
         try {
           await Address.create({
-            street: '3434 street',
+            lineOne: '3434 street',
             zip: 'haha',
           })
         }
@@ -77,8 +77,8 @@ describe('Address model', () => {
         let address, error
         try {
           address = await Address.create({
-            street: '3434 street',
-            street2: 'Unit 34',
+            lineOne: '3434 street',
+            lineTwo: 'Unit 34',
             zip: 60657,
           })
         }
@@ -89,8 +89,8 @@ describe('Address model', () => {
         // just in case we add something and forget to test it...
         // add in the created and updatedAt fields
         expect(Object.keys(address.dataValues).length).to.be.equal(9)
-        expect(address.street).to.be.equal('3434 street')
-        expect(address.street2).to.be.equal('Unit 34')
+        expect(address.lineOne).to.be.equal('3434 street')
+        expect(address.lineTwo).to.be.equal('Unit 34')
         expect(address.zip).to.be.equal('60657')
       })
     }) // end describe creating an instance

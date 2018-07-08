@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const {
   Club,
-  Membership,
+  MembershipTypes,
   Address,
   City,
   State,
@@ -50,7 +50,7 @@ router.get('/', async (req, res, next) => {
     const clubs = await Club.findAll({
       include: [ Course, Address ]
     })
-    const response = clubs.map(({ courses, address, established, id, informal, logoUrl, membershipId, name }) => {
+    const response = clubs.map(({ courses, address, established, id, informal, logoUrl, membershipTypeId, name }) => {
       const coursesArray = courses.map(course => {
         return {
           id: course.id,
@@ -73,7 +73,7 @@ router.get('/', async (req, res, next) => {
         informal,
         name,
         logoUrl,
-        membershipId,
+        membershipTypeId,
       }
     })
     res.json(response)
@@ -89,8 +89,8 @@ router.post('/', async (req, res, next) => {
     const {
       name,
       established,
-      membership,
-      street,
+      membershipType,
+      lineOne,
       city,
       state,
       zip,
@@ -131,9 +131,9 @@ router.post('/', async (req, res, next) => {
       await build.addArchitects(architectIds)
       await build.setCourse(course)
     }
-    if (street && city && state && zip) {
+    if (lineOne && city && state && zip) {
       const address = await Address.create({
-        street,
+        lineOne,
         zip,
       })
       const createdCity = await City.findOrCreate({
@@ -145,12 +145,12 @@ router.post('/', async (req, res, next) => {
       await address.setState(state)
       await createdClub.setAddress(address)
     }
-    const membershipInstance = await Membership.findOne({
+    const membershipTypeInstance = await MembershipTypes.findOne({
       where: {
-        name: membership,
+        name: membershipType,
       }
     })
-    await createdClub.setMembership(membershipInstance)
+    await createdClub.setMembershipTypes(membershipTypeInstance)
     res.send(201)
   }
   catch (err) {
