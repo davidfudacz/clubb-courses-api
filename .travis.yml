@@ -1,27 +1,27 @@
 language: node_js
 node_js:
-- node
+  - node # uses most recent stable node version
 services:
-- postgresql
+  - postgresql # starts up postgres
 addons:
-  postgresql: '9.6'
-dist: trusty
-sudo: false
+  postgresql: '9.6' # highest available postgres version on Travis
+dist: trusty # uses trusty environment
+sudo: false # when on trusty, uses Docker containers for speed
 notifications:
   email:
-    on_success: change
-    on_failure: always
+    on_success: change # default: change (only when going from broken to fixed)
+    on_failure: always # default: always (which is annoying, as it should be)
 install:
-- npm i -g npm@5.7.1
-- npm ci
+  - npm ci # faster, goes only from package-lock
 before_script:
-- psql -c 'create database "teesheet-test";' -U postgres
+  - psql -c 'create database "boilermaker-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+
 before_deploy:
-- npm run build-client
-- rm -rf node_modules
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
 deploy:
-  skip_cleanup: true
+  skip_cleanup: true # prevents travis from deleting the build
   provider: heroku
-  app: teesheetapp
+  app: teesheetapp # see README
   api_key:
-    secure: bFr1upyg0mwFt6xPr/p8rbgv5h2/7Gynj4zbD1OhfN2mXB31IztJJXU4YrZ5jgSm2lRJsUhY+2qPFANki/PH7NY3j70B4miUKpXw/G5NjivVP4n68RPbPwH/NMfC4HKb4WPx2bfsaXqTaQBz8QTm9Bof8wPs1oFtlvbN/sVtjLV76k949tS59AYRYSp3DRGhkq7fef9+0/ZCB6zkJSJsl/WTQDfrP5+mcKZwE5r48UGONddltoURRrrfYWKbK66iqIF0Te6LYe4Q8BZB6OLrlWCohbZVWXfGWU2LIYqdNHsf5CEwIZLOT0JdTfgvDLwNeLJUFG2cb0piXSMtX6Gtsav2gd41G6lXhdPA94Asm6C/QUUGw2rt+nUibWmAjm1EL/Adu/NezcDYiFxBun09scJjxcCfRdV43ezK2mBbaqFIBnwm+8FGevZeI5xtYM1YxdNrK0MAHJArItt5Ohl9MnO8+l9AY8RpnW5w60vdp3NoPyiKPhVgNzPN9HqnCB43V0bMde5dU2Kt82/wNU+7B/eU5z+XvOF6pzK4EN4LUiX56v8DVGiV//45NFHVaOzpwM/ffdYRte2H4IgSwac/8ATJpagoYmcMQqXLdlOffbO3JxNUqKe2weIj9of/3muks1KaE6UgB9Xfn9RhckTQfiHjwjWHeQlxmt+TNEB0N4k=
+    secure: "XzhYJi1Lj2L/0LHW1QmKHbQavqnBWJX3FDzLb3Drou2FHtF1VBXbtVrbBCUHRml651JoRJ9tqF/6Cf10Ph9Od14mysKI5hTs0Z4+xQWtfGRjIZFI9BhyLGCrVNEBrRaGHafT0zgpn03Q+HJvDVqhgC252qujOxfzjhUNNxf5S/7ELhzN7S55zBqxgzhTzlkS6mYtqgjWkRPUmm5ke9mxSc9vTRzvJbAydnUAzuUVEBF4prLEnanrGF0pPQIo+IkFw0kEggRE+iS4waqCY+5LxmhByhPNDBH9VCV6jBKe3ESkLyJDTq1N8susHIqhjeqBclRLZOCLIpAR6RVStIfak19JAjVpH/qzGnd7/pvp+9j8ZFyjSDcHiFGy7+43PTpPkT3NVlXjcpR0KXaBnbTJz297Jw4Wf0Y8Eh/KVszNO22SSurqVKG0La91fj/PLJt81vwfsAjooLTkJ23Khzn9qJ7mCFqDuTZzctMnNAlhtS4B4P8NX+wv88clOoVBw/O4/PF9d5ohrg/dzA1hrvYWynM/vHiS9MWE2hr3kqbaPNInl09Lh0cc5r0FtlHJLv2+WN4Gm+6lMOekgiz0r45cjAn2iVS92twd700YSc3RBtJKG7qJMT+0P7Pzb3CrJDffsyjiKUSJQDcTmrtYIHiUyNXSG2CGVpPPge4G8n4n9lw="
