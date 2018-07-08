@@ -1,3 +1,4 @@
+/* eslint complexity: 0 */
 const router = require('express').Router()
 const {
   Club,
@@ -85,7 +86,6 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req.body)
     const {
       name,
       established,
@@ -119,7 +119,7 @@ router.post('/', async (req, res, next) => {
         await build.setCourse(course)
       })
     }
-    else {
+    if (numOfHoles) {
       const course = await Course.create({ numOfHoles })
       await course.setClub(createdClub.id)
       const build = await Build.create({
@@ -145,13 +145,16 @@ router.post('/', async (req, res, next) => {
       await address.setState(state)
       await createdClub.setAddress(address)
     }
-    const membershipTypeInstance = await MembershipTypes.findOne({
-      where: {
-        name: membershipType,
-      }
-    })
-    await createdClub.setMembershipTypes(membershipTypeInstance)
-    res.send(201)
+    if (membershipType) {
+      const membershipTypeInstance = await MembershipTypes.findOne({
+        where: {
+          name: membershipType,
+        }
+      })
+      await createdClub.setMembershipTypes(membershipTypeInstance)
+    }
+    res.status(201)
+    res.send(createdClub)
   }
   catch (err) {
     next(err)

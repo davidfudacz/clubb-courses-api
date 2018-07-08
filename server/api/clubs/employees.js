@@ -17,7 +17,8 @@ router.get('/', async (req, res, next) => {
       ]
     })
     const response = employees.map(employee => {
-      const { title, informal } = employee.employeeTitle ? employee.employeeTitle : null
+      const title = employee.employeeTitle ? employee.employeeTitle.title : null
+      const informal = employee.employeeTitle ? employee.employeeTitle.informal : null
       return {
         id: employee.id,
         givenName: employee.givenName,

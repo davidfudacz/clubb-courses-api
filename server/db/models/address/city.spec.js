@@ -55,7 +55,7 @@ describe('City model', () => {
         expect(error).to.be.an('undefined')
         // just in case we add something and forget to test it...
         // add in the created and updatedAt fields
-        expect(Object.keys(city.dataValues).length).to.be.equal(4)
+        expect(Object.keys(city.dataValues).length).to.be.equal(5)
         expect(city.name).to.be.equal('city')
       })
     }) // end describe creating an instance
