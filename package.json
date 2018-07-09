@@ -9,6 +9,7 @@
     "deploy": "script/deploy",
     "start-server": "nodemon server -e html,js,css --ignore public",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
+    "start": "node server",
     "seed": "node script/seed/index.js",
     "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./server/**/**/**/*.spec.js --exit"
   },
