@@ -2,34 +2,19 @@
 
 const { expect } = require('chai')
 const db = require('../../index')
-const { RankingListName } = require('../../models')
+const { Ranking } = require('../../models')
 
-describe('RankingListName model', () => {
+describe.only('Ranking model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
   describe('validations', () => {
     describe('do not allow null', () => {
-      it('for name', async () => {
+      it('for rank', async () => {
         let error
         try {
-          await RankingListName.create({
-            informal: 'informal',
-          })
-        }
-        catch (err) {
-          error = err
-        }
-        expect(error.name).to.be.equal('SequelizeValidationError')
-        expect(error.errors.length).to.be.equal(1)
-      })
-
-      it('for informal', async () => {
-        let error
-        try {
-          await RankingListName.create({
-            name: 'name',
+          await Ranking.create({
           })
         }
         catch (err) {
@@ -41,46 +26,45 @@ describe('RankingListName model', () => {
     }) // end describe do not allow null
 
     describe('do not allow empty', () => {
-      it('for name', async () => {
+      it('for rank', async () => {
         let error
         try {
-          await RankingListName.create({
-            name: '',
-            informal: 'informal',
+          await Ranking.create({
+            rank: '',
           })
         }
         catch (err) {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
-        expect(error.errors.length).to.be.equal(1)
-      })
-
-      it('for informal', async () => {
-        let error
-        try {
-          await RankingListName.create({
-            name: 'name',
-            informal: '',
-          })
-        }
-        catch (err) {
-          error = err
-        }
-        expect(error.name).to.be.equal('SequelizeValidationError')
-        expect(error.errors.length).to.be.equal(1)
+        expect(error.errors.length).to.be.equal(2)
       })
     }) // end describe do not allow empty
+
+    describe('is Numeric', () => {
+      it('for rank', async () => {
+        let error
+        try {
+          await Ranking.create({
+            rank: 'haha',
+          })
+        }
+        catch (err) {
+          error = err
+        }
+        expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
+      })
+    }) // end describe is Numeric
   }) // end describe validations
 
   describe('creation', () => {
     describe('creating an instance', () => {
       it('persists all columns', async () => {
-        let rankingListName, error
+        let ranking, error
         try {
-          rankingListName = await RankingListName.create({
-            name: 'rankingListName rankingListName',
-            informal: 'rankingListName',
+          ranking = await Ranking.create({
+            rank: '2',
           })
         }
         catch (err) {
@@ -89,10 +73,10 @@ describe('RankingListName model', () => {
         expect(error).to.be.an('undefined')
         // just in case we add something and forget to test it...
         // add in the created and updatedAt fields
-        expect(Object.keys(rankingListName.dataValues).length).to.be.equal(5)
-        expect(rankingListName.name).to.be.equal('rankingListName rankingListName')
-        expect(rankingListName.informal).to.be.equal('rankingListName')
+        console.log(ranking.dataValues)
+        expect(Object.keys(ranking.dataValues).length).to.be.equal(6)
+        expect(ranking.rank).to.be.equal('2')
       })
     }) // end describe creating an instance
   }) // end describe creations
-}) // end describe RankingListName model
+}) // end describe Ranking model

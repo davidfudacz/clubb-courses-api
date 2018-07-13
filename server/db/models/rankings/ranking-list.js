@@ -4,8 +4,10 @@ const db = require('../../../db')
 const RankingList = db.define('rankingList', {
   year: {
     type: Sequelize.STRING,
+    allowNull: false,
     validate: {
-      isNumeric: true
+      notEmpty: true,
+      isNumeric: true,
     }
   },
 })
