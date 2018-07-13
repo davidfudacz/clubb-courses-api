@@ -2,9 +2,9 @@
 
 const { expect } = require('chai')
 const db = require('../../index')
-const { State } = require('../../models')
+const { RankingListName } = require('../../models')
 
-describe('State model', () => {
+describe('RankingListName model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -14,8 +14,8 @@ describe('State model', () => {
       it('for name', async () => {
         let error
         try {
-          await State.create({
-            abbreviation: 'AL',
+          await RankingListName.create({
+            informal: 'informal',
           })
         }
         catch (err) {
@@ -25,11 +25,11 @@ describe('State model', () => {
         expect(error.errors.length).to.be.equal(1)
       })
 
-      it('for abbreviation', async () => {
+      it('for informal', async () => {
         let error
         try {
-          await State.create({
-            name: 'Alabama',
+          await RankingListName.create({
+            name: 'name',
           })
         }
         catch (err) {
@@ -44,9 +44,9 @@ describe('State model', () => {
       it('for name', async () => {
         let error
         try {
-          await State.create({
+          await RankingListName.create({
             name: '',
-            abbreviation: 'AL',
+            informal: 'informal',
           })
         }
         catch (err) {
@@ -56,12 +56,12 @@ describe('State model', () => {
         expect(error.errors.length).to.be.equal(1)
       })
 
-      it('for abbreviation', async () => {
+      it('for informal', async () => {
         let error
         try {
-          await State.create({
-            name: 'Alabama',
-            abbreviation: '',
+          await RankingListName.create({
+            name: 'name',
+            informal: '',
           })
         }
         catch (err) {
@@ -76,11 +76,11 @@ describe('State model', () => {
   describe('creation', () => {
     describe('creating an instance', () => {
       it('persists all columns', async () => {
-        let state, error
+        let rankingListName, error
         try {
-          state = await State.create({
-            name: 'state',
-            abbreviation: 'AL'
+          rankingListName = await RankingListName.create({
+            name: 'rankingListName rankingListName',
+            informal: 'rankingListName',
           })
         }
         catch (err) {
@@ -89,10 +89,10 @@ describe('State model', () => {
         expect(error).to.be.an('undefined')
         // just in case we add something and forget to test it...
         // add in the created and updatedAt fields
-        expect(Object.keys(state.dataValues).length).to.be.equal(6)
-        expect(state.name).to.be.equal('state')
-        expect(state.abbreviation).to.be.equal('AL')
+        expect(Object.keys(rankingListName.dataValues).length).to.be.equal(5)
+        expect(rankingListName.name).to.be.equal('rankingListName rankingListName')
+        expect(rankingListName.informal).to.be.equal('rankingListName')
       })
     }) // end describe creating an instance
   }) // end describe creations
-}) // end describe State model
+}) // end describe RankingListName model

@@ -22,6 +22,7 @@ describe('Tee model', () => {
         }
 
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe do not allow null
 
@@ -37,6 +38,7 @@ describe('Tee model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe do not allow empty
   }) // end describe validations

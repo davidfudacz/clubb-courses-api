@@ -22,6 +22,7 @@ describe('Architect model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
       it('for surname', async () => {
@@ -35,6 +36,7 @@ describe('Architect model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe do not allow null
 
@@ -51,6 +53,7 @@ describe('Architect model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
       it('for surname', async () => {
@@ -65,6 +68,7 @@ describe('Architect model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe do not allow empty
 
@@ -82,6 +86,7 @@ describe('Architect model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
       it('for deathYear', async () => {
@@ -97,6 +102,7 @@ describe('Architect model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe years are numeric
 
@@ -114,6 +120,7 @@ describe('Architect model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe url is a url
   }) // end describe validations

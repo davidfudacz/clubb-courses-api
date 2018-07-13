@@ -22,6 +22,7 @@ describe('Course model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe do not allow null
 
@@ -38,6 +39,7 @@ describe('Course model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(2)
       })
     }) // end describe do not allow empty
 
@@ -54,6 +56,7 @@ describe('Course model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe years are numeric
 

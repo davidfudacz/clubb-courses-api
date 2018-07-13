@@ -2,34 +2,19 @@
 
 const { expect } = require('chai')
 const db = require('../../index')
-const { State } = require('../../models')
+const { RankingList } = require('../../models')
 
-describe('State model', () => {
+describe('RankingList model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
   describe('validations', () => {
     describe('do not allow null', () => {
-      it('for name', async () => {
+      it('for year', async () => {
         let error
         try {
-          await State.create({
-            abbreviation: 'AL',
-          })
-        }
-        catch (err) {
-          error = err
-        }
-        expect(error.name).to.be.equal('SequelizeValidationError')
-        expect(error.errors.length).to.be.equal(1)
-      })
-
-      it('for abbreviation', async () => {
-        let error
-        try {
-          await State.create({
-            name: 'Alabama',
+          await RankingList.create({
           })
         }
         catch (err) {
@@ -41,46 +26,45 @@ describe('State model', () => {
     }) // end describe do not allow null
 
     describe('do not allow empty', () => {
-      it('for name', async () => {
+      it('for year', async () => {
         let error
         try {
-          await State.create({
-            name: '',
-            abbreviation: 'AL',
+          await RankingList.create({
+            year: '',
           })
         }
         catch (err) {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
-        expect(error.errors.length).to.be.equal(1)
-      })
-
-      it('for abbreviation', async () => {
-        let error
-        try {
-          await State.create({
-            name: 'Alabama',
-            abbreviation: '',
-          })
-        }
-        catch (err) {
-          error = err
-        }
-        expect(error.name).to.be.equal('SequelizeValidationError')
-        expect(error.errors.length).to.be.equal(1)
+        expect(error.errors.length).to.be.equal(2)
       })
     }) // end describe do not allow empty
+
+    describe('is Numeric', () => {
+      it('for year', async () => {
+        let error
+        try {
+          await RankingList.create({
+            year: 'haha',
+          })
+        }
+        catch (err) {
+          error = err
+        }
+        expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
+      })
+    }) // end describe is Numeric
   }) // end describe validations
 
   describe('creation', () => {
     describe('creating an instance', () => {
       it('persists all columns', async () => {
-        let state, error
+        let rankingList, error
         try {
-          state = await State.create({
-            name: 'state',
-            abbreviation: 'AL'
+          rankingList = await RankingList.create({
+            year: '1980',
           })
         }
         catch (err) {
@@ -89,10 +73,9 @@ describe('State model', () => {
         expect(error).to.be.an('undefined')
         // just in case we add something and forget to test it...
         // add in the created and updatedAt fields
-        expect(Object.keys(state.dataValues).length).to.be.equal(6)
-        expect(state.name).to.be.equal('state')
-        expect(state.abbreviation).to.be.equal('AL')
+        expect(Object.keys(rankingList.dataValues).length).to.be.equal(6)
+        expect(rankingList.year).to.be.equal('1980')
       })
     }) // end describe creating an instance
   }) // end describe creations
-}) // end describe State model
+}) // end describe RankingList model

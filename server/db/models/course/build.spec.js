@@ -23,6 +23,7 @@ describe('Build model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe do not allow null
 
@@ -40,6 +41,7 @@ describe('Build model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(2)
       })
     }) // end describe do not allow null
 
@@ -57,6 +59,7 @@ describe('Build model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
       it('for numOfHoles', async () => {
@@ -72,6 +75,7 @@ describe('Build model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe entries are numeric
 

@@ -23,6 +23,7 @@ describe('Country model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
       it('for abbreviation', async () => {
@@ -37,6 +38,7 @@ describe('Country model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
       it('for demonym', async () => {
@@ -51,6 +53,7 @@ describe('Country model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe do not allow null
 
@@ -68,6 +71,7 @@ describe('Country model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
       it('for abbreviation', async () => {
@@ -83,6 +87,7 @@ describe('Country model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
       it('for demonym', async () => {
@@ -98,6 +103,7 @@ describe('Country model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe do not allow empty
   }) // end describe validations
