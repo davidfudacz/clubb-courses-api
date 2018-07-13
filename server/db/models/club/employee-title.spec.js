@@ -22,6 +22,7 @@ describe('EmployeeTitle model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe do not allow null
 
@@ -37,6 +38,7 @@ describe('EmployeeTitle model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe do not allow empty
 
@@ -57,6 +59,7 @@ describe('EmployeeTitle model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeUniqueConstraintError')
+        expect(error.errors.length).to.be.equal(1)
       })
 
       it('for informal', async () => {
@@ -75,6 +78,7 @@ describe('EmployeeTitle model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeUniqueConstraintError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe entries must be unique
   }) // end describe validations

@@ -22,6 +22,7 @@ describe('Tournament model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe do not allow null
 
@@ -37,6 +38,7 @@ describe('Tournament model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe do not allow empty
 
@@ -53,6 +55,7 @@ describe('Tournament model', () => {
           error = err
         }
         expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe years are numeric
   }) // end describe validations
