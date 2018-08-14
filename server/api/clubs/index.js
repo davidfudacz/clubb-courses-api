@@ -49,7 +49,12 @@ router.param('id', async (req, res, next, id) => {
 router.get('/', async (req, res, next) => {
   try {
     const clubs = await Club.findAll({
-      include: [ Course, Address ]
+      include: [ Course,
+        {
+          model: Address,
+          include: [ City, State, Country ]
+        }
+      ]
     })
     const response = clubs.map(({ courses, address, established, id, informal, logoUrl, membershipTypeId, name }) => {
       const coursesArray = courses.map(course => {
@@ -62,7 +67,8 @@ router.get('/', async (req, res, next) => {
       })
       if (address) {
         address = {
-          stateId: address.stateId,
+          city: address.city.name,
+          state: address.state.abbreviation,
           countryId: address.countryId,
         }
       }
