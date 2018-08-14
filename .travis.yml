@@ -14,7 +14,7 @@ notifications:
 install:
   - npm ci # faster, goes only from package-lock
 before_script:
-  - psql -c 'create database "teesheet-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+  - psql -c 'create database "clubb-courses-api-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
 before_deploy:
   - npm run build-client # make the bundle
@@ -22,6 +22,6 @@ before_deploy:
 deploy:
   skip_cleanup: true # prevents travis from deleting the build
   provider: heroku
-  app: teesheetapp # see README
+  app: clubb-courses-api # see README
   api_key:
     secure: "WJfemBncn6H6rYUskIDwUdrduAb1k2H2AhzcZZNFCZMUVqJZr2u/+usjmbQGet4obsflON61Xstjs0uyEyUcJz2UrrGj0Rvys48UGDFqH8yPaV6iRfk2xcvDfPnQO/CZJdXB9O+9dVZ8eiqVHXFvTaDtJbQLahrew7q5pTqyTgupBHkuIrNQ7SbRPJmIJ0mBMLUZkM4nVX0tk0WdGew3zlyggvIfx1nw0w1MwQ2wcorEkCHDg7TJfnamct1mW/Xyv5iwoz6AA7mUwfwGV56YiZaMtWM77IxwMUVHQzsRLIP79hOomiMeo0D48zQROGVy6SMB+Cnq/kadfyHWoI0hnOlS+NOOH9X6lrPslxx8Mu4eYEoF/AubfpJUZF4dzeE+6VRvPBnJaUr0k/L3hxXlKJ+OKVnN/CPTtAIluFx/Hh9hEvooQ+u1kEfPS2PLuhypCSDPO6+vqolE3x0xOs8cpumrJ8erCcVDjYIWorWdJmXBfcT/DUVu5iDXem5bkpXn1RYhY3RxZ0dzSdJZj2uDwYo3pxiBEjTR9Tox/d6Fdej+VnrBHip0mQGvXpM2+hnGJlhRLD4P+o3qt2GHbDMxtPNKIHFBu4tFajoGUuMMetbuSpSsPnuBh43snN/PFEPvV4mJJMglFDWAFlagHYNmFzWBLQ+bSoICK46f/GGhycU="

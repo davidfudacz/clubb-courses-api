@@ -1,5 +1,5 @@
 {
-  "name": "teesheet",
+  "name": "clubb-courses-api",
   "version": "1.0.0",
   "description": "a web app for golfers and golf courses",
   "main": "index.js",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davidfudacz/teesheet.git"
+    "url": "git+https://github.com/davidfudacz/clubb-courses-api.git"
   },
   "author": "Dave Fudacz",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/davidfudacz/teesheet/issues"
+    "url": "https://github.com/davidfudacz/clubb-courses-api/issues"
   },
-  "homepage": "https://github.com/davidfudacz/teesheet#readme",
+  "homepage": "https://github.com/davidfudacz/clubb-courses-api#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
