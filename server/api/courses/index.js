@@ -45,7 +45,6 @@ router.get('/', async (req, res, next) => {
         club: clubObj,
       }
     })
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
     res.json(response)
   }
   catch (err) {

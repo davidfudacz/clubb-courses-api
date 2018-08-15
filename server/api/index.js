@@ -1,5 +1,8 @@
 const router = require('express').Router()
-
+router.get('/', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+  next()
+})
 router.use('/users', require('./users'))
 router.use('/clubs', require('./clubs'))
 router.use('/courses', require('./courses'))
