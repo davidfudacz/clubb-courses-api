@@ -15,6 +15,18 @@ router.param('id', async (req, res, next, id) => {
   }
 })
 
+router.get('/:id', async (req, res, next) => {
+  if (req.query) {
+    const club = await Club.findById(req.course.clubId, {
+      attributes: {
+        exclude: [ 'createdAt', 'updatedAt' ]
+      }
+    })
+    req.course.dataValues.club = club.dataValues
+  }
+  next()
+})
+
 router.get('/', async (req, res, next) => {
   try {
     const courses = await Course.findAll({
