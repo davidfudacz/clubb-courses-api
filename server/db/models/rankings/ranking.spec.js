@@ -73,7 +73,6 @@ describe('Ranking model', () => {
         expect(error).to.be.an('undefined')
         // just in case we add something and forget to test it...
         // add in the created and updatedAt fields
-        console.log(ranking.dataValues)
         expect(Object.keys(ranking.dataValues).length).to.be.equal(6)
         expect(ranking.rank).to.be.equal('2')
       })
