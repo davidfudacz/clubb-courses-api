@@ -52,6 +52,21 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
+  const cors = (req, res, next) => {
+    const whitelist = [
+      'http://localhost:8080',
+    ];
+    const origin = req.headers.origin;
+    if (whitelist.indexOf(origin) > -1) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+    next();
+  }
+  
+  app.use(cors);
+
   //auth and api
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))

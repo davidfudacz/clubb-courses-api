@@ -16,7 +16,19 @@ router.param('id', async (req, res, next, id) => {
 })
 
 router.get('/:id', async (req, res, next) => {
-  if (req.query) {
+  if (req.query.include && req.query.include.split(',').includes('club')) {
+    const club = await Club.findById(req.course.clubId, {
+      attributes: {
+        exclude: [ 'createdAt', 'updatedAt' ]
+      }
+    })
+    req.course.dataValues.club = club.dataValues
+  }
+  next()
+})
+
+router.get('/:id', async (req, res, next) => {
+  if (req.query.include === 'club') {
     const club = await Club.findById(req.course.clubId, {
       attributes: {
         exclude: [ 'createdAt', 'updatedAt' ]
@@ -58,7 +70,6 @@ router.get('/', async (req, res, next) => {
       }
     })
     
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
     res.json(response)
   }
   catch (err) {
@@ -83,7 +94,6 @@ router.put('/:id', async (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
   res.json(req.course)
 })
 
