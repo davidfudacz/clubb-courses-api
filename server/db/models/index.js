@@ -1,7 +1,7 @@
 
 const User = require('./user')
 const { Club, Employee, EmployeeTitle, MembershipType } = require('./club')
-const { Course, Tee, YardageInfo, Build, TeeGender, Hole } = require('./course')
+const { Course, Tee, YardageInfo, Build, TeeGender, Hole, Scorecard } = require('./course')
 const { Address, City, State, Country } = require('./address')
 const { Publisher, RankingList, RankingListName, Ranking } = require('./rankings')
 const { Player, Nationality } = require('./player')
@@ -16,6 +16,10 @@ Club.hasMany(Course)
 // courses can have multiple builds, builds belong to one course
 Course.hasMany(Build)
 Build.belongsTo(Course)
+
+// courses can have multiple scorecards, scorecards belong to one course
+Course.hasMany(Scorecard)
+Scorecard.belongsTo(Course)
 
 // architects can have multiple builds, and any one build can have multiple architects
 Build.belongsToMany(Architect, { through: ArchitectBuild })
@@ -101,6 +105,7 @@ module.exports = {
   Tee,
   TeeGender,
   Hole,
+  Scorecard,
   YardageInfo,
   Build,
   Address,

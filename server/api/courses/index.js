@@ -98,5 +98,6 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.use('/:id/builds', require('./builds'))
+router.use('/:id/scorecards', require('./scorecards'))
 
 module.exports = router

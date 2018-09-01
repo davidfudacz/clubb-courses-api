@@ -5,6 +5,7 @@ const YardageInfo = require('./yardage-info')
 const Build = require('./build')
 const Hole = require('./hole')
 const TeeGender = require('./tee-gender')
+const Scorecard = require('./scorecard')
 
 module.exports = {
   Course,
@@ -13,4 +14,5 @@ module.exports = {
   Build,
   Hole,
   TeeGender,
+  Scorecard,
 }
