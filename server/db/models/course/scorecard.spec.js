@@ -15,7 +15,7 @@ describe.only('Scorecard model', () => {
         let error
         try {
           await Scorecard.create({
-            imgUrl: '',
+            imgUrl: 'noturl',
           })
         }
         catch (err) {
@@ -42,7 +42,7 @@ describe.only('Scorecard model', () => {
           expect(error).to.be.an('undefined')
           // just in case we add something and forget to test it...
           // add in the created and updatedAt fields
-          expect(Object.keys(build.dataValues).length).to.be.equal(4)
+          expect(Object.keys(build.dataValues).length).to.be.equal(5)
           expect(build.imgUrl).to.be.equal('http://www.img.com/image')
         })
       }) // end describe creating an instance
