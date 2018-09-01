@@ -142,14 +142,16 @@ const rankings = [
 ]
 
 async function seedRankings () {
-  await publishers.forEach(async publisher => {
-    await Publisher.create(publisher)
+  const publishersProms = publishers.map(publisher => {
+    return Publisher.create(publisher)
   })
+  await Promise.all(publishersProms)
   console.log(`Seeded ${publishers.length} Publisher names`)
 
-  await rankingListNames.forEach(async rankingListName => {
-    await RankingListName.create(rankingListName)
+  const rankingListNamesProms = rankingListNames.map(rankingListName => {
+    return RankingListName.create(rankingListName)
   })
+  await Promise.all(rankingListNamesProms)
   console.log(`Seeded ${rankingListNames.length} RankingList names`)
 
   const rankingListProms = rankingLists.map(rankingList => {
