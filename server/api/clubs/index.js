@@ -189,5 +189,6 @@ router.get('/:id', (req, res, next) => {
 
 router.use('/:id/courses', require('./courses'))
 router.use('/:id/employees', require('./employees'))
+router.use('/:id/membership-type', require('./membership-type'))
 
 module.exports = router

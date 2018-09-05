@@ -7,6 +7,9 @@ const membershipTypes = [
   {
     name: 'Public'
   },
+  {
+    name: 'Resort'
+  }
 ]
 
 async function seedMembershipTypes () {

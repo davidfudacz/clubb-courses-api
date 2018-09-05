@@ -3,12 +3,8 @@ const db = require('../../../db')
 
 const MembershipType = db.define('membershipType', {
   name: {
-    type: Sequelize.STRING,
-    unique: true,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    }
+    type: Sequelize.ENUM,
+    values: ['Private', 'Public', 'Resort']
   },
 })
 

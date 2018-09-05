@@ -19,12 +19,12 @@ async function seed () {
     console.log('database synced')
 
     await seedUsers()
-    await seedClubs()
     await seedStates()
     await seedEmployeeTitles()
     await seedTees()
     await seedArchitects()
     await seedMembershipTypes()
+    await seedClubs()
     await seedCourses()
     await seedBuilds()
     await seedEmployees()

@@ -4,7 +4,7 @@ const { expect } = require('chai')
 const db = require('../../index')
 const { MembershipType } = require('../../models')
 
-describe('MembershipType model', () => {
+describe.skip('MembershipType model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
