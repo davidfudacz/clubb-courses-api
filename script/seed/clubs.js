@@ -5,6 +5,7 @@ const clubs = [
     name: 'Beverly Country Club',
     informal: 'Beverly',
     established: 1908,
+    membershipTypeId: 1,
   },
   {
     name: 'Butler National Golf Club',
