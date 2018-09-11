@@ -68,6 +68,7 @@ const createApp = () => {
   app.use(cors);
 
   //auth and api
+  app.use('/graphql', require('./graphql'))
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
