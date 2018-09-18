@@ -30,6 +30,14 @@ const Club = db.define('club', {
     validate: {
       isUrl: true,
     }
+  },
+  totalNumOfHoles: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  },
+  membershipType: {
+    type: Sequelize.ENUM,
+    values: ['Private', 'Public', 'Resort']
   }
 })
 
