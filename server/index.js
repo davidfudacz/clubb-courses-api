@@ -64,7 +64,7 @@ const createApp = () => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
     next();
   }
-  
+
   app.use(cors);
 
   //auth and api
