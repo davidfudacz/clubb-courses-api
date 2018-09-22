@@ -54,20 +54,6 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  // const cors = (req, res, next) => {
-  //   const whitelist = [
-  //     'http://localhost:8080',
-  //   ];
-  //   const origin = req.headers.origin;
-  //   if (whitelist.indexOf(origin) > -1) {
-  //     res.setHeader('Access-Control-Allow-Origin', origin);
-  //   }
-  //   res.setHeader('Access-Control-Allow-Methods', 'GET');
-  //   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-  //   next();
-  // }
-
-  // app.use(cors);
   app.use(cors())
 
   //set up graphql

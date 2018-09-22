@@ -8,6 +8,8 @@ module.exports = gql`
     fullName: String!
     email: String!
     isAdmin: Boolean!
+    createdAt: String!
+    updatedAt: String!
   }
 
   type Club {
@@ -20,6 +22,8 @@ module.exports = gql`
     totalNumOfHoles: Int!
     membershipType: String!
     courses: [Course!]!
+    createdAt: String!
+    updatedAt: String!
   }
 
   type Course {
@@ -28,6 +32,9 @@ module.exports = gql`
     informal: String
     numOfHoles: Int!
     builds: [Build!]!
+    originalBuild: String
+    createdAt: String!
+    updatedAt: String!
   }
 
   type Architect {
@@ -39,6 +46,8 @@ module.exports = gql`
     deathYear: String
     imgUrl: String
     builds: [Build!]
+    createdAt: String!
+    updatedAt: String!
   }
   
   type Build {
@@ -47,6 +56,8 @@ module.exports = gql`
     year: String!
     numOfHoles: String!
     architects: [Architect!]
+    createdAt: String!
+    updatedAt: String!
   }
 
   type Query {

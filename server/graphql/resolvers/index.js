@@ -27,7 +27,17 @@ module.exports = {
       where: {
         courseId: course.id
       }
-    })
+    }),
+    originalBuild: async course => {
+      const build = await Build.findOne({
+        where: {
+          courseId: course.id,
+          buildType: 'original',
+        }
+      })
+      const year = build.year
+      return year
+    }
   },
   Build: {
     architects: build => {
