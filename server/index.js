@@ -13,6 +13,7 @@ const { User } = require('./db/models')
 const PORT = process.env.PORT || 1908
 const socketio = require('socket.io')
 const app = express()
+const { ApolloServer } = require('apollo-server-express')
 
 module.exports = app
 
@@ -67,8 +68,18 @@ const createApp = () => {
 
   app.use(cors);
 
+  //set up graphql
+  const schema = require('./graphql/schema')
+  const resolvers = require('./graphql/resolvers')
+
+  const server = new ApolloServer({
+    typeDefs: schema,
+    resolvers,
+  });
+
+  server.applyMiddleware({ app, path: '/graphql' });
+
   //auth and api
-  app.use('/graphql', require('./graphql'))
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
