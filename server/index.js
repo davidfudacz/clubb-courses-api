@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 1908
 const socketio = require('socket.io')
 const app = express()
 const { ApolloServer } = require('apollo-server-express')
+const cors = require('cors')
 
 module.exports = app
 
@@ -53,20 +54,21 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  const cors = (req, res, next) => {
-    const whitelist = [
-      'http://localhost:8080',
-    ];
-    const origin = req.headers.origin;
-    if (whitelist.indexOf(origin) > -1) {
-      res.setHeader('Access-Control-Allow-Origin', origin);
-    }
-    res.setHeader('Access-Control-Allow-Methods', 'GET');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-    next();
-  }
+  // const cors = (req, res, next) => {
+  //   const whitelist = [
+  //     'http://localhost:8080',
+  //   ];
+  //   const origin = req.headers.origin;
+  //   if (whitelist.indexOf(origin) > -1) {
+  //     res.setHeader('Access-Control-Allow-Origin', origin);
+  //   }
+  //   res.setHeader('Access-Control-Allow-Methods', 'GET');
+  //   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  //   next();
+  // }
 
-  app.use(cors);
+  // app.use(cors);
+  app.use(cors())
 
   //set up graphql
   const schema = require('./graphql/schema')

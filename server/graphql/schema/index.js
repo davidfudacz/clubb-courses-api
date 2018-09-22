@@ -13,7 +13,7 @@ module.exports = gql`
   type Club {
     id: Int!
     name: String!
-    informal: String!
+    informal: String
     established: String!
     logoUrl: String
     websiteUrl: String
@@ -34,20 +34,27 @@ module.exports = gql`
     id: Int!
     givenName: String!
     surname: String!
+    fullname: String!
     birthYear: String
     deathYear: String
     imgUrl: String
+    builds: [Build!]
   }
   
   type Build {
     id: Int!
-    builtType: String!
+    buildType: String!
     year: String!
     numOfHoles: String!
-    architects: [Architect!]!
+    architects: [Architect!]
   }
 
   type Query {
-    message: String
+    clubs: [Club!]
+    club(id: ID!): Club
+    courses: [Course!]
+    course(id: ID!): Course
+    architects: [Architect!]
+    architect(id: ID!): Architect
   }
 `
