@@ -17,6 +17,12 @@ const User = db.define('user', {
       notEmpty: true,
     }
   },
+  fullName: {
+    type: Sequelize.VIRTUAL,
+    get() {
+      return `${this.getDataValue('givenName')} ${this.getDataValue('surname')}`
+    },
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
