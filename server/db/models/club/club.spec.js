@@ -110,7 +110,7 @@ describe('Club model', () => {
         expect(error).to.be.an('undefined')
         // just in case we add something and forget to test it...
         // add in the created and updatedAt fields
-        expect(Object.keys(club.dataValues).length).to.be.equal(10)
+        expect(Object.keys(club.dataValues).length).to.be.equal(11)
         expect(club.name).to.be.equal('club club')
         expect(club.informal).to.be.equal('club')
         expect(club.established).to.be.equal('1908')

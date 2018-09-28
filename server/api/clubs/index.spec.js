@@ -39,6 +39,7 @@ describe('Club routes', () => {
         .get('/api/clubs')
         .expect(200)
         .then(res => {
+          console.log(res.body)
           expect(res.body).to.be.an('array')
           expect(res.body.length).to.be.equal(3)
           res.body.forEach(club => expect(club.informal).to.be.a('string'))
