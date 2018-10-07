@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const { State } = require('../db/models')
+const { Subdivison } = require('../db/models')
 
 router.param('id', async (req, res, next, id) => {
   try {
-    req.state = await State.findById(id, {
+    req.subdivision = await Subdivison.findById(id, {
       attributes: {
         exclude: [ 'createdAt', 'updatedAt' ]
       }
@@ -17,12 +17,12 @@ router.param('id', async (req, res, next, id) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const states = await State.findAll({
+    const subdivisions = await Subdivison.findAll({
       attributes: {
         exclude: [ 'createdAt', 'updatedAt' ]
       }
     })
-    res.json(states)
+    res.json(subdivisions)
   }
   catch (err) {
     next(err)
@@ -30,13 +30,13 @@ router.get('/', async (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  res.json(req.state)
+  res.json(req.subdivision)
 })
 
 router.post('/', async (req, res, next) => {
   try {
-    const state = await State.create(req.body)
-    res.json(state)
+    const subdivision = await Subdivison.create(req.body)
+    res.json(subdivision)
   }
   catch (err) {
     next(err)
@@ -45,14 +45,14 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const updatedState = await State.update(req.body, {
+    const updatedSubdivison = await Subdivison.update(req.body, {
       where: {
-        id: req.state.id,
+        id: req.subdivision.id,
       },
       returning: true,
     })
-    const returningState = updatedState[1][0]
-    res.json(returningState)
+    const returningSubdivison = updatedSubdivison[1][0]
+    res.json(returningSubdivison)
   }
   catch (err) {
     next(err)

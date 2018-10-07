@@ -1,10 +1,10 @@
 /* global describe beforeEach it */
 
 const { expect } = require('chai')
-const db = require('../../index')
-const { State } = require('../../models')
+const db = require('../..')
+const { Subdivision } = require('..')
 
-describe('State model', () => {
+describe('Subdivision model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -14,7 +14,7 @@ describe('State model', () => {
       it('for name', async () => {
         let error
         try {
-          await State.create({
+          await Subdivision.create({
             abbreviation: 'AL',
           })
         }
@@ -28,7 +28,7 @@ describe('State model', () => {
       it('for abbreviation', async () => {
         let error
         try {
-          await State.create({
+          await Subdivision.create({
             name: 'Alabama',
           })
         }
@@ -44,7 +44,7 @@ describe('State model', () => {
       it('for name', async () => {
         let error
         try {
-          await State.create({
+          await Subdivision.create({
             name: '',
             abbreviation: 'AL',
           })
@@ -59,7 +59,7 @@ describe('State model', () => {
       it('for abbreviation', async () => {
         let error
         try {
-          await State.create({
+          await Subdivision.create({
             name: 'Alabama',
             abbreviation: '',
           })
@@ -76,10 +76,10 @@ describe('State model', () => {
   describe('creation', () => {
     describe('creating an instance', () => {
       it('persists all columns', async () => {
-        let state, error
+        let subdivision, error
         try {
-          state = await State.create({
-            name: 'state',
+          subdivision = await Subdivision.create({
+            name: 'subdivision',
             abbreviation: 'AL'
           })
         }
@@ -89,10 +89,10 @@ describe('State model', () => {
         expect(error).to.be.an('undefined')
         // just in case we add something and forget to test it...
         // add in the created and updatedAt fields
-        expect(Object.keys(state.dataValues).length).to.be.equal(6)
-        expect(state.name).to.be.equal('state')
-        expect(state.abbreviation).to.be.equal('AL')
+        expect(Object.keys(subdivision.dataValues).length).to.be.equal(6)
+        expect(subdivision.name).to.be.equal('subdivision')
+        expect(subdivision.abbreviation).to.be.equal('AL')
       })
     }) // end describe creating an instance
   }) // end describe creations
-}) // end describe State model
+}) // end describe Subdivision model

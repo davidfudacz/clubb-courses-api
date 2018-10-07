@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
-const db = require('../../../db')
+const db = require('../..')
 
-const State = db.define('state', {
+const Subdivision = db.define('subdivision', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -18,4 +18,4 @@ const State = db.define('state', {
   }
 })
 
-module.exports = State
+module.exports = Subdivision

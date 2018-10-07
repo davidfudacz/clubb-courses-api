@@ -1,10 +1,10 @@
 /* global describe beforeEach it */
 
 const { expect } = require('chai')
-const db = require('../../index')
-const { YardageInfo } = require('../../models')
+const db = require('../..')
+const { TeeYardage } = require('..')
 
-describe('YardageInfo model', () => {
+describe('TeeYardage model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -14,7 +14,7 @@ describe('YardageInfo model', () => {
       it('for totalYardage', async () => {
         let error
         try {
-          await YardageInfo.create({
+          await TeeYardage.create({
             totalPar: 72,
             totalRating: 75.1,
             totalSlope: 145,
@@ -30,7 +30,7 @@ describe('YardageInfo model', () => {
       it('for totalPar', async () => {
         let error
         try {
-          await YardageInfo.create({
+          await TeeYardage.create({
             totalYardage: 7550,
             totalRating: 75.1,
             totalSlope: 145,
@@ -46,7 +46,7 @@ describe('YardageInfo model', () => {
       it('for totalRating', async () => {
         let error
         try {
-          await YardageInfo.create({
+          await TeeYardage.create({
             totalYardage: 7550,
             totalPar: 72,
             totalSlope: 145,
@@ -62,7 +62,7 @@ describe('YardageInfo model', () => {
       it('for totalSlope', async () => {
         let error
         try {
-          await YardageInfo.create({
+          await TeeYardage.create({
             totalYardage: 7550,
             totalRating: 75.1,
             totalPar: 72,
@@ -80,7 +80,7 @@ describe('YardageInfo model', () => {
       it('for totalYardage', async () => {
         let error
         try {
-          await YardageInfo.create({
+          await TeeYardage.create({
             totalYardage: '',
             totalPar: 72,
             totalRating: 75.1,
@@ -97,7 +97,7 @@ describe('YardageInfo model', () => {
       it('for totalPar', async () => {
         let error
         try {
-          await YardageInfo.create({
+          await TeeYardage.create({
             totalYardage: 7550,
             totalPar: '',
             totalRating: 75.1,
@@ -114,7 +114,7 @@ describe('YardageInfo model', () => {
       it('for totalRating', async () => {
         let error
         try {
-          await YardageInfo.create({
+          await TeeYardage.create({
             totalYardage: 7550,
             totalPar: 72,
             totalRating: '',
@@ -131,7 +131,7 @@ describe('YardageInfo model', () => {
       it('for totalSlope', async () => {
         let error
         try {
-          await YardageInfo.create({
+          await TeeYardage.create({
             totalYardage: 7550,
             totalPar: 72,
             totalRating: 75.1,
@@ -150,7 +150,7 @@ describe('YardageInfo model', () => {
       it('for totalYardage', async () => {
         let error
         try {
-          await YardageInfo.create({
+          await TeeYardage.create({
             totalYardage: 'haha',
             totalPar: 72,
             totalRating: 75.1,
@@ -167,7 +167,7 @@ describe('YardageInfo model', () => {
       it('for totalPar', async () => {
         let error
         try {
-          await YardageInfo.create({
+          await TeeYardage.create({
             totalYardage: 7550,
             totalPar: 'haha',
             totalRating: 75.1,
@@ -184,7 +184,7 @@ describe('YardageInfo model', () => {
       it('for totalRating', async () => {
         let error
         try {
-          await YardageInfo.create({
+          await TeeYardage.create({
             totalYardage: 7550,
             totalPar: 72,
             totalRating: 'haha',
@@ -201,7 +201,7 @@ describe('YardageInfo model', () => {
       it('for totalSlope', async () => {
         let error
         try {
-          await YardageInfo.create({
+          await TeeYardage.create({
             totalYardage: 7550,
             totalPar: 72,
             totalRating: 75.1,
@@ -222,7 +222,7 @@ describe('YardageInfo model', () => {
       it('multiplies by 10', async () => {
         let yardage, error
         try {
-          yardage = await YardageInfo.create({
+          yardage = await TeeYardage.create({
             totalYardage: 7550,
             totalPar: 72,
             totalRating: 75.1,
@@ -241,7 +241,7 @@ describe('YardageInfo model', () => {
       it('divides by 10', async () => {
         let yardage, error
         try {
-          yardage = await YardageInfo.create({
+          yardage = await TeeYardage.create({
             totalYardage: 7550,
             totalPar: 72,
             totalRating: 75.1,
@@ -263,7 +263,7 @@ describe('YardageInfo model', () => {
         it('persists all columns', async () => {
           let yardage, error
           try {
-            yardage = await YardageInfo.create({
+            yardage = await TeeYardage.create({
               frontYardage: 3597,
               backYardage: 3419,
               totalYardage: 7016,

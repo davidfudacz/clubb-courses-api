@@ -1,5 +1,5 @@
 import React from 'react'
-import YardageInfoWrapper from './yardage-info-wrapper'
+import TeeYardageWrapper from './tee-yardage-wrapper'
 import BuildWrapper from './build-wrapper'
 import { SubHeader, Link } from '../ui-elements';
 import { _parseCourseNameForDisplay, _parseClubNameForDisplay, _parseClubUrl } from '../../utilities';
@@ -29,7 +29,7 @@ const CourseList = (props) => {
                   : null
               }
               <BuildWrapper builds={course.builds} />
-              <YardageInfoWrapper yardageInfos={course.yardageInfos} />
+              <TeeYardageWrapper teeYardages={course.teeYardages} />
             </div>
           )
         })

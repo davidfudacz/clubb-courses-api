@@ -9,6 +9,12 @@ const Country = db.define('country', {
       notEmpty: true,
     }
   },
+  informal: {
+    type: Sequelize.STRING,
+    validate: {
+      notEmpty: true,
+    }
+  },
   abbreviation: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -21,6 +27,19 @@ const Country = db.define('country', {
     allowNull: false,
     validate: {
       notEmpty: true,
+    }
+  },
+  demonymPlural: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    }
+  },
+  flagImgUrl: {
+    type: Sequelize.STRING,
+    validate: {
+      isUrl: true,
     }
   }
 })

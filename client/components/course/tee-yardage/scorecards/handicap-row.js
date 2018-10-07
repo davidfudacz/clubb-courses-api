@@ -5,9 +5,9 @@ import { _sortHolesByNumber } from '../../../../utilities'
 const ParRow = (props) => {
   const {
     holes,
-  } = props.yardageInfo
+  } = props.teeYardage
   const sortedHoles = _sortHolesByNumber(holes)
-  const teeGender = props.yardageInfo.teeGender.informal
+  const teeGender = props.teeYardage.teeGender.informal
   const genderAccessor = teeGender.replace(`'`, ``).toLowerCase() + 'Handicap'
   return (
     <tr>

@@ -3,7 +3,7 @@ import Row from './row'
 import { tableStyle, thStyle } from '../../../../styles'
 
 const RatingsAndSlopesTable = (props) => {
-  const { yardageInfos } = props
+  const { teeYardages } = props
   return (
     <div>
       <h3>Front/Back Ratings and Slopes</h3>
@@ -30,9 +30,9 @@ const RatingsAndSlopesTable = (props) => {
           <th style={thStyle}>Gender</th>
         </tr>
         {
-          yardageInfos.map(yardageInfo => {
+          teeYardages.map(teeYardage => {
             return (
-              <Row key={yardageInfo.id} yardageInfo={yardageInfo} />
+              <Row key={teeYardage.id} teeYardage={teeYardage} />
             )
           })
         }

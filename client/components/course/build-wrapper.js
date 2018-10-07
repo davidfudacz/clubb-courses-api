@@ -1,7 +1,7 @@
 import React from 'react'
 import Build from './build'
 
-const YardageInfoWrapper = (props) => {
+const TeeYardageWrapper = (props) => {
   const { builds } = props
   if (builds.length) {
     return (
@@ -19,4 +19,4 @@ const YardageInfoWrapper = (props) => {
   }
 }
 
-export default YardageInfoWrapper
+export default TeeYardageWrapper

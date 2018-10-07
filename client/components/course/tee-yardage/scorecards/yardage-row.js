@@ -8,8 +8,8 @@ const YardageRow = (props) => {
     backYardage,
     totalYardage,
     holes,
-  } = props.yardageInfo
-  const { name: teeName } = props.yardageInfo.tee
+  } = props.teeYardage
+  const { name: teeName } = props.teeYardage.tee
   const sortedHoles = _sortHolesByNumber(holes)
   return (
     <tr>

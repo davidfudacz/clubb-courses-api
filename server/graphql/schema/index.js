@@ -32,6 +32,8 @@ module.exports = gql`
     informal: String
     numOfHoles: Int!
     builds: [Build!]!
+    clubId: Int!
+    club: Club!
     originalBuild: String
     createdAt: String!
     updatedAt: String!
@@ -45,7 +47,7 @@ module.exports = gql`
     birthYear: String
     deathYear: String
     imgUrl: String
-    builds: [Build!]
+    builds: [Build!]!
     createdAt: String!
     updatedAt: String!
   }
@@ -56,6 +58,8 @@ module.exports = gql`
     year: String!
     numOfHoles: String!
     architects: [Architect!]
+    courseId: Int!
+    course: Course!
     createdAt: String!
     updatedAt: String!
   }

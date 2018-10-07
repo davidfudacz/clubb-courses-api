@@ -16,7 +16,9 @@ describe('Country model', () => {
         try {
           await Country.create({
             abbreviation: 'USA',
+            informal: 'United States',
             demonym: 'American',
+            demonymPlural: 'Americans',
           })
         }
         catch (err) {
@@ -30,8 +32,10 @@ describe('Country model', () => {
         let error
         try {
           await Country.create({
+            informal: 'United States',
             name: 'Unites States of America',
             demonym: 'American',
+            demonymPlural: 'Americans',
           })
         }
         catch (err) {
@@ -46,7 +50,26 @@ describe('Country model', () => {
         try {
           await Country.create({
             name: 'Unites States of America',
+            informal: 'United States',
             abbreviation: 'USA',
+            demonymPlural: 'Americans',
+          })
+        }
+        catch (err) {
+          error = err
+        }
+        expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
+      })
+
+      it('for demonymPlural', async () => {
+        let error
+        try {
+          await Country.create({
+            name: 'Unites States of America',
+            informal: 'United States',
+            abbreviation: 'USA',
+            demonym: 'American',
           })
         }
         catch (err) {
@@ -64,7 +87,9 @@ describe('Country model', () => {
           await Country.create({
             name: '',
             abbreviation: 'USA',
+            informal: 'United States',
             demonym: 'American',
+            demonymPlural: 'Americans',
           })
         }
         catch (err) {
@@ -79,8 +104,28 @@ describe('Country model', () => {
         try {
           await Country.create({
             name: 'United States of America',
+            informal: 'United States',
             abbreviation: '',
             demonym: 'American',
+            demonymPlural: 'Americans',
+          })
+        }
+        catch (err) {
+          error = err
+        }
+        expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
+      })
+
+      it('for informal', async () => {
+        let error
+        try {
+          await Country.create({
+            name: 'United States of America',
+            informal: '',
+            abbreviation: 'USA',
+            demonym: 'American',
+            demonymPlural: 'Americans',
           })
         }
         catch (err) {
@@ -95,8 +140,28 @@ describe('Country model', () => {
         try {
           await Country.create({
             name: 'United States of America',
+            informal: 'United States',
             abbreviation: 'USA',
             demonym: '',
+            demonymPlural: 'Americans',
+          })
+        }
+        catch (err) {
+          error = err
+        }
+        expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
+      })
+
+      it('for demonymPlural', async () => {
+        let error
+        try {
+          await Country.create({
+            name: 'United States of America',
+            informal: 'United States',
+            abbreviation: 'USA',
+            demonym: 'American',
+            demonymPlural: '',
           })
         }
         catch (err) {
@@ -106,6 +171,27 @@ describe('Country model', () => {
         expect(error.errors.length).to.be.equal(1)
       })
     }) // end describe do not allow empty
+
+    describe('url is a url', () => {
+      it('for flagImgUrl', async () => {
+        let error
+        try {
+          await Country.create({
+            name: 'United States of America',
+            informal: 'United States',
+            abbreviation: 'USA',
+            demonym: 'American',
+            demonymPlural: 'Americans',
+            flagImgUrl: 'notaurl',
+          })
+        }
+        catch (err) {
+          error = err
+        }
+        expect(error.name).to.be.equal('SequelizeValidationError')
+        expect(error.errors.length).to.be.equal(1)
+      })
+    }) // end describe url is a url
   }) // end describe validations
 
   describe('creation', () => {
@@ -116,7 +202,10 @@ describe('Country model', () => {
           country = await Country.create({
             name: 'country',
             abbreviation: 'USA',
+            informal: 'United States',
             demonym: 'American',
+            demonymPlural: 'Americans',
+            flagImgUrl: 'http://www.img.com/flag'
           })
         }
         catch (err) {
@@ -125,9 +214,13 @@ describe('Country model', () => {
         expect(error).to.be.an('undefined')
         // just in case we add something and forget to test it...
         // add in the created and updatedAt fields
-        expect(Object.keys(country.dataValues).length).to.be.equal(6)
+        expect(Object.keys(country.dataValues).length).to.be.equal(9)
         expect(country.name).to.be.equal('country')
+        expect(country.informal).to.be.equal('United States')
+        expect(country.demonym).to.be.equal('American')
+        expect(country.demonymPlural).to.be.equal('Americans')
         expect(country.abbreviation).to.be.equal('USA')
+        expect(country.flagImgUrl).to.be.equal('http://www.img.com/flag')
       })
     }) // end describe creating an instance
   }) // end describe creations

@@ -15,9 +15,9 @@ const Row = (props) => {
     totalRating,
     totalSlope,
     totalYardage,
-  } = props.yardageInfo
-  const { name: teeName } = props.yardageInfo.tee
-  const { abbreviation: teeGender } = props.yardageInfo.teeGender
+  } = props.teeYardage
+  const { name: teeName } = props.teeYardage.tee
+  const { abbreviation: teeGender } = props.teeYardage.teeGender
   return (
     <tr>
       <td style={tdStyle}>{teeName}</td>

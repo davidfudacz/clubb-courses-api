@@ -1,8 +1,8 @@
 
 const User = require('./user')
-const { Club, Employee, EmployeeTitle } = require('./club')
-const { Course, Tee, YardageInfo, Build, TeeGender, Hole, Scorecard } = require('./course')
-const { Address, City, State, Country } = require('./address')
+const { Club, Employee, EmployeeTitle, Location } = require('./club')
+const { Course, Tee, TeeYardage, Build, TeeGender, Hole, Scorecard } = require('./course')
+const { Address, City, Subdivision, Country } = require('./address')
 const { Publisher, RankingList, RankingListName, Ranking } = require('./rankings')
 const { Player, Nationality } = require('./player')
 const { Tournament, Event, FormerName } = require('./tournament')
@@ -44,17 +44,17 @@ Course.hasMany(Event)
 Event.belongsTo(Course)
 
 // courses can have multiple yardage setups
-Course.hasMany(YardageInfo)
-YardageInfo.belongsTo(Course)
+Course.hasMany(TeeYardage)
+TeeYardage.belongsTo(Course)
 
-YardageInfo.hasMany(Hole)
-Hole.belongsTo(YardageInfo)
+TeeYardage.hasMany(Hole)
+Hole.belongsTo(TeeYardage)
 
-Tee.hasMany(YardageInfo)
-YardageInfo.belongsTo(Tee)
+Tee.hasMany(TeeYardage)
+TeeYardage.belongsTo(Tee)
 
-TeeGender.hasMany(YardageInfo)
-YardageInfo.belongsTo(TeeGender)
+TeeGender.hasMany(TeeYardage)
+TeeYardage.belongsTo(TeeGender)
 
 Tournament.hasMany(Event)
 Event.belongsTo(Tournament)
@@ -65,12 +65,15 @@ FormerName.belongsTo(Tournament)
 Employee.belongsTo(EmployeeTitle)
 
 Address.belongsTo(City)
-Address.belongsTo(State)
+Address.belongsTo(Subdivision)
 Address.belongsTo(Country)
-State.belongsTo(Country)
-City.belongsTo(State)
+Subdivision.belongsTo(Country)
+City.belongsTo(Subdivision)
 
-Club.belongsTo(Address)
+Club.belongsTo(Location)
+Location.belongsTo(City)
+Location.belongsTo(Subdivision)
+Location.belongsTo(Country)
 
 Player.belongsTo(City, { as: 'hometown' })
 Player.belongsTo(Nationality)
@@ -102,11 +105,11 @@ module.exports = {
   TeeGender,
   Hole,
   Scorecard,
-  YardageInfo,
+  TeeYardage,
   Build,
   Address,
   City,
-  State,
+  Subdivision,
   Country,
   Architect,
   ArchitectBuild,
