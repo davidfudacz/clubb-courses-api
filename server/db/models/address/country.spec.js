@@ -4,7 +4,7 @@ const { expect } = require('chai')
 const db = require('../../index')
 const { Country } = require('../../models')
 
-describe.only('Country model', () => {
+describe('Country model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })

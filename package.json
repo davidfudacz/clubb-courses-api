@@ -11,7 +11,7 @@
     "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
     "start": "node server",
     "seed": "node script/seed/index.js",
-    "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./server/**/**/**/*.spec.js --exit"
+    "test": "NODE_ENV='test' mocha ./server/db/*.spec.js ./server/db/**/*.spec.js ./server/db/**/**/*.spec.js --exit"
   },
   "repository": {
     "type": "git",
