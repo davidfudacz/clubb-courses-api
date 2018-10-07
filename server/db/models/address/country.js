@@ -35,6 +35,13 @@ const Country = db.define('country', {
     validate: {
       notEmpty: true,
     }
+  },
+  flagImgUrl: {
+    type: Sequelize.STRING,
+    validate: {
+      isUrl: true,
+      notEmpty: true,
+    }
   }
 })
 
