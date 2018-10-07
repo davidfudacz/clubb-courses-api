@@ -40,7 +40,6 @@ const Country = db.define('country', {
     type: Sequelize.STRING,
     validate: {
       isUrl: true,
-      notEmpty: true,
     }
   }
 })
