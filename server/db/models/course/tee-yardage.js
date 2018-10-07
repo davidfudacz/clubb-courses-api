@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
-const db = require('../../../db')
+const db = require('../..')
 
-const YardageInfo = db.define('yardageInfo', {
+const TeeYardage = db.define('teeYardage', {
   frontYardage: {
     type: Sequelize.STRING,
     validate: {
@@ -113,4 +113,4 @@ const YardageInfo = db.define('yardageInfo', {
   },
 })
 
-module.exports = YardageInfo
+module.exports = TeeYardage

@@ -5,12 +5,12 @@ const {
   MembershipTypes,
   Address,
   City,
-  State,
+  Subdivision,
   Country,
   Build,
   Architect,
   Course,
-  YardageInfo,
+  TeeYardage,
   Tee,
   TeeGender,
   Hole,
@@ -22,7 +22,7 @@ router.param('id', async (req, res, next, id) => {
       include: [
         {
           model: Address,
-          include: [ City, State, Country ]
+          include: [ City, Subdivision, Country ]
         },
         {
           model: Course,
@@ -32,7 +32,7 @@ router.param('id', async (req, res, next, id) => {
               include: [ Architect ]
             },
             {
-              model: YardageInfo,
+              model: TeeYardage,
               include: [ Tee, Hole, TeeGender ]
             }
           ]
@@ -52,7 +52,7 @@ router.get('/', async (req, res, next) => {
       include: [ Course,
         {
           model: Address,
-          include: [ City, State, Country ]
+          include: [ City, Subdivision, Country ]
         }
       ]
     })
@@ -68,7 +68,7 @@ router.get('/', async (req, res, next) => {
       if (address) {
         address = {
           city: address.city.name,
-          state: address.state.abbreviation,
+          subdivision: address.subdivision.abbreviation,
           countryId: address.countryId,
         }
       }
@@ -98,7 +98,7 @@ router.post('/', async (req, res, next) => {
       membershipType,
       lineOne,
       city,
-      state,
+      subdivision,
       zip,
       country,
       yearCourseBuilt,
@@ -137,7 +137,7 @@ router.post('/', async (req, res, next) => {
       await build.addArchitects(architectIds)
       await build.setCourse(course)
     }
-    if (lineOne && city && state && zip) {
+    if (lineOne && city && subdivision && zip) {
       const address = await Address.create({
         lineOne,
         zip,
@@ -148,7 +148,7 @@ router.post('/', async (req, res, next) => {
         }
       })
       await address.setCity(createdCity[0])
-      await address.setState(state)
+      await address.setSubdivision(subdivision)
       await createdClub.setAddress(address)
     }
     if (membershipType) {

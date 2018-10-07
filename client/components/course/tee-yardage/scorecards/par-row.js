@@ -8,9 +8,9 @@ const ParRow = (props) => {
     backPar,
     totalPar,
     holes,
-  } = props.yardageInfo
+  } = props.teeYardage
   const sortedHoles = _sortHolesByNumber(holes)
-  const teeGender = props.yardageInfo.teeGender.informal
+  const teeGender = props.teeYardage.teeGender.informal
   return (
     <tr>
       <th style={thStyle}>{`${teeGender} Par`}</th>

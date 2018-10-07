@@ -37,7 +37,8 @@ module.exports = {
       })
       const year = build.year
       return year
-    }
+    },
+    club: course => Club.findById(course.clubId)
   },
   Build: {
     architects: build => {
@@ -50,9 +51,21 @@ module.exports = {
         return Architect.findById(architectBuild.architectId)
       })
       return architects
-    }
+    },
+    course: build => Course.findById(build.courseId)
   },
   Architect: {
-    fullname: architect => `${architect.givenName} ${architect.surname}`
+    fullname: architect => `${architect.givenName} ${architect.surname}`,
+    builds: architect => {
+      const architectBuilds = ArchitectBuild.findAll({
+        where: {
+          architectId: architect.id
+        }
+      })
+      const builds = architectBuilds.map(architectBuild => {
+        return Build.findById(architectBuild.buildId)
+      })
+      return builds
+    }
   }
 }

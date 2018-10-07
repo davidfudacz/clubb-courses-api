@@ -1,12 +1,12 @@
 
 const Address = require('./address')
 const City = require('./city')
-const State = require('./state')
+const Subdivision = require('./subdivision')
 const Country = require('./country')
 
 module.exports = {
   Address,
   City,
-  State,
+  Subdivision,
   Country,
 }
