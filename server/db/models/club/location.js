@@ -15,7 +15,7 @@ const Location = db.define('location', {
       notEmpty: true,
     },
   },
-  googlePlaceId: {
+  googlePlacesId: {
     type: Sequelize.INTEGER,
   }
 })

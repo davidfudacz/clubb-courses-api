@@ -111,6 +111,7 @@ module.exports = {
   City,
   Subdivision,
   Country,
+  Location,
   Architect,
   ArchitectBuild,
   Tournament,
