@@ -43,8 +43,7 @@ module.exports = {
           buildType: 'original',
         }
       })
-      const year = build.year
-      return year
+      return build.year
     },
     club: course => Club.findById(course.clubId)
   },
@@ -78,16 +77,14 @@ module.exports = {
   },
   RankingList: {
     publisher: rankingList => Publisher.findById(rankingList.publisherId),
-    rankings: rankingList => {
-      return Ranking.findAll({
-        where: {
-          rankingListId: rankingList.id
-        },
-        order: [
-          ['rank', 'ASC']
-        ]
-      })
-    },
+    rankings: rankingList => Ranking.findAll({
+      where: {
+        rankingListId: rankingList.id
+      },
+      order: [
+        ['rank', 'ASC']
+      ]
+    }),
     rankingListName: rankingList => RankingListName.findById(rankingList.rankingListNameId)
   },
   Ranking: {
