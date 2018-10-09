@@ -64,6 +64,44 @@ module.exports = gql`
     updatedAt: String!
   }
 
+  type Ranking {
+    id: Int!
+    rank: String!
+    rankingListId: Int!
+    courseId: Int!
+    course: Course!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type RankingList {
+    id: Int!
+    year: String!
+    publisherId: Int!
+    publisher: Publisher!
+    rankingListNameId: Int!
+    rankingListName: RankingListName!
+    rankings: [Ranking!]!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type RankingListName {
+    id: Int!
+    name: String!
+    informal: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type Publisher {
+    id: Int!
+    name: String!
+    informal: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
   type Query {
     clubs: [Club!]
     club(id: ID!): Club
@@ -71,5 +109,9 @@ module.exports = gql`
     course(id: ID!): Course
     architects: [Architect!]
     architect(id: ID!): Architect
+    publishers: [Publisher!]
+    publisher(id: ID!): Publisher
+    rankingLists: [RankingList!]
+    rankingList(id: ID!): RankingList
   }
 `

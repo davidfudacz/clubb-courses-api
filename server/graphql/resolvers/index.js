@@ -4,6 +4,10 @@ const {
   Architect,
   Build,
   ArchitectBuild,
+  Publisher,
+  RankingList,
+  RankingListName,
+  Ranking,
 } = require('../../db/models')
 
 module.exports = {
@@ -14,6 +18,10 @@ module.exports = {
     course: (parent, { id }) => Course.findById(id),
     architects: () => Architect.findAll(),
     architect: (parent, { id }) => Architect.findById(id),
+    publishers: () => Publisher.findAll(),
+    publisher: (parent, { id }) => Publisher.findById(id),
+    rankingLists: () => RankingList.findAll({ order: [['year', 'DESC']]}),
+    rankingList: (parent, { id }) => RankingList.findById(id),
   },
   Club: {
     courses: club => Course.findAll({
@@ -67,5 +75,22 @@ module.exports = {
       })
       return builds
     }
+  },
+  RankingList: {
+    publisher: rankingList => Publisher.findById(rankingList.publisherId),
+    rankings: rankingList => {
+      return Ranking.findAll({
+        where: {
+          rankingListId: rankingList.id
+        },
+        order: [
+          ['rank', 'ASC']
+        ]
+      })
+    },
+    rankingListName: rankingList => RankingListName.findById(rankingList.rankingListNameId)
+  },
+  Ranking: {
+    course: ranking => Course.findById(ranking.courseId)
   }
 }
