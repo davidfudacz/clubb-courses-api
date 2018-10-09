@@ -8,6 +8,10 @@ const {
   RankingList,
   RankingListName,
   Ranking,
+  Location,
+  City,
+  Subdivision,
+  Country,
 } = require('../../db/models')
 
 module.exports = {
@@ -22,13 +26,18 @@ module.exports = {
     publisher: (parent, { id }) => Publisher.findById(id),
     rankingLists: () => RankingList.findAll({ order: [['year', 'DESC']]}),
     rankingList: (parent, { id }) => RankingList.findById(id),
+    location: (parent, { id }) => Location.findById(id),
+    city: (parent, { id }) => City.findById(id),
+    subdivisions: () => Subdivision.findAll(),
+    countries: () => Country.findAll(),
   },
   Club: {
     courses: club => Course.findAll({
       where: {
         clubId: club.id
       }
-    })
+    }),
+    location: club => Location.findById(club.locationId)
   },
   Course: {
     builds: course => Build.findAll({
@@ -89,5 +98,27 @@ module.exports = {
   },
   Ranking: {
     course: ranking => Course.findById(ranking.courseId)
-  }
+  },
+  Location: {
+    city: location => City.findById(location.cityId),
+    subdivision: location => Subdivision.findById(location.subdivisionId),
+    country: location => Country.findById(location.countryId),
+  },
+  City: {
+    subdivision: city => Subdivision.findById(city.subdivisionId),
+  },
+  Subdivision: {
+    cities: subdivision => City.findAll({
+      where: {
+        subdivisionId: subdivision.id
+      }
+    })
+  },
+  Country: {
+    subdivisions: country => Subdivision.findAll({
+      where: {
+        countryId: country.id
+      }
+    })
+  },
 }

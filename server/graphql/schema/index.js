@@ -12,6 +12,54 @@ module.exports = gql`
     updatedAt: String!
   }
 
+  type Location {
+    id: Int!
+    lat: String!
+    lng: String!
+    googlePlacesId: Int!
+    cityId: Int!
+    city: City
+    subdivisionId: Int!
+    subdivision: Subdivision
+    countryId: Int!
+    country: Country
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type City {
+    id: Int!
+    name: String!
+    subdivisionId: Int!
+    subdivision: Subdivision
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type Subdivision {
+    id: Int!
+    name: String!
+    abbreviation: String!
+    countryId: Int!
+    country: Country
+    cities: [City!]
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type Country {
+    id: Int!
+    name: String!
+    informal: String!
+    abbreviation: String!
+    demonym: String!
+    demonymPlural: String!
+    flagImgUrl: String!
+    subdivisions: [Subdivision!]
+    createdAt: String!
+    updatedAt: String!
+  }
+
   type Club {
     id: Int!
     name: String!
@@ -21,6 +69,8 @@ module.exports = gql`
     websiteUrl: String
     totalNumOfHoles: Int!
     membershipType: String!
+    locationId: Int!
+    location: Location
     courses: [Course!]!
     createdAt: String!
     updatedAt: String!
@@ -113,5 +163,9 @@ module.exports = gql`
     publisher(id: ID!): Publisher
     rankingLists: [RankingList!]
     rankingList(id: ID!): RankingList
+    location(id: ID!): Location
+    city(id: ID!): City
+    subdivisions: [Subdivision!]
+    countries: [Country!]
   }
 `
