@@ -14,14 +14,14 @@ module.exports = gql`
 
   type Location {
     id: Int!
-    lat: String!
-    lng: String!
-    googlePlacesId: Int!
-    cityId: Int!
+    lat: String
+    lng: String
+    googlePlacesId: Int
+    cityId: Int
     city: City
-    subdivisionId: Int!
+    subdivisionId: Int
     subdivision: Subdivision
-    countryId: Int!
+    countryId: Int
     country: Country
     createdAt: String!
     updatedAt: String!
@@ -31,7 +31,7 @@ module.exports = gql`
     id: Int!
     name: String!
     subdivisionId: Int!
-    subdivision: Subdivision
+    subdivision: Subdivision!
     createdAt: String!
     updatedAt: String!
   }
@@ -41,8 +41,8 @@ module.exports = gql`
     name: String!
     abbreviation: String!
     countryId: Int!
-    country: Country
-    cities: [City!]
+    country: Country!
+    cities: [City!]!
     createdAt: String!
     updatedAt: String!
   }
@@ -50,12 +50,12 @@ module.exports = gql`
   type Country {
     id: Int!
     name: String!
-    informal: String!
+    informal: String
     abbreviation: String!
     demonym: String!
     demonymPlural: String!
-    flagImgUrl: String!
-    subdivisions: [Subdivision!]
+    flagImgUrl: String
+    subdivisions: [Subdivision!]!
     createdAt: String!
     updatedAt: String!
   }
@@ -71,6 +71,8 @@ module.exports = gql`
     membershipType: String!
     locationId: Int!
     location: Location
+    parsedLocation: String
+    parsedLocationAbbreviated: String
     courses: [Course!]!
     createdAt: String!
     updatedAt: String!
@@ -84,7 +86,11 @@ module.exports = gql`
     builds: [Build!]!
     clubId: Int!
     club: Club!
-    originalBuild: String
+    originalBuild: Build
+    parsedName: String!
+    parsedNameInformal: String!
+    parsedLocation: String
+    parsedLocationAbbreviated: String
     createdAt: String!
     updatedAt: String!
   }
@@ -139,7 +145,7 @@ module.exports = gql`
   type RankingListName {
     id: Int!
     name: String!
-    informal: String!
+    informal: String
     createdAt: String!
     updatedAt: String!
   }
@@ -147,7 +153,7 @@ module.exports = gql`
   type Publisher {
     id: Int!
     name: String!
-    informal: String!
+    informal: String
     createdAt: String!
     updatedAt: String!
   }

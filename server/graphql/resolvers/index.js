@@ -1,3 +1,4 @@
+/* eslint complexity: 0 */
 const {
   Club,
   Course,
@@ -13,6 +14,20 @@ const {
   Subdivision,
   Country,
 } = require('../../db/models')
+
+const locationParser = async (location, isAbbreviated) => {
+  const city = await City.findById(location.cityId)
+  const subdivision = await Subdivision.findById(location.subdivisionId)
+  const country = await Country.findById(location.countryId)
+  if (isAbbreviated) {
+    const parsedCountry = country && country.abbreviation ? ` (${country.abbreviation})` : ''
+    const parsedSubdivision = subdivision && subdivision.abbreviation ? `, ${subdivision.abbreviation}` : ''
+    return city.name + parsedSubdivision + parsedCountry
+  }
+  const parsedSubdivision = subdivision && subdivision.name ? `, ${subdivision.name}` : ''
+  const parsedCountry = country && country.informal ? ` (${country.informal})` : ''
+  return city.name + parsedSubdivision + parsedCountry
+}
 
 module.exports = {
   Query: {
@@ -32,92 +47,127 @@ module.exports = {
     countries: () => Country.findAll(),
   },
   Club: {
-    courses: club => Course.findAll({
+    courses: ({ id }) => Course.findAll({
       where: {
-        clubId: club.id
+        clubId: id
       }
     }),
-    location: club => Location.findById(club.locationId)
+    location: ({ locationId }) => Location.findById(locationId),
+    parsedLocation: async ({ locationId }) => {
+      if (locationId) {
+        const location = await Location.findById(locationId)
+        if (location.cityId) {
+          return locationParser(location)
+        }
+      }
+    },
   },
   Course: {
-    builds: course => Build.findAll({
+    builds: ({ id }) => Build.findAll({
       where: {
-        courseId: course.id
+        courseId: id
       }
     }),
-    originalBuild: async course => {
-      const build = await Build.findOne({
-        where: {
-          courseId: course.id,
-          buildType: 'original',
-        }
-      })
-      return build.year
+    originalBuild: ({ id }) => Build.findOne({
+      where: {
+        courseId: id,
+        buildType: 'original',
+      }
+    }),
+    club: ({ clubId }) => Club.findById(clubId),
+    parsedName: async ({ name, clubId }) => {
+      const club = await Club.findById(clubId)
+      return `${club.name}${name ? ' - ' + name : ''}`
     },
-    club: course => Club.findById(course.clubId)
+    parsedNameInformal: async ({ name, informal, clubId }) => {
+      const club = await Club.findById(clubId)
+      let clubName = club.informal ? club.informal : club.name
+      if (name) {
+        clubName += informal ? ` (${informal})` : ` (${name})`
+      }
+      return clubName
+    },
+    parsedLocation: async ({ clubId }) => {
+      const { locationId } = await Club.findById(clubId)
+      if (locationId) {
+        const location = await Location.findById(locationId)
+        if (location.cityId) {
+          return locationParser(location)
+        }
+      }
+    },
+    parsedLocationAbbreviated: async ({ clubId }) => {
+      const { locationId } = await Club.findById(clubId)
+      if (locationId) {
+        const location = await Location.findById(locationId)
+        if (location.cityId) {
+          return locationParser(location, true)
+        }
+      }
+    },
   },
   Build: {
-    architects: build => {
+    architects: ({ id }) => {
       const architectBuilds = ArchitectBuild.findAll({
         where: {
-          buildId: build.id
+          buildId: id
         }
       })
-      const architects = architectBuilds.map(architectBuild => {
-        return Architect.findById(architectBuild.architectId)
+      const architects = architectBuilds.map(({ architectId }) => {
+        return Architect.findById(architectId)
       })
       return architects
     },
-    course: build => Course.findById(build.courseId)
+    course: ({ courseId }) => Course.findById(courseId)
   },
   Architect: {
-    fullname: architect => `${architect.givenName} ${architect.surname}`,
-    builds: architect => {
+    fullname: ({ givenName, surname }) => `${givenName} ${surname}`,
+    builds: ({ id }) => {
       const architectBuilds = ArchitectBuild.findAll({
         where: {
-          architectId: architect.id
+          architectId: id
         }
       })
-      const builds = architectBuilds.map(architectBuild => {
-        return Build.findById(architectBuild.buildId)
+      const builds = architectBuilds.map(({ buildId }) => {
+        return Build.findById(buildId)
       })
       return builds
     }
   },
   RankingList: {
-    publisher: rankingList => Publisher.findById(rankingList.publisherId),
-    rankings: rankingList => Ranking.findAll({
+    publisher: ({ publisherId }) => Publisher.findById(publisherId),
+    rankings: ({ id }) => Ranking.findAll({
       where: {
-        rankingListId: rankingList.id
+        rankingListId: id
       },
       order: [
         ['rank', 'ASC']
       ]
     }),
-    rankingListName: rankingList => RankingListName.findById(rankingList.rankingListNameId)
+    rankingListName: ({ rankingListNameId }) => RankingListName.findById(rankingListNameId)
   },
   Ranking: {
-    course: ranking => Course.findById(ranking.courseId)
+    course: ({ courseId }) => Course.findById(courseId)
   },
   Location: {
-    city: location => City.findById(location.cityId),
-    subdivision: location => Subdivision.findById(location.subdivisionId),
-    country: location => Country.findById(location.countryId),
+    city: ({ cityId }) => City.findById(cityId),
+    subdivision: ({ subdivisionId }) => Subdivision.findById(subdivisionId),
+    country: ({ countryId }) => Country.findById(countryId),
   },
   City: {
-    subdivision: city => Subdivision.findById(city.subdivisionId),
+    subdivision: ({ subdivisionId }) => Subdivision.findById(subdivisionId),
   },
   Subdivision: {
-    cities: subdivision => City.findAll({
+    cities: ({ id }) => City.findAll({
       where: {
-        subdivisionId: subdivision.id
+        subdivisionId: id
       }
     })
   },
   Country: {
-    subdivisions: country => Subdivision.findAll({
+    subdivisions: ({ id }) => Subdivision.findAll({
       where: {
-        countryId: country.id
+        countryId: id
       }
     })
   },
