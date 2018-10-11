@@ -137,6 +137,8 @@ module.exports = gql`
     publisher: Publisher!
     rankingListNameId: Int!
     rankingListName: RankingListName!
+    parsedName: String!
+    parsedNameInformal: String!
     rankings: [Ranking!]!
     createdAt: String!
     updatedAt: String!
@@ -154,6 +156,7 @@ module.exports = gql`
     id: Int!
     name: String!
     informal: String
+    rankingLists: [RankingList!]!
     createdAt: String!
     updatedAt: String!
   }
