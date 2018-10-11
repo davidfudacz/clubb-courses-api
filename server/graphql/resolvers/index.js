@@ -134,6 +134,13 @@ module.exports = {
       return builds
     }
   },
+  Publisher: {
+    rankingLists: ({ id }) => RankingList.findAll({
+      where: {
+        publisherId: id,
+      }
+    })
+  },
   RankingList: {
     publisher: ({ publisherId }) => Publisher.findById(publisherId),
     rankings: ({ id }) => Ranking.findAll({
@@ -144,7 +151,15 @@ module.exports = {
         ['rank', 'ASC']
       ]
     }),
-    rankingListName: ({ rankingListNameId }) => RankingListName.findById(rankingListNameId)
+    rankingListName: ({ rankingListNameId }) => RankingListName.findById(rankingListNameId),
+    parsedName: async ({ rankingListNameId, year }) => {
+      const { name } = await RankingListName.findById(rankingListNameId)
+      return `${year} - ${name}`
+    },
+    parsedNameInformal: async ({ rankingListNameId, year }) => {
+      const { informal, name } = await RankingListName.findById(rankingListNameId)
+      return `${year} - ${informal ? informal : name}`
+    },
   },
   Ranking: {
     course: ({ courseId }) => Course.findById(courseId)
