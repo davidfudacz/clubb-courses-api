@@ -60,8 +60,7 @@ const builds = [
 ]
 
 async function seedBuilds () {
-  const buildsProms = builds.map(async build => {
-    const { buildType, year, courseId, architects, numOfHoles } = build
+  const buildsProms = builds.map(async ({ buildType, year, courseId, architects, numOfHoles }) => {
     const createdBuild = await Build.create({
       buildType,
       year,
