@@ -36,7 +36,7 @@ const courses = [
 ]
 
 async function seedCourses () {
-  await courses.map(async ({ name, informal, numOfHoles, club }) => {
+  await courses.forEach(async ({ name, informal, numOfHoles, club }) => {
     const courseCreated = await Course.create({
       name,
       informal,
