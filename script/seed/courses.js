@@ -36,15 +36,19 @@ const courses = [
 ]
 
 async function seedCourses () {
-  await courses.forEach(async ({ name, informal, numOfHoles, club }) => {
-    const courseCreated = await Course.create({
-      name,
-      informal,
-      numOfHoles,
+  try {
+    await courses.forEach(async ({ name, informal, numOfHoles, club }) => {
+      const courseCreated = await Course.create({
+        name,
+        informal,
+        numOfHoles,
+      })
+      await courseCreated.setClub(club)
     })
-    await courseCreated.setClub(club)
-  })
-  console.log(`Seeded ${courses.length} courses`)
+    console.log(`Seeded ${courses.length} courses`)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 module.exports = seedCourses

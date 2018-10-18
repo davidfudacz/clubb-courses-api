@@ -12,6 +12,7 @@ const seedEmployees = require('./employees')
 const seedYardage = require('./yardage')
 const seedRankings = require('./rankings')
 const seedScorecards = require('./scorecards')
+const seedLocations = require('./locations')
 
 async function seed () {
   try {
@@ -21,12 +22,13 @@ async function seed () {
     await seedUsers()
     await seedCountries()
     await seedSubdivisions()
+    await seedLocations()
     await seedEmployeeTitles()
     await seedTees()
     await seedArchitects()
     await seedClubs()
     await seedCourses()
-    await seedEmployees()
+    // await seedEmployees()
     await seedBuilds()
     await seedYardage()
     await seedRankings()
